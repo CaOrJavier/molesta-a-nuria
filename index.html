@@ -334,7 +334,7 @@ nav{position:relative;background:#fff;border-top:2px solid var(--line);z-index:5
     <button class="mi" id="fs"><i class="ic"></i><span>Pantalla completa</span></button>
     <button class="mi" id="helpBtn"><i class="ic">❓</i><span>Cómo se juega</span></button>
     <ul id="help">
-      <li><b>Toca a Núria</b> para chincharla. Mantén el dedo y arrástrala para lanzarla por los aires.</li>
+      <li><b>Toca a Núria</b> para chincharla. Mantén el dedo y arrástrala: si haces el gesto de lanzar sale volando; si la sueltas quieta, la dejas en el suelo con cuidado.</li>
       <li><b>Lánzale cosas</b>: toca un objeto de la fila «Lánzale» o arrástralo para apuntar.</li>
       <li>Abajo tienes <b>Trastadas</b>, <b>Cuidar</b> y <b>Jugar</b>. Si un botón se mueve, ¡es lo que Núria necesita!</li>
       <li>En <b>Bebidas</b> hay agua, café… y alcohol: si bebe mucho se emborracha (y anda haciendo eses). En el <b>Sofá</b> juega a la consola, hace ganchillo o lee.</li>
@@ -1032,7 +1032,7 @@ function resize(){const w=stage.clientWidth,h=stage.clientHeight;if(!w||!h)retur
 addEventListener('resize',resize);
 function updateCamera(dt){const yaw=.42,pitch=lerp(.26,.6,clamp((zoomK-.4)/1.8,0,1)),vf=THREE.MathUtils.degToRad(camera.fov/2),hf=Math.atan(Math.tan(vf)*camera.aspect);
   const dist=clamp(Math.max(2.3/Math.tan(hf),2.0/Math.tan(vf)),5,9.5)*zoomK;
-  const fy=PH.mode==='fly'||PH.mode==='held'?Math.min(2,nuri.position.y*.4):0;
+  const fy=PH.mode==='fly'||PH.mode==='held'||PH.mode==='lower'?Math.min(2,nuri.position.y*.4):0;
   camT.lerp(new THREE.Vector3(C.pos.x,.82+fy,C.pos.y),1-Math.exp(-3*dt));
   camera.position.set(camT.x+Math.sin(yaw)*Math.cos(pitch)*dist,camT.y+Math.sin(pitch)*dist,camT.z+Math.cos(yaw)*Math.cos(pitch)*dist);camera.lookAt(camT);{const dk=clamp(((S.drunk||0)-40)/60,0,1);if(dk>0)camera.rotateZ(Math.sin(clockS*.9)*.06*dk)}scene.fog.near=dist+3;scene.fog.far=dist+18;
   sun.target.position.set(camT.x,0,camT.z);sun.position.set(camT.x-4.5,10,camT.z+5.5)}
@@ -1488,11 +1488,15 @@ function clearDizzy(){stars.forEach(s=>s.remove());stars=[]}
 function grab(){if(C.inBath||C.hidden)return;const was=C.sleeping;
   C.act=null;C.actName='held';C.path=[];C.slide=null;C.seat=null;C.lie=0;C.lieGoal=0;C.sleeping=false;C.searching=false;C.waitingFood=false;C.wakeBy=null;C.panic=false;C.at=null;C.roll=0;C.floorSleep=false;C.inTub=false;C.spinA=0;C.relaxK=null;hideProps();if(TOOL.mode)endTool(false);
   if(C.holdPhone){C.holdPhone=false;if(!phoneHidden){phone.position.copy(PHONE_TABLE);phone.rotation.set(0,0,0)}}glass.visible=false;C.drinkT=0;
-  PH.mode='held';PH.t=0;PH.pose='held';PH.p.copy(planeAt(lastPtr.x,lastPtr.y,PY));PH.lv.set(0,0,0);PH.sx=PH.sz=PH.vsx=PH.vsz=0;PH.hist=[{t:performance.now(),p:PH.p.clone(),sy:lastPtr.y}];PH.nextSay=2.5;
-  rig.scale.setScalar(CH);clearDizzy();C.thought=['😱','¡Bájame!'];SFX.whee();vibrate(25);react('surprised',1.2);say(was?T.grabbedSleep:pick(T.grabbed),1.6);voice(1.25,1);annoy(4);crowdReact('look',C.pos,5)}
+  PH.mode='held';PH.t=0;PH.pose='held';PH.p.copy(planeAt(lastPtr.x,lastPtr.y,PY));PH.lv.set(0,0,0);PH.sx=PH.sz=PH.vsx=PH.vsz=0;PH.hist=[{t:performance.now(),p:PH.p.clone(),sx:lastPtr.x,sy:lastPtr.y}];PH.nextSay=2.5;
+  rig.scale.setScalar(CH);clearDizzy();C.thought=['😱','¡Bájame!'];if((PH.tips=(PH.tips||0)+1)<=2)setTimeout(()=>{if(PH.mode==='held')toast('💡 Suelta sin mover el dedo para dejarla con cuidado')},700);SFX.whee();vibrate(25);react('surprised',1.2);say(was?T.grabbedSleep:pick(T.grabbed),1.6);voice(1.25,1);annoy(4);crowdReact('look',C.pos,5)}
 function release(){const h=PH.hist,a=h[0],b=h[h.length-1];const dtv=Math.max(.03,(b.t-a.t)/1000);
   const v=b.p.clone().sub(a.p).divideScalar(dtv);v.y=0;const hs=Math.min(v.length(),7);if(v.lengthSq()>1e-6)v.setLength(hs*1.15);
-  const up=clamp(-(b.sy-a.sy)/dtv*.012,-2,9);v.y=Math.max(up,hs>1.5?2.5:0);
+  const up=clamp(-(b.sy-a.sy)/dtv*.012,-2,9);
+  const fingerSpeed=Math.hypot((b.sx||0)-(a.sx||0),b.sy-a.sy)/dtv;
+  if(fingerSpeed<280){const g=groundAt(PH.p.x,PH.p.z);let x=PH.p.x,z=PH.p.z;if(g.name!=='floor'&&g.ex&&g.ex!=='radial'){if(g.ex[0]!=null)x=g.ex[0];if(g.ex[1]!=null)z=g.ex[1]}
+    PH.mode='lower';PH.t=0;PH.lowFrom=PH.p.clone();PH.lowTo=new THREE.Vector3(x,TOP,z);C.status='Bajándola con cuidado';C.thought=['😌','Despacito…'];return}
+  v.y=Math.max(up,hs>1.5?2.5:0);
   PH.mode='fly';PH.t=0;PH.bounces=0;PH.v.copy(v);PH.c.copy(PH.p);PH.c.y-=TOP-HALF;
   const hv=new THREE.Vector3(v.x,0,v.z);PH.axis=hv.lengthSq()>.01?new THREE.Vector3().crossVectors(UP,hv).normalize():new THREE.Vector3(1,0,0);
   PH.spin=0;const strong=hs>2||up>3;PH.spinV=strong?rand(7,11):1.5;PH.pose='fly';C.thought=['😱','¡¡AAAAH!!'];
@@ -1512,15 +1516,20 @@ function stepPhys(dt){PH.t+=dt;
   if(PH.mode==='held'){const tgt=planeAt(lastPtr.x,lastPtr.y,PY),prev=PH.p.clone();PH.p.lerp(tgt,1-Math.exp(-22*dt));
     const id=1/Math.max(dt,1e-3),vel=PH.p.clone().sub(prev).multiplyScalar(id);const ax=clamp((vel.x-PH.lv.x)*id,-60,60),az=clamp((vel.z-PH.lv.z)*id,-60,60);PH.lv.copy(vel);
     PH.vsz+=(-PH.sz*30-PH.vsz*3.5-ax*.8)*dt;PH.vsx+=(-PH.sx*30-PH.vsx*3.5+az*.8)*dt;PH.sz=clamp(PH.sz+PH.vsz*dt,-1.2,1.2);PH.sx=clamp(PH.sx+PH.vsx*dt,-1.2,1.2);
-    const nowT=performance.now();PH.hist.push({t:nowT,p:PH.p.clone(),sy:lastPtr.y});while(PH.hist.length>2&&nowT-PH.hist[0].t>120)PH.hist.shift();
+    const nowT=performance.now();PH.hist.push({t:nowT,p:PH.p.clone(),sx:lastPtr.x,sy:lastPtr.y});while(PH.hist.length>2&&nowT-PH.hist[0].t>120)PH.hist.shift();
     if(PH.t>PH.nextSay){PH.nextSay=PH.t+rand(2.5,4);say(pick(T.grabbed),1.3);voice(rand(1.2,1.4),.9)}}
   else if(PH.mode==='fly'){PH.v.y-=12*dt;PH.c.addScaledVector(PH.v,dt);PH.spin+=PH.spinV*dt;
     const l=Math.hypot(PH.c.x,PH.c.z);if(l>12){const nx=PH.c.x/l,nz=PH.c.z/l;PH.c.x=nx*12;PH.c.z=nz*12;const dot=PH.v.x*nx+PH.v.z*nz;PH.v.x-=1.5*dot*nx;PH.v.z-=1.5*dot*nz;SFX.thud()}
     const g=groundAt(PH.c.x,PH.c.z);
     if(PH.v.y<0&&PH.c.y<=g.h+HALF*.55){if((g.name==='bed'||g.name==='sofa')&&PH.v.y<-3.5&&PH.bounces<1){PH.bounces++;PH.v.y*=-.45;PH.v.x*=.5;PH.v.z*=.5;SFX.boing();say(pick(T.soft),1.2)}else land(g)}}
-  else if(PH.mode==='down'){if(PH.t>1.4)PH.pose='rub';if(PH.t>2.9)standUp()}}
+  else if(PH.mode==='down'){if(PH.t>1.4)PH.pose='rub';if(PH.t>2.9)standUp()}
+  else if(PH.mode==='lower'){const k=Math.min(1,PH.t/.6),e=1-Math.pow(1-k,3);PH.p.lerpVectors(PH.lowFrom,PH.lowTo,e);PH.sx*=Math.exp(-7*dt);PH.sz*=Math.exp(-7*dt);if(k>=1)softLand()}}
+function softLand(){PH.mode=null;rig.scale.setScalar(CH);rig.rotation.set(0,0,0);C.roll=0;C.lie=0;C.lieGoal=0;C.pos.set(PH.lowTo.x,PH.lowTo.z);C.y=0;nuri.rotation.set(0,C.rot,0);C.rotGoal=C.rot;
+  C.at=null;C.actName='';C.act=null;C.thought=null;C.pose='stand';C.squash=1;faceCam();SFX.step();setTimeout(SFX.step,130);vibrate(10);
+  const mad=S.anger>60;react(mad?'angry':'happy',1.6);say(pick(mad?['Hmpf. Al menos me has bajado con cuidado','¡Y no vuelvas a cogerme!']:['Uf, gracias por bajarme con cuidado','Bueno… ha sido divertido','¡Aterrizaje perfecto!','¿Ya está? ¡Otra vez!']),2);
+  S.anger=clamp(S.anger-3,0,100)}
 function placePhys(){qYaw.setFromAxisAngle(UP,C.rot);const off=new THREE.Vector3();
-  if(PH.mode==='held'){eT.set(PH.sx,0,PH.sz,'XYZ');qT.setFromEuler(eT);nuri.quaternion.copy(qT).multiply(qYaw);off.set(0,TOP,0).applyQuaternion(qT);nuri.position.copy(PH.p).sub(off)}
+  if(PH.mode==='held'||PH.mode==='lower'){eT.set(PH.sx,0,PH.sz,'XYZ');qT.setFromEuler(eT);nuri.quaternion.copy(qT).multiply(qYaw);off.set(0,TOP,0).applyQuaternion(qT);nuri.position.copy(PH.p).sub(off)}
   else if(PH.mode==='fly'){qT.setFromAxisAngle(PH.axis,PH.spin);nuri.quaternion.copy(qT).multiply(qYaw);off.set(0,HALF,0).applyQuaternion(qT);nuri.position.copy(PH.c).sub(off)}
   else if(PH.mode==='down'){nuri.quaternion.copy(qYaw);const sq=Math.max(0,1-PH.t*3);nuri.position.set(PH.c.x,PH.groundY-.31,PH.c.z);rig.scale.set(CH*(1+sq*.25),CH*(1-sq*.3),CH*(1+sq*.25))}
   C.pos.set(nuri.position.x,nuri.position.z)}
@@ -1835,7 +1844,7 @@ function step(dt){
     snT-=dt;if(snT<=0){snT=3;SFX.snore()}}
   updateCamera(dt);
   needsT-=dt;if(needsT<=0){needsT=.2;drawNeeds()}const hh=Math.floor(h),mm=Math.floor(S.gameMin%60);clockEl.textContent=`${dayF>.5?'☀️':'🌙'} ${String(hh).padStart(2,'0')}:${String(mm).padStart(2,'0')}`;
-  statusEl.textContent=PH.mode==='held'?'¡La tienes colgando!':PH.mode==='fly'?'¡Volando por los aires!':PH.mode==='down'?'Sentada de culo':C.status||'…';
+  statusEl.textContent=PH.mode==='held'?'¡La tienes colgando!':PH.mode==='lower'?'Bajándola con cuidado':PH.mode==='fly'?'¡Volando por los aires!':PH.mode==='down'?'Sentada de culo':C.status||'…';
   dockBtns.food.classList.toggle('hot',(S.hunger>60||C.waitingFood)&&!foodOnTable);
   if((hotT-=dt)<=0){hotT=.5;const free=!C.hidden&&!PH.mode&&!TOOL.mode;dockBtns.bathe.classList.toggle('hot',free&&S.dirt>70);dockBtns.comb.classList.toggle('hot',free&&S.messy>70);
     dockBtns.pet.classList.toggle('hot',free&&(S.sad>70||C.actName==='cry'));dockBtns.nap.classList.toggle('hot',free&&!C.sleeping&&S.energy<20);dockBtns.drinks.classList.toggle('hot',free&&S.weather==='hot');dockBtns.relax.classList.toggle('hot',free&&!C.sleeping&&(S.bored>75||S.stress>75)&&!['console','crochet','read'].includes(C.actName));
