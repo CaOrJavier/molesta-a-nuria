@@ -93,6 +93,30 @@ button{font-family:inherit;color:inherit;border:0;background:none;cursor:pointer
 #help.on{display:block}
 #help li{margin:0 0 6px 18px}
 #menu .ver{text-align:center;font-size:11px;font-weight:700;color:var(--soft);margin-top:10px}
+#achBtn{position:relative;font-size:19px}#achNew{position:absolute;top:-2px;right:-2px;width:11px;height:11px;border-radius:50%;background:var(--red);border:2px solid #fff;display:none}#achNew.on{display:block}
+#achPop{position:absolute;left:50%;top:70px;z-index:59;display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,#ffd166,#ff9f43);color:#3d2a00;border-radius:18px;padding:9px 16px 9px 10px;box-shadow:0 10px 26px #0004;transform:translate(-50%,-30px) scale(.8);opacity:0;transition:.35s cubic-bezier(.3,1.6,.5,1);pointer-events:none;white-space:nowrap}
+#achPop.on{transform:translate(-50%,0) scale(1);opacity:1}#achPop em{font-style:normal;font-size:30px}#achPop small{display:block;font-size:10.5px;font-weight:900;text-transform:uppercase;letter-spacing:.05em}#achPop b{display:block;font-size:16px;font-weight:900}
+#achSheet{position:absolute;inset:0;z-index:56;overflow:hidden;background:#2b283180;display:flex;align-items:flex-end;opacity:0;pointer-events:none;transition:opacity .2s}
+#achSheet.on{opacity:1;pointer-events:auto}#achSheet .sheet{width:100%;background:#fff;border-radius:26px 26px 0 0;padding:10px 14px calc(18px + env(safe-area-inset-bottom));transform:translateY(100%);transition:transform .28s cubic-bezier(.2,.9,.3,1);max-height:90%;overflow:auto}
+#achSheet.on .sheet{transform:none}#achSheet h2{font-family:'Fredoka','Nunito',sans-serif;font-size:24px;font-weight:700}#achSheet .grab{width:44px;height:5px;border-radius:9px;background:var(--line);margin:0 auto 12px}
+#achSheet .stats{font-size:13px;font-weight:800;color:var(--soft);margin:2px 0 10px}
+.achGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.ach{display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 4px;border-radius:16px;background:#f6f8fb;border:2px solid var(--line);text-align:center}
+.ach em{font-style:normal;font-size:28px;line-height:1}.ach span{font-size:11.5px;font-weight:900;line-height:1.15}
+.ach.off{opacity:.45}.ach.off em{filter:grayscale(1)}.ach.on{background:#fff7d6;border-color:#ffd166}
+#evList{display:none;grid-template-columns:repeat(4,1fr);gap:6px;margin:0 0 6px}#evList.on{display:grid}#evList .food span{font-size:11px}
+#fade{position:absolute;inset:0;z-index:57;background:#111;color:#fff;display:grid;place-items:center;font-family:'Fredoka','Nunito',sans-serif;font-size:24px;font-weight:700;opacity:0;pointer-events:none;transition:opacity .5s;text-align:center;padding:20px}
+#fade.on{opacity:1}
+#invite{position:absolute;left:50%;top:10px;z-index:7;display:flex;align-items:center;gap:8px;background:#fff;border:2px solid #a77bff;border-radius:18px;padding:7px 8px;box-shadow:0 6px 18px #0002;transform:translate(-50%,-160%);opacity:0;transition:transform .35s cubic-bezier(.3,1.5,.5,1),opacity .25s;max-width:calc(100% - 20px)}
+#invite.on{transform:translate(-50%,0);opacity:1}#invite em{font-style:normal;font-size:28px;width:42px;height:42px;border-radius:50%;background:#efe6ff;display:grid;place-items:center;flex:none}
+#invite small{display:block;font-size:10.5px;font-weight:900;color:#7a55d8;text-transform:uppercase;letter-spacing:.05em}#invite b{display:block;font-size:14px;font-weight:900;line-height:1.15}
+#invYes{height:38px;padding:0 12px;border-radius:999px;background:#7a55d8;color:#fff;font-weight:900;font-size:14px;flex:none;touch-action:manipulation}#invNo{width:30px;height:30px;border-radius:50%;background:#f1f4f8;font-weight:900;flex:none;touch-action:manipulation}
+#evt{position:absolute;left:10px;right:10px;bottom:10px;z-index:9;background:#ffffffee;border:2px solid var(--line);border-radius:20px;padding:10px 12px;box-shadow:0 8px 24px #0003;display:none}
+#evt.on{display:block}#evt .et{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}#evt .et b{font-family:'Fredoka','Nunito',sans-serif;font-size:18px}#evt .et span{font-weight:900;font-size:15px;color:var(--red)}
+#evt .er{display:flex;align-items:center;gap:8px;margin:4px 0;font-size:12px;font-weight:900}#evt .er span{width:52px;flex:none}#evt .er b{width:30px;text-align:right;font-size:15px}
+#evt .eb{flex:1;height:12px;background:#eef1f5;border-radius:9px;overflow:hidden}#evt .eb i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff5a6e,#ffb347);border-radius:9px;transition:width .1s}#evt .eb.rv i{background:#9aa3b2}
+#evtBtn{width:100%;height:58px;margin-top:8px;border-radius:999px;background:var(--red);color:#fff;font-family:'Fredoka','Nunito',sans-serif;font-weight:700;font-size:22px;box-shadow:0 5px 0 #c42a3f;touch-action:manipulation}
+#evtBtn:active{transform:translateY(4px);box-shadow:0 1px 0 #c42a3f}
 #toast{position:absolute;left:50%;top:14px;transform:translate(-50%,-30px);opacity:0;z-index:58;background:var(--ink);color:#fff;font-weight:800;font-size:14px;padding:9px 16px;border-radius:999px;transition:.25s;pointer-events:none;white-space:nowrap}
 #toast.on{opacity:1;transform:translate(-50%,0)}
 /* en ordenador: el juego como un móvil en el centro */
@@ -214,6 +238,7 @@ nav{position:relative;background:#fff;border-top:2px solid var(--line);z-index:5
   <header class="top">
     <div class="who"><b>Núria <span id="mood" class="mood">🙂 Tranquila</span></b><small id="status">…</small></div>
     <div class="pill" id="pranks" title="Trastadas">😈 0</div><div class="pill" id="clock">12:00</div>
+    <button class="rb" id="achBtn" aria-label="Logros">🏆<i id="achNew"></i></button>
     <button class="rb" id="menuBtn" aria-label="Menú"><svg viewBox="0 0 24 24"><path d="M5 7h14M5 12h14M5 17h14" stroke="#3d3a44" stroke-width="2.6" stroke-linecap="round"/></svg></button>
   </header>
   <div class="needs" id="needs">
@@ -233,6 +258,11 @@ nav{position:relative;background:#fff;border-top:2px solid var(--line);z-index:5
     <div id="doorTag">🔒 Pestillo</div>
     <div id="banner"></div>
     <div id="want"><em id="wantI">🍣</em><div><small>Núria te pide</small><b id="wantT">…</b><div class="wb"><i id="wantBar"></i></div></div></div>
+    <div id="invite"><em id="invI">🎪</em><div><small>¡Evento!</small><b id="invT">…</b></div><button id="invYes">¡Vamos!</button><button id="invNo" aria-label="Ahora no">✕</button></div>
+    <div id="evt"><div class="et"><b id="evtT">Evento</b><span id="evtTime"></span></div>
+      <div class="er" id="evtMeRow"><span>Núria</span><div class="eb"><i id="evtMe"></i></div><b id="evtMeN">0</b></div>
+      <div class="er" id="evtRvRow"><span id="evtRvName">Rival</span><div class="eb rv"><i id="evtRv"></i></div><b id="evtRvN">0</b></div>
+      <button id="evtBtn">💪 ¡DALE!</button></div>
     <div id="hint">Arrastra a Núria para lanzarla · Pellizca para hacer zoom</div>
     <div id="zoomBox"><button id="snap" aria-label="Hacer una foto"><svg viewBox="0 0 24 24" width="22" height="22"><g stroke="#3d3a44" stroke-width="2.2" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z" fill="#ffd166"/><circle cx="12" cy="13" r="3.6" fill="#fff"/></g></svg></button><button id="zin" aria-label="Acercar">+</button><button id="zout" aria-label="Alejar">−</button></div>
   </div>
@@ -272,6 +302,7 @@ nav{position:relative;background:#fff;border-top:2px solid var(--line);z-index:5
         <button class="food" data-p="horn"><em>📯</em><span>Bocina</span><small>¡MOOOC!</small></button>
         <button class="food" data-p="wifi"><em>📶</em><span>Wifi</span><small>cortarlo</small></button>
         <button class="food" data-p="ice"><em>🧊</em><span>Hielo</span><small>por la espalda</small></button>
+        <button class="food" data-p="mosquito"><em>🦟</em><span>Mosquito</span><small>bzzzz</small></button>
         <button class="food" data-p="light"><em>💡</em><span>Farola</span><small>luz</small></button>
       </div>
     </div>
@@ -366,12 +397,18 @@ nav{position:relative;background:#fff;border-top:2px solid var(--line);z-index:5
     </div>
   </nav>
   <div id="toast"></div>
+  <div id="achPop"><em>🏆</em><div><small>¡Logro desbloqueado!</small><b id="achPopT">…</b></div></div>
+  <div id="fade"><span id="fadeT"></span></div>
+  <div id="achSheet" aria-hidden="true"><div class="sheet" role="dialog" aria-label="Logros"><div class="grab"></div><h2>🏆 Logros</h2><p class="stats" id="achStats"></p><div class="achGrid" id="achGrid"></div></div></div>
   <div id="flash"></div>
   <div id="photo"><button class="x" id="photoX" aria-label="Cerrar">✕</button><img id="photoImg" alt="Foto de Núria"><div class="row"><button class="pri" id="photoShare">📤 Compartir</button><button id="photoSave">💾 Guardar</button></div></div>
   <div id="menu" aria-hidden="true"><div class="sheet" role="dialog" aria-label="Menú">
     <div class="grab"></div><h2>Menú</h2>
     <button class="mi" id="mute"><i class="ic"></i><span>Sonido</span><b id="muteTxt">Sí</b></button>
     <button class="mi" id="fs"><i class="ic"></i><span>Pantalla completa</span></button>
+    <button class="mi" id="achMenuBtn"><i class="ic">🏆</i><span>Logros<small id="achMenuN">0 de 0</small></span></button>
+    <button class="mi" id="evBtn"><i class="ic">🎪</i><span>Organizar un evento<small>flexiones, carrera, cine, paracaídas</small></span></button>
+    <div id="evList"><button class="food" data-e="pushups"><em>💪</em><span>Flexiones</span></button><button class="food" data-e="race"><em>🏃‍♀️</em><span>Carrera</span></button><button class="food" data-e="cinema"><em>🍿</em><span>Día de cine</span></button><button class="food" data-e="skydive"><em>🪂</em><span>Paracaídas</span></button></div>
     <button class="mi" id="helpBtn"><i class="ic">❓</i><span>Cómo se juega</span></button>
     <ul id="help">
       <li><b>Toca a Núria</b> para chincharla. Mantén el dedo y arrástrala: si haces el gesto de lanzar sale volando; si la sueltas quieta, la dejas en el suelo con cuidado.</li>
@@ -379,6 +416,7 @@ nav{position:relative;background:#fff;border-top:2px solid var(--line);z-index:5
       <li>Abajo tienes <b>Trastadas</b>, <b>Cuidar</b> y <b>Jugar</b>. Si un botón se mueve, ¡es lo que Núria necesita!</li>
       <li>En <b>Bebidas</b> hay agua, café… y alcohol: si bebe mucho se emborracha (y anda haciendo eses). En el <b>Sofá</b> juega a la consola, hace ganchillo o lee.</li>
       <li>En <b>Verano</b> puede nadar en la piscina o tomar el sol en la hamaca (¡cuidado, que se quema!). En <b>Más</b> hay más trastadas: plátano, cojín pedorro, bigote, bocina, cortar el wifi y hielo.</li>
+      <li>En <b>🏆</b> (arriba) tienes los <b>logros</b>: solo verás el nombre, ¡descubre cómo se consiguen! De vez en cuando hay <b>eventos</b> (flexiones, carreras, cine, paracaídas); también los puedes organizar desde este menú.</li>
       <li>A veces <b>Núria te pide algo</b> (sale arriba con una cuenta atrás). Si se lo das a tiempo, ¡favor cumplido! Toca el aviso para ir al botón.</li>
       <li>Su forma de andar cambia según cómo esté: contenta, enfadada, triste, cansada, con pis… o borracha.</li>
       <li>Con la <b>pluma</b> le haces cosquillas (los pies son su punto débil). Con el <b>📷</b> le haces una foto para compartir.</li>
@@ -510,6 +548,7 @@ const SFX={
   fart(){osc({type:'sawtooth',f:95,f2:62,dur:.75,vol:.2,filter:{type:'lowpass',f:440},vib:38,vibF:27});noise({dur:.65,vol:.09,type:'lowpass',f:320})},
   horn(){[466,554,698].forEach(f=>osc({type:'sawtooth',f,dur:1.1,vol:.08,filter:{type:'lowpass',f:2800},vib:5,vibF:32}))},
   ice(){for(let i=0;i<6;i++)osc({type:'triangle',f:rand(2500,4300),t:i*.05,dur:.05,vol:.05})},
+  siren(){[0,.45].forEach((t,i)=>osc({type:'square',f:i?760:960,t,dur:.42,vol:.05,filter:{type:'lowpass',f:2400}}))},
   ghost(){osc({f:330,f2:180,dur:1.1,vol:.11,a:.15,vib:22,vibF:6});osc({type:'triangle',f:495,f2:270,dur:1.1,vol:.05,a:.15,vib:30,vibF:5});noise({dur:.6,vol:.12,f:400,f2:1800,q:1.5,a:.1})},
   poke(){osc({f:rand(480,620),f2:160,dur:.14,vol:.38})},
   switch(){noise({dur:.03,vol:.4,type:'highpass',f:2000});osc({type:'square',f:1800,dur:.02,vol:.08})},
@@ -628,7 +667,7 @@ const tvC=document.createElement('canvas');tvC.width=256;tvC.height=150;const tv
 const tvScreen=add(tvG,new THREE.PlaneGeometry(1.56,.88),new THREE.MeshBasicMaterial({map:tvTex,toneMapped:false}),0,1.55,.056,{cast:false});
 // pantalla doble: la serie también se ve desde detrás (Núria la mira de lado a la cámara)
 const tvScreen2=add(tvG,new THREE.PlaneGeometry(1.56,.88),tvScreen.material,0,1.55,-.056,{cast:false,ry:Math.PI});
-function drawTV(t){const g=tvX,w=256,h=150;if(!S.tv){g.fillStyle='#111';g.fillRect(0,0,w,h);g.fillStyle='rgba(255,255,255,.06)';g.fillRect(20,10,60,130);tvTex.needsUpdate=true;return}
+function drawTV(t){const g=tvX,w=256,h=150;if(C.film&&S.tv)return drawFilm(t);if(!S.tv){g.fillStyle='#111';g.fillRect(0,0,w,h);g.fillStyle='rgba(255,255,255,.06)';g.fillRect(20,10,60,130);tvTex.needsUpdate=true;return}
   const hue=(t*25)%360;g.fillStyle=`hsl(${hue},65%,64%)`;g.fillRect(0,0,w,h);g.fillStyle=`hsl(${(hue+160)%360},60%,55%)`;g.fillRect(0,h*.68,w,h*.32);
   [[.35,1],[.65,-1]].forEach(([px],i)=>{const x=w*px+Math.sin(t*2+i)*14,y=h*.55-Math.abs(Math.sin(t*3+i))*16;g.fillStyle=i?'#ffd6dc':'#fff';g.beginPath();g.arc(x,y-22,16,0,7);g.fill();g.fillRect(x-10,y-8,20,30);g.fillStyle='#3d3a44';g.fillRect(x-6,y-26,3,3);g.fillRect(x+3,y-26,3,3)});
   g.fillStyle='#ff5a6e';g.beginPath();const hx=w/2,hy=h*.3+Math.sin(t*4)*3;g.arc(hx-5,hy,6,0,7);g.arc(hx+5,hy,6,0,7);g.fill();
@@ -769,7 +808,7 @@ function* aZumba(){C.status='Haciendo zumba';C.thought=['💃','¡Zumba!'];yield
   let t=0;while(t<14&&MUS.kind==='zumba'){S.bored=clamp(S.bored-dt_*2.5,0,100);S.stress=clamp(S.stress-dt_*1.3,0,100);S.sad=clamp(S.sad-dt_*1,0,100);S.energy=clamp(S.energy-dt_*.4,0,100);C.sweatUntil=clockS+5;C.happyUntil=clockS+2;
     if(Math.random()<dt_*.25&&!sayOn)say(pick(['¡Y arriba!','¡Y abajo!','¡Derecha! ¡Izquierda!','¡Uuuh!','¡Zumbaaa!']),1.1);t+=yield}
   if(MUS.kind==='zumba')setMusic(null);C.pose='tired';say('¡Qué bien! Aunque estoy sudando como un pollo',2);yield* waitS(2);C.pose='stand';C.thought=null}
-function startSport(k){wakeFor();if(C.hidden||PH.mode||C.inBath)return;
+function startSport(k){ach('sport');wakeFor();if(C.hidden||PH.mode||C.inBath)return;
   if(k==='run')startAct('run',aRun);else if(k==='weights')startAct('weights',aWeights);else startAct('zumba',aZumba)}
 // radio para la música
 const radio=new THREE.Group();world.add(radio);const radioIn=new THREE.Group();radio.add(radioIn);
@@ -836,7 +875,7 @@ function* aDance(){C.status='Bailando';C.thought=null;yield* leaveSpot();faceCam
   say(pick(['¡Me encanta esta canción!','¡A bailar!','¡¡TEMAZO!!','¡Mira qué pasos!']),2);voice(1.2,1);
   let t=0;while(MUS.kind==='pop'&&t<26){C.danceClock+=dt_;S.bored=clamp(S.bored-dt_*2.5,0,100);S.stress=clamp(S.stress-dt_*1.2,0,100);S.sad=clamp(S.sad-dt_*.8,0,100);C.happyUntil=clockS+2;
     if(Math.random()<dt_*.15&&!sayOn)say(pick(['¡Uuuh!','¡Esta me la sé!','La la la ♪','¡Vamos!','¡Dale!','¡Qué arte tengo!','¡Sígueme el ritmo!']),1.2);t+=yield}
-  if(MUS.kind==='pop'){C.danceEnd=true;react('party',2.5);cine({zoom:.55,dur:2,orbit:-.9,lift:.3});say(pick(['¡Tachán! ¿Qué tal bailo?','¡Y fin! Aplausos, por favor','¡Soy una estrella!']),2.2);voice(1.25,1);yield* waitS(1.8)}
+  if(MUS.kind==='pop'){C.danceEnd=true;ach('dance');react('party',2.5);cine({zoom:.55,dur:2,orbit:-.9,lift:.3});say(pick(['¡Tachán! ¿Qué tal bailo?','¡Y fin! Aplausos, por favor','¡Soy una estrella!']),2.2);voice(1.25,1);yield* waitS(1.8)}
   C.danceEnd=false;C.danceMv=null;C.spinA=0;C.pose='stand';if(MUS.kind==='flute')return startAct('hatemusic',aHate)}
 function* aHate(){C.status='¡Qué música más horrible!';C.thought=['🙉','¡Esa flauta!'];yield* leaveSpot();faceCam();C.pose='ears';react('rage',2);say('¡¡¿QUÉ ES ESE RUIDO?!! ¡¡QUÍTALO!!',2.2);voice(1.1,1.1);
   let t=0,next=3;while(MUS.kind==='flute'&&t<9){annoy(dt_*2.5);if(t>next){next=t+3;say(pick(['¡Me sangran los oídos!','¡¡Esa flauta está desafinada!!','¡Apágalo YA!']),1.8);react('rage',1.5)}t+=yield}
@@ -884,7 +923,7 @@ function placeTub(){if(shown(tub))return;const[x,z]=nearPos(tub);tub.position.se
 function placeSlide(){if(shown(slideG))return;const[x,z]=nearPos(slideG);slideG.position.set(x+.35,0,z)}
 const PLACE={console:placeSofaFront,crochet:placeSofaFront,read:placeSofaFront,bath:placeCab,tv:placeTV,panic:placeTV,phone:placeTable,hungry:placeTable,eat:placeTable,sleep:placeBed,lighton:placeBed,bathe:placeTub,slide:placeSlide};
 function stepPops(dt){POPS.forEach(p=>{const tg=p.f()?1:0;if(tg&&!p.on){p.on=1;SFX.poof()}else if(!tg)p.on=0;
-  p.v+=((tg-p.s)*110-p.v*12)*dt;p.s+=p.v*dt;if(!tg&&p.s<.03){p.s=0;p.v=0}p.o.scale.setScalar(Math.max(.001,p.s));p.o.visible=p.s>.01})}
+  p.v+=((tg-p.s)*110-p.v*12)*dt;p.s+=p.v*dt;if(!tg&&p.s<.03){p.s=0;p.v=0}p.o.scale.setScalar(Math.max(.001,p.s)*(p.o.userData.big||1));p.o.visible=p.s>.01})}
 /* =================== avatares =================== */
 const CH=.86;
 const GEO={leg:new THREE.CapsuleGeometry(.1,.22,6,12),shoe:RB(.19,.12,.28,.05),hipCyl:new THREE.CylinderGeometry(.25,.27,.18,20),torso:new THREE.CapsuleGeometry(.27,.28,8,18),
@@ -1047,7 +1086,7 @@ function* aGroom(){const m=TOOL.mode;const F=m==='feather';C.status=m==='sponge'
   let t=0;while(TOOL.mode===m&&t<60){
     if(F){if(TOOL.tk>8&&!TOOL.warned){TOOL.warned=true;react('angry',1.4);say('¡Jajaja… YA VALE, que me meo de la risa!',2.2);annoy(8)}
       else if(TOOL.tk>8&&clockS<C.laughUntil)S.anger=clamp(S.anger+dt_*4,0,100);
-      if(TOOL.tk>11&&!TOOL.peed){TOOL.peed=true;if(Math.random()<.4||S.bladder>60){endTool(false);peeAccident();break}}
+      if(TOOL.tk>11&&!TOOL.peed){TOOL.peed=true;ach('tickle');if(Math.random()<.4||S.bladder>60){endTool(false);peeAccident();break}}
       if(TOOL.tk>14){endTool(true);break}
       if(clockS<C.laughUntil&&Math.random()<dt_*.6&&!sayOn)say(pick(['¡Jajaja, para, para!','¡Cosquillas no, jajaja!','¡JAJAJAJA!','¡Los pies no! ¡Jajaja!','¡Que me muero de la risa!','¡Para ya, jajaja!']),1.2);t+=yield;continue}if(m==='sponge'&&S.dirt<=0&&!faceDeco.length&&TOOL.work>1.2){endTool(true);break}if(m==='comb'&&S.messy<=0&&TOOL.work>1.2){endTool(true);break}
     if(clockS<C.happyUntil&&Math.random()<dt_*.35&&!sayOn)say(pick(m==='sponge'?['Jajaja, ¡cosquillas!','Ahí, ahí','Mmm…']:['¡Ay, un tirón!','Así mejor','Qué gustito']),1.2);t+=yield}
@@ -1083,7 +1122,7 @@ function updateCamera(dt){if(CINE.dur){CINE.t+=dt;const T=CINE.t,D=CINE.dur;let 
   const ck=CINE.k;const yaw=.42+CINE.orbit*ck*(CINE.dur?CINE.t/CINE.dur:0),pitch=lerp(lerp(.26,.6,clamp((zoomK-.4)/1.8,0,1)),.14,ck),vf=THREE.MathUtils.degToRad(camera.fov/2),hf=Math.atan(Math.tan(vf)*camera.aspect);
   const dist=clamp(Math.max(2.3/Math.tan(hf),2.0/Math.tan(vf)),5,9.5)*zoomK*lerp(1,CINE.zoom,ck);
   const fy=PH.mode==='fly'||PH.mode==='held'||PH.mode==='lower'?Math.min(2,nuri.position.y*.4):0;
-  camT.lerp(new THREE.Vector3(C.pos.x,.82+fy,C.pos.y),1-Math.exp(-3*dt));
+  camT.lerp(new THREE.Vector3(C.pos.x,.82+fy+(C.skyDive||C.y>3?C.y:0),C.pos.y),1-Math.exp(-(C.skyDive?8:3)*dt));
   camera.position.set(camT.x+Math.sin(yaw)*Math.cos(pitch)*dist,camT.y+Math.sin(pitch)*dist,camT.z+Math.cos(yaw)*Math.cos(pitch)*dist);camera.lookAt(camT.x,camT.y+CINE.lift*ck,camT.z);{const dk=clamp(((S.drunk||0)-40)/60,0,1);if(dk>0)camera.rotateZ(Math.sin(clockS*.9)*.06*dk)}scene.fog.near=dist+3;scene.fog.far=dist+18;
   sun.target.position.set(camT.x,0,camT.z);sun.position.set(camT.x-4.5,10,camT.z+5.5)}
 
@@ -1144,7 +1183,7 @@ function faceCam(){C.faceCam=true;C.faceOff=pick([-1,1])*rand(.15,.6)}
 function wakeFor(){if(!C.sleeping)return false;C.sleeping=false;S.energy=clamp(S.energy-5,0,100);SFX.yawn();react('sleep',1.4);
   say(pick(['¿Eh…? ¿Qué pasa…? Vaaale…','Mmm… cinco minutitos más… bueno, voy','*bostezo* ¿Ya es de día?','¡Estaba durmiendo! …Vale, ya voy']),1.8);
   if(C.floorSleep){C.floorSleep=false;C.floorGrace=clockS+12;C.lieGoal=0;C.y=0;C.pose='stand'}if(['sleep','floorsleep'].includes(C.actName)){C.act=null;C.actName=''}return true}
-function* aFloorSleep(){C.status='Dormida en el suelo';C.thought=['😴','No puedo más…'];C.pose='stand';SFX.yawn();react('sleep',2);
+function* aFloorSleep(){ach('sleepy');C.status='Dormida en el suelo';C.thought=['😴','No puedo más…'];C.pose='stand';SFX.yawn();react('sleep',2);
   say(pick(['No puedo más… me duermo aquí mismo','Zzz… da igual dónde…','Cinco minutitos… en el suelo mismo']),2);voice(.7,.8);yield* waitS(1.6);
   C.rotGoal=CAMYAW+Math.PI/2;yield* slideTo(C.pos.x,C.pos.y,.22,.6,1);C.pose='lie';C.sleeping=true;C.floorSleep=true;
   while(true){if(C.wakeBy){C.wakeBy=null;break}if((S.energy>=70&&!isNight())||S.energy>=95||S.bladder>85)break;yield}
@@ -1153,7 +1192,7 @@ function* aFloorSleep(){C.status='Dormida en el suelo';C.thought=['😴','No pue
 function startAct(name,fn){if(PH.mode)return;hideProps();C.relaxK=null;C.emote=null;if(C.sleeping&&name!=='sleep'&&name!=='floorsleep')wakeFor();if(C.floorSleep&&name!=='floorsleep'){C.floorSleep=false;C.lieGoal=0;C.y=0}if(PLACE[name])PLACE[name]();C.faceCam=false;C.panic=false;C.sleeping=false;C.searching=false;C.waitingFood=false;C.thought=null;C.wakeBy=null;
   if(C.holdPhone){C.holdPhone=false;if(!phoneHidden){phone.position.copy(PHONE_TABLE);phone.rotation.set(0,0,0)}}
   C.act={name,gen:fn()};C.actName=name;if(C.pose!=='lie'&&C.pose!=='sitbed')C.pose=C.seat?C.pose:'stand'}
-const busy=()=>['drink','cushion','wifi','bath','tantrum','eat','panic','bathe','roll','slide','cat','coffee','groom','hatemusic','cry','run','weights','zumba'].includes(C.actName)||C.inBath||!!PH.mode;
+const busy=()=>['ev','hospital','mosquito','drink','cushion','wifi','bath','tantrum','eat','panic','bathe','roll','slide','cat','coffee','groom','hatemusic','cry','run','weights','zumba'].includes(C.actName)||C.inBath||!!PH.mode;
 
 // destinos hacia la cámara o de lado, nunca alejándose (así no se le ve la espalda)
 function frontish(x,z){const dx=x-C.pos.x,dz=z-C.pos.y,l=Math.hypot(dx,dz)||1;return(dx*Math.sin(CAMYAW)+dz*Math.cos(CAMYAW))/l>-.2}
@@ -1190,7 +1229,7 @@ function* aSleep(){
     if(C.wakeBy){const why=C.wakeBy;C.wakeBy=null;C.sleeping=false;C.status='¡La han despertado!';C.pose='sitbed';react('rage',2.5);
       say(why==='alarm'?pick(T.alarmSleep):why==='light'?pick(T.lightSleep):why==='music'?'¡¡¿MÚSICA A ESTAS HORAS?!! ¡¡APÁGALA!!':'¡¡¿QUÉ?!! ¡¡ESTABA DURMIENDO!!',2.4);voice(.95,1);SFX.grr();yield* waitS(1.6);
       if(why==='light'&&S.light){yield* goTo('post');yield* reach();setLight(false,true);yield* goTo('bed');yield* getInBed()}
-      wakes++;if(wakes>=3){say('¡¡Pues ya no duermo!! Me voy a hacer un café…',2.4);react('rage',2);yield* waitS(1.6);C.sleeping=false;yield* leaveSpot();return startAct('coffee',aCoffee)}
+      wakes++;if(wakes>=3){ach('insomnia');say('¡¡Pues ya no duermo!! Me voy a hacer un café…',2.4);react('rage',2);yield* waitS(1.6);C.sleeping=false;yield* leaveSpot();return startAct('coffee',aCoffee)}
       C.pose='lie';C.status='Intentando volver a dormir';C.sleeping=true;S.energy=clamp(S.energy-8,0,100)}
     if(S.bladder>85){C.sleeping=false;yield* leaveSpot();startAct('bath',aBath);return}
     if(S.energy>=98&&!isNight())break;yield}
@@ -1203,28 +1242,28 @@ function* aBath(){
   if(t>2){react('surprised',1);say(pick(T.bathFinally),1.4)}C.urgent=false;
   C.thought=null;C.pose='stand';C.status='En el váter';C.at=null;C.path=[CAB_IN.clone()];yield* until(()=>!C.path.length);C.inBath=true;C.hidden=true;setDoor(false);
   yield* waitS(3.5);SFX.flush();S.bladder=0;yield* waitS(1.8);let k=0,tt=0;
-  while(S.locked){C.status='¡Encerrada en el váter!';C.thought=['🔒','¡Me han encerrado!'];if(tt>=k){k=tt+4;SFX.knock();const d=toScreen(DOOR_WORLD);pw(d.x,d.y,'¡TOC TOC!',16);say(pick(T.lockedIn),2.2);voice(1.1,1);annoy(5)}tt+=yield}
+  if(S.locked)ach('locked');while(S.locked){C.status='¡Encerrada en el váter!';C.thought=['🔒','¡Me han encerrado!'];if(tt>=k){k=tt+4;SFX.knock();const d=toScreen(DOOR_WORLD);pw(d.x,d.y,'¡TOC TOC!',16);say(pick(T.lockedIn),2.2);voice(1.1,1);annoy(5)}tt+=yield}
   C.thought=null;setDoor(true);C.hidden=false;C.path=[new THREE.Vector2(SP.door.ap[0],SP.door.ap[1]+.05)];yield* until(()=>!C.path.length);C.inBath=false;setDoor(false);C.at='door';
   if(tt>2){react('angry',2);say('¡Ya te vale!',1.8);annoy(4)}else{react('happy',2);say(pick(T.bathOut),2)}yield* waitS(1)}
 function* aHungry(){C.status='Tiene hambre';C.thought=['🍣','Quiero sushi… o carne a la brasa'];yield* goTo('table');yield* sitAt('table');C.pose='sit';C.waitingFood=true;let t=0,next=6;
   while(!foodOnTable&&t<30){if(t>next){next=t+8;say(pick(T.waitFood),1.8);react('sad',1.5)}t+=yield}
   C.waitingFood=false;if(foodOnTable)return startAct('eat',aEat);C.thought=null;react('angry',2);say('¡Pues me quedo sin comer!',2);annoy(6)}
 function* aEat(){const kind=foodOnTable.kind;C.status='Comiendo';C.thought=null;if(C.seat!=='table'){yield* goTo('table');yield* sitAt('table')}C.pose='eat';
-  if(kind==='sushi'||kind==='carne'){react('laugh',2);say(pick(kind==='sushi'?T.sushi:T.carne),2);SFX.yay();voice(1.1,.9);
+  if(kind==='sushi'||kind==='carne'){if(kind==='sushi')ach('sushi');react('laugh',2);say(pick(kind==='sushi'?T.sushi:T.carne),2);SFX.yay();voice(1.1,.9);
     for(let i=0;i<3;i++){yield* waitS(1.2);SFX.chomp();const h=headPx();pw(h.x,h.y+h.r*.6,'¡ÑAM!',15);if(foodOnTable)foodOnTable.mesh.scale.multiplyScalar(.7)}S.hunger=0;S.anger=clamp(S.anger-20,0,100);S.stress=clamp(S.stress-25,0,100);S.sad=clamp(S.sad-20,0,100);C.happyUntil=clockS+5}
   else if(kind==='podrida'){react('happy',1.5);say('Mmm… ¿esto sabe un poco raro?',2);for(let i=0;i<2;i++){yield* waitS(1.1);SFX.chomp();if(foodOnTable)foodOnTable.mesh.scale.multiplyScalar(.7)}S.hunger=Math.max(0,S.hunger-40);
     clearFood();C.pose='sit';yield* waitS(1.2);SFX.rumble();react('crazy',2);say('¡¡AY, MI TRIPA!!',2);voice(.8,1.1);C.shakeT=1;yield* waitS(1.4);SFX.rumble();say('¡¡NECESITO UN BAÑO YA!!',2);S.bladder=100;C.urgent=true;annoy(10);return startAct('bath',aBath)}
-  else if(kind==='picante'){react('happy',1.2);say('Mmm… ¿pimientos? A ver…',1.6);yield* waitS(1);SFX.chomp();yield* waitS(.8);clearFood();SFX.fire();react('crazy',2.5);C.shakeT=1;shakeStage();say('¡¡PICAAA!! ¡¡FUEGO!! ¡¡AGUAAA!!',2.2);voice(1.45,1.2);annoy(14);
+  else if(kind==='picante'){ach('spicy');react('happy',1.2);say('Mmm… ¿pimientos? A ver…',1.6);yield* waitS(1);SFX.chomp();yield* waitS(.8);clearFood();SFX.fire();react('crazy',2.5);C.shakeT=1;shakeStage();say('¡¡PICAAA!! ¡¡FUEGO!! ¡¡AGUAAA!!',2.2);voice(1.45,1.2);annoy(14);
     spray(headWorld().add(new THREE.Vector3(Math.sin(C.rot)*.3,-.1,Math.cos(C.rot)*.3)),24,1.8,1.2,fireMat);cine({zoom:.5,dur:1.6,lift:.4});
     yield* leaveSpot();C.panic=true;for(let i=0;i<3;i++){const a=rand(0,Math.PI*2);yield* walkTo(clamp(C.pos.x+Math.cos(a)*2,-6,6),clamp(C.pos.y+Math.sin(a)*2,-6,6));spray(headWorld(),8,1.2,.8,fireMat);SFX.fire();if(i===1)say('¡¡AGUA, AGUA, AGUA!!',1.4)}
     C.panic=false;faceCam();react('angry',2);say('¡Me arde la boca! ¡Te vas a enterar!',2);yield* waitS(1.2);return}
-  else{react('surprised',1);yield* waitS(.9);SFX.chomp();yield* waitS(.5);SFX.spit();react('disgust',2.6);say(pick(T.fish),2.4);voice(.9,1);annoy(18);S.sad=clamp(S.sad+12,0,100);
+  else{if(kind==='pescado')ach('fish');react('surprised',1);yield* waitS(.9);SFX.chomp();yield* waitS(.5);SFX.spit();react('disgust',2.6);say(pick(T.fish),2.4);voice(.9,1);annoy(18);S.sad=clamp(S.sad+12,0,100);
     spray(headWorld().add(new THREE.Vector3(0,-.15,.2)),8,1,1);yield* waitS(1.6);
     if(Math.random()<.35){clearFood();vomit();yield* waitS(2.2)}else{react('angry',1.5);say('¡Quiero sushi o carne a la brasa!',1.8)}}
   clearFood();C.pose='sit';yield* waitS(1)}
-function* aTantrum(){C.status='¡¡Rabieta!!';C.thought=['😡','¡ESTOY HARTA!'];yield* leaveSpot();faceCam();C.pose='stomp';showBanner('¡¡RABIETA!!');shakeStage();cine({zoom:.45,dur:2.4,orbit:.5,lift:.45});react('rage',4);say(pick(T.tantrum),2.6);voice(.9,1.2);vibrate([100,50,100,50,300]);crowdReact('look',C.pos,7);
+function* aTantrum(){ach('tantrum');C.status='¡¡Rabieta!!';C.thought=['😡','¡ESTOY HARTA!'];yield* leaveSpot();faceCam();C.pose='stomp';showBanner('¡¡RABIETA!!');shakeStage();cine({zoom:.45,dur:2.4,orbit:.5,lift:.45});react('rage',4);say(pick(T.tantrum),2.6);voice(.9,1.2);vibrate([100,50,100,50,300]);crowdReact('look',C.pos,7);
   for(let i=0;i<8;i++){yield* waitS(.32);SFX.stomp()}C.pose='stand';react('sad',2);say(pick(T.calm),2);S.anger=55;C.thought=null;yield* waitS(2)}
-function* aPanic(){C.status='¡¡UNA CUCARACHA!!';C.thought=['🪳','¡¡QUÉ ASCO!!'];
+function* aPanic(){ach('roach');C.status='¡¡UNA CUCARACHA!!';C.thought=['🪳','¡¡QUÉ ASCO!!'];
   yield* leaveSpot();react('surprised',1.2);say(pick(T.roach),2.2);voice(1.45,1.2);SFX.scream();vibrate([80,40,80,40,200]);annoy(25);C.jumpT=1;crowdReact('flee',C.pos);
   yield* waitS(.6);C.panic=true;
   for(let i=0;i<2;i++){const a=rand(0,Math.PI*2);let x=C.pos.x+Math.cos(a)*2.5,z=C.pos.y+Math.sin(a)*2.5;const l=Math.hypot(x,z);if(l>7.5){x*=7.5/l;z*=7.5/l}
@@ -1237,7 +1276,7 @@ function* aPanic(){C.status='¡¡UNA CUCARACHA!!';C.thought=['🪳','¡¡QUÉ AS
   yield* waitS(3.5);react('sad',1.6);say('¿Se ha ido…?',1.6);yield* waitS(1.8);
   C.jumpT=1;yield* slideTo(o.down[0],o.down[1],0,.4);C.at=o.at;C.pose='stand';react('angry',2);say(pick(T.roachAfter),2);C.thought=null;yield* waitS(1)}
 function dirty(v){S.dirt=clamp(S.dirt+v,0,100)}
-function* aCry(){C.status='Llorando';C.thought=['😭','Nadie me quiere…'];yield* leaveSpot();faceCam();C.pose='floorsit';react('sad',3);
+function* aCry(){ach('cry');C.status='Llorando';C.thought=['😭','Nadie me quiere…'];yield* leaveSpot();faceCam();C.pose='floorsit';react('sad',3);
   say(pick(['Buaaa… nadie me quiere…','¡Sois todos malos! Buaaaa','Snif… snif… buaaa']),2.4);voice(.8,1.2);SFX.sob();
   let t=0;while(t<8){if(Math.random()<dt_*.5)SFX.sob();if(Math.random()<dt_*.2&&!sayOn)say(pick(['Snif…','Buaaa…','Necesito un abrazo…']),1.4);t+=yield}
   S.sad=70;C.pose='stand';C.thought=null;say('Snif… ya está, ya se me pasa',1.8)}
@@ -1248,7 +1287,7 @@ function* aCoffee(){C.status='Tomando café';C.thought=['☕','Necesito un café
   mug.visible=false;C.giftCoffee=false;S.energy=clamp(S.energy+38,0,100);S.stress=clamp(S.stress+8,0,100);C.caffeineUntil=clockS+(night?100:60);
   react('crazy',1.6);C.shakeT=.8;say(night?'Ay… ahora no voy a poder dormir…':'¡¡Uaaah, qué despierta estoy!!',2.2);voice(1.25,1);C.thought=null;yield* waitS(1.5)}
 function sneeze(){SFX.sneeze();react('crazy',.8);C.squash=1;C.shakeT=.6;const h=headPx();pw(h.x,h.y-h.r,'¡ACHÍS!',18);voice(1.4,.9,.2)}
-function* aBathe(){C.status='¡A la bañera!';C.thought=['🛁','¡¿Un baño?!'];yield* leaveSpot();say('¡Eh! ¡Que me baño yo sola!',1.8);react('annoyed',1.5);
+function* aBathe(){ach('tub');C.status='¡A la bañera!';C.thought=['🛁','¡¿Un baño?!'];yield* leaveSpot();say('¡Eh! ¡Que me baño yo sola!',1.8);react('annoyed',1.5);
   yield* walkTo(tub.position.x-1.05,tub.position.z+.15);yield* waitS(.3);C.jumpT=1;C.rotGoal=Math.atan2(camera.position.x-tub.position.x,camera.position.z-tub.position.z);yield* slideTo(tub.position.x,tub.position.z,.2,.45);C.pose='bathsit';C.inTub=true;
   SFX.splash();spray(new THREE.Vector3(tub.position.x,.7,tub.position.z),24,1.8,2.5);C.status='Bañándose';let t=0;
   while(t<5.5){if(Math.random()<dt_*5){SFX.bubble();const h=headPx();pw(h.x+rand(-60,60),h.y+rand(0,60),pick(['○','◦','°']),14)}S.dirt=Math.max(0,S.dirt-dt_*30);
@@ -1270,7 +1309,7 @@ function* aSlide(){C.status='¡Al tobogán!';C.thought=['🛝','¡Un tobogán!']
   C.pose='floorsit';C.pos.x=o.x+2.95;C.y=-.31;SFX.splat();spray(new THREE.Vector3(C.pos.x,.2,C.pos.y),24,2,2.5,mudMatP);dirty(45);S.messy=clamp(S.messy+25,0,100);annoy(18);react('rage',2.2);
   const p=toScreen(new THREE.Vector3(C.pos.x,.3,C.pos.y));pw(p.x,p.y,'¡¡CHOF!!',22);say('¡¡¿BARRO?!! ¡¡ESTOY LLENA DE BARRO!!',2.4);voice(.9,1);
   yield* waitS(2.2);C.pose='stand';C.y=0;C.jumpT=.7;C.pos.x=o.x+3.7;faceCam();react('angry',2);say('¿Quién pone barro al final de un tobogán?',2.2);C.thought=null;yield* waitS(1.5)}
-function* aCat(){C.status='¡Un gato!';C.thought=['🐈','¡Odio los gatos!'];yield* leaveSpot();react('surprised',1.2);say('¡¿UN GATO?! ¡¡FUERA, BICHO!!',2);voice(1.3,1);annoy(12);
+function* aCat(){ach('cat');C.status='¡Un gato!';C.thought=['🐈','¡Odio los gatos!'];yield* leaveSpot();react('surprised',1.2);say('¡¿UN GATO?! ¡¡FUERA, BICHO!!',2);voice(1.3,1);annoy(12);
   for(let i=0;i<3&&CAT.mode==='follow';i++){yield* waitS(1);sneeze();yield* waitS(.8);
     const a=Math.atan2(C.pos.y-CAT.pos.y,C.pos.x-CAT.pos.x)+rand(-.6,.6);let x=C.pos.x+Math.cos(a)*2.8,z=C.pos.y+Math.sin(a)*2.8;if(!frontish(x,z)){const cx=Math.sin(CAMYAW),cz=Math.cos(CAMYAW),k=2*((x-C.pos.x)*cx+(z-C.pos.y)*cz);x-=k*cx;z-=k*cz}const l=Math.hypot(x,z);if(l>7){x*=7/l;z*=7/l}
     C.panic=true;yield* walkTo(x,z);C.panic=false;faceCam();say(pick(['¡Deja de seguirme!','¡Que me da alergia!','¡¿Por qué me sigue?!','¡Fuera, gato!']),1.8);react('angry',1.5);annoy(6)}
@@ -1281,7 +1320,7 @@ function* aCat(){C.status='¡Un gato!';C.thought=['🐈','¡Odio los gatos!'];yi
 const pukes=[],pukeMat=new THREE.MeshStandardMaterial({color:'#9bbf3a',roughness:.3,transparent:true,opacity:.92});
 const dustMat=std({color:'#d9d4cb',transparent:true,opacity:.8}),mudMatP=std({color:'#6b4a2b'});
 let lastPuke=null;
-function vomit(){if(C.hidden||PH.mode)return;const fx=Math.sin(C.rot),fz=Math.cos(C.rot),x=C.pos.x+fx*.55,z=C.pos.y+fz*.55;
+function vomit(){if(C.hidden||PH.mode)return;ach('vomit');const fx=Math.sin(C.rot),fz=Math.cos(C.rot),x=C.pos.x+fx*.55,z=C.pos.y+fz*.55;
   SFX.puke();C.pukeT=1.5;react('disgust',2.2);say(pick(T.puke),2.2);annoy(10);C.thought=['🤮','Uff…'];
   setTimeout(()=>{const h=headWorld();for(let i=0;i<16;i++){const m=new THREE.Mesh(SH.drop,pukeMat);m.position.copy(h);m.position.y-=.2;world.add(m);drops.push({m,v:new THREE.Vector3(fx*rand(.8,1.8)+rand(-.3,.3),rand(-.2,.8),fz*rand(.8,1.8)+rand(-.3,.3)),life:1})}
     const g=new THREE.Group();g.position.set(x,.008,z);for(let i=0;i<5;i++){const c=new THREE.Mesh(new THREE.CircleGeometry(rand(.12,.24),16),pukeMat);c.rotation.x=-Math.PI/2;c.position.set(rand(-.2,.2),i*.001,rand(-.2,.2));g.add(c)}
@@ -1290,7 +1329,7 @@ function vomit(){if(C.hidden||PH.mode)return;const fx=Math.sin(C.rot),fz=Math.co
 function puddle(x,z,col,kind){const mat=new THREE.MeshStandardMaterial({color:col,roughness:.15,transparent:true,opacity:.85});const g=new THREE.Group();g.position.set(x,.008,z);g.userData.kind=kind;
   for(let i=0;i<5;i++){const c=new THREE.Mesh(new THREE.CircleGeometry(rand(.14,.26),18),mat);c.rotation.x=-Math.PI/2;c.position.set(rand(-.18,.18),i*.001,rand(-.18,.18));g.add(c)}
   world.add(g);pukes.push(g);g.children.forEach(ch=>{ch.userData.puke=g;pickables.push(ch)});return g}
-function peeAccident(){if(C.hidden||PH.mode||C.peeing)return;C.peeing=true;cine({zoom:.5,dur:2.2,lift:.3});S.bladder=0;S.peeWet=true;C.urgent=false;
+function peeAccident(){if(C.hidden||PH.mode||C.peeing)return;ach('pee');C.peeing=true;cine({zoom:.5,dur:2.2,lift:.3});S.bladder=0;S.peeWet=true;C.urgent=false;
   SFX.pee();C.shakeT=.8;react('crazy',2.5);setTimeout(()=>{puddle(C.pos.x,C.pos.y,'#f2d64b','pee');C.peeing=false},700);
   say(pick(['¡¡NOOO!! …me lo he hecho encima…','Ay no… no he llegado… 😳','¡¡Te odio!! ¡Me he meado encima por tu culpa!']),2.6);voice(.85,1.2);
   S.sad=clamp(S.sad+35,0,100);annoy(15);dirty(25);C.thought=['😳','Qué vergüenza…'];const h=headPx();pw(h.x,h.y-h.r,'😳',26)}
@@ -1348,7 +1387,7 @@ const sunM=new THREE.Group();NU.headP.add(sunM);
 sunM.visible=false;
 const SKIN0=NU.M.skin.color.clone(),BURN_C=new THREE.Color('#ff5e4a'),BURN_F=new THREE.Color('#ff9a8a');
 function startOutdoor(k){if(k==='slide')return ACT.slide();wakeFor();if(cantReach())return;if(busy())return nowNo();fulfill('outdoor',k);if(k==='pool')startAct('pool',aPool);else startAct('sun',aSun)}
-function* aPool(){C.status='¡A la piscina!';C.thought=['🏊‍♀️','¡Al agua!'];yield* leaveSpot();const c=poolG.position,R=RIGHT(),F=[Math.sin(CAMYAW),Math.cos(CAMYAW)];
+function* aPool(){ach('pool');C.status='¡A la piscina!';C.thought=['🏊‍♀️','¡Al agua!'];yield* leaveSpot();const c=poolG.position,R=RIGHT(),F=[Math.sin(CAMYAW),Math.cos(CAMYAW)];
   yield* walkTo(SP.pool.ap[0],SP.pool.ap[1]);C.rotGoal=Math.atan2(R[0],R[1]);yield* waitS(.4);
   say(pick(['¡Bomba vaaa!','¡Al aguaaa!','¡Allá voy!']),1.4);voice(1.3,1);C.jumpT=1;
   yield* slideTo(c.x-R[0]*.75,c.z-R[1]*.75,.95,.35);yield* slideTo(c.x-R[0]*.5,c.z-R[1]*.5,-.38,.25);
@@ -1366,19 +1405,19 @@ function* aPool(){C.status='¡A la piscina!';C.thought=['🏊‍♀️','¡Al ag
   S.dirt=0;S.peeWet=false;removeStache(true);wetT=16;C.happyUntil=clockS+6;react('happy',2);say(pick(['¡Qué bien me ha sentado!','Como nueva','Tendría que venir más a menudo']),2);C.thought=null;yield* waitS(1)}
 function* aSun(){C.status='Tomando el sol';C.thought=['😎','Qué gustito…'];yield* leaveSpot();const c=hamG.position,R=RIGHT();
   yield* walkTo(SP.ham.ap[0],SP.ham.ap[1]);sunM.visible=true;SFX.sparkle();faceCam();say(pick(['A tomar el sol, que estoy muy blanca','Gafas de sol… ¡y a la hamaca!']),1.8);yield* waitS(1.2);
-  C.rot=C.rotGoal=Math.atan2(R[0],R[1]);C.jumpT=.6;yield* slideTo(c.x+R[0]*.98,c.z+R[1]*.98,.84,.7,1);C.seat='ham';C.pose='sunbathe';C.status='Tomando el sol';
+  C.rot=C.rotGoal=Math.atan2(R[0],R[1]);C.jumpT=.6;yield* slideTo(c.x+R[0]*.98,c.z+R[1]*.98,.84,.7,1);C.seat='ham';C.pose='sunbathe';ach('sun');C.status='Tomando el sol';
   let t=0,warned=false;while(t<36){S.energy=clamp(S.energy+dt_*.8,0,100);S.stress=clamp(S.stress-dt_*1.5,0,100);S.bored=clamp(S.bored-dt_*.8,0,100);
     if(t>9)S.burn=clamp((S.burn||0)+dt_*(S.weather==='hot'?6:3),0,100);
     if(Math.random()<dt_*.12&&!sayOn)say(pick(['¡Qué gustito!','Me voy a poner morenita','Zzz… qué bien se está','Esto sí que es vida']),1.6);
     if((S.burn||0)>35&&!warned){warned=true;react('annoyed',1.4);say('Uy… me pica un poco la piel',1.6)}
-    if((S.burn||0)>=70){C.lieGoal=0;C.jumpT=1;C.shakeT=1;react('rage',2.4);say('¡¡AY, AY!! ¡Me he quemado! ¡Parezco una gamba!',2.4);voice(1.3,1.1);annoy(15);cine({zoom:.55,dur:1.8,lift:.4});break}t+=yield}
+    if((S.burn||0)>=70){ach('burn');C.lieGoal=0;C.jumpT=1;C.shakeT=1;react('rage',2.4);say('¡¡AY, AY!! ¡Me he quemado! ¡Parezco una gamba!',2.4);voice(1.3,1.1);annoy(15);cine({zoom:.55,dur:1.8,lift:.4});break}t+=yield}
   sunM.visible=false;C.lieGoal=0;yield* slideTo(SP.ham.ap[0],SP.ham.ap[1],0,.6,0);C.seat=null;C.pose='stand';faceCam();
   if((S.burn||0)<70){react('happy',2);say(pick(['¡Qué bien! Morenita','Ya está bien de sol por hoy']),1.8)}C.thought=null;yield* waitS(1)}
 // plátano en el suelo: si pasa por encima, ¡zas!
 const banana=new THREE.Group();banana.visible=false;world.add(banana);
 {const bm=std({color:'#ffd23f',roughness:.5});add(banana,new THREE.TorusGeometry(.13,.035,8,16,2.2),bm,0,.035,0,{rx:Math.PI/2});add(banana,new THREE.SphereGeometry(.022,6,5),std({color:'#5a3a1a'}),.13,.035,0)}
 const BAN={on:false,x:0,z:0};
-function slipOn(){BAN.on=false;banana.visible=false;const fx=Math.sin(C.rot),fz=Math.cos(C.rot);
+function slipOn(){ach('slip');BAN.on=false;banana.visible=false;const fx=Math.sin(C.rot),fz=Math.cos(C.rot);
   C.act=null;C.actName='slip';C.path=[];C.slide=null;C.seat=null;C.lie=0;C.lieGoal=0;C.roll=0;C.panic=false;C.at=null;C.sleeping=false;C.emote=null;hideProps();
   PH.mode='fly';PH.t=0;PH.bounces=0;PH.v.set(fx*2.2,4.2,fz*2.2);PH.c.set(C.pos.x,HALF,C.pos.y);PH.axis=new THREE.Vector3().crossVectors(UP,new THREE.Vector3(fx,0,fz)).normalize().negate();PH.spin=0;PH.spinV=9;PH.pose='fly';
   SFX.whee();say('¡¡UAAAAH!!',1.2);voice(1.4,1.1);const p=toScreen(new THREE.Vector3(C.pos.x,.2,C.pos.y));pw(p.x,p.y,'¡ZAS!',26);crowdReact('laugh',C.pos,6);cine({zoom:.55,dur:1.8,slow:.35,lift:0})}
@@ -1386,7 +1425,7 @@ function slipOn(){BAN.on=false;banana.visible=false;const fx=Math.sin(C.rot),fz=
 const cushM=new THREE.Group();cushM.visible=false;world.add(cushM);
 {const cm=std({color:'#ff5a8a',roughness:.6});const c=add(cushM,new THREE.SphereGeometry(.2,16,10),cm,0,.05,0);c.scale.set(1.3,.35,1);add(cushM,new THREE.CylinderGeometry(.03,.045,.09,8),cm,.28,.05,0,{rz:Math.PI/2})}
 const gasMat=std({color:'#b5d96b',transparent:true,opacity:.55}),iceMat=std({color:'#e8f7ff',transparent:true,opacity:.75,roughness:.05});
-function fartGag(){SFX.fart();cushM.visible=false;const hp=new THREE.Vector3(C.pos.x,.35+(C.y>0?C.y:0),C.pos.y);spray(hp,16,1.2,1,gasMat);C.jumpT=1;C.squash=1;C.shakeT=.8;react('surprised',2);shakeStage();vibrate([40,30,80]);
+function fartGag(){ach('fart');SFX.fart();cushM.visible=false;const hp=new THREE.Vector3(C.pos.x,.35+(C.y>0?C.y:0),C.pos.y);spray(hp,16,1.2,1,gasMat);C.jumpT=1;C.squash=1;C.shakeT=.8;react('surprised',2);shakeStage();vibrate([40,30,80]);
   const p=toScreen(hp);pw(p.x,p.y,'¡¡PRRRRT!!',26);say(pick(['¡¡NO HE SIDO YO!! ¡¡HA SIDO EL COJÍN!!','¡¿Pero qué…?! ¡Qué vergüenza!','¡Que conste que ha sido el cojín!']),2.4);voice(1.3,1.1);annoy(12);S.sad=clamp(S.sad+6,0,100);crowdReact('laugh',C.pos,7);cine({zoom:.55,dur:1.8,lift:.2})}
 // bigote pintado
 const stacheM=new THREE.Group();NU.headP.add(stacheM);
@@ -1397,7 +1436,7 @@ function removeStache(quiet){if(!S.stache)return;const knew=S.stacheKnown;S.stac
 const WIFI={off:false,until:0};
 function refreshMore(){const b=document.querySelector('.food[data-p=wifi]');if(b){b.classList.toggle('on',WIFI.off);b.querySelector('small').textContent=WIFI.off?'devolverlo':'cortarlo'}}
 function wifiBack(){refreshMore();toast('📶 Wifi de vuelta');if(!C.sleeping&&!C.hidden&&!PH.mode){react('happy',1.6);say(pick(['¡Por fin! ¡Internet!','¡Ha vuelto el wifi! Qué susto','Vale, ya respiro']),2)}}
-function* aWifi(w){C.status='¡Sin wifi!';C.thought=['📶','Busco cobertura…'];yield* leaveSpot();faceCam();react('rage',2);C.shakeT=1;if(w==='tv')setTV(false,true);
+function* aWifi(w){ach('wifi');C.status='¡Sin wifi!';C.thought=['📶','Busco cobertura…'];yield* leaveSpot();faceCam();react('rage',2);C.shakeT=1;if(w==='tv')setTV(false,true);
   say(w==='tv'?'¡¡SE HA CORTADO LA SERIE!! ¡¿Y EL WIFI?!':w==='console'?'¡¡ME HAN ECHADO DE LA PARTIDA!! ¡¡EL WIFI!!':'¡¡¿Y EL WIFI?!! ¡¡NOOO!!',2.4);voice(1.2,1.1);annoy(12);yield* waitS(1.6);
   for(let i=0;i<3&&WIFI.off;i++){const a=rand(0,Math.PI*2);yield* walkTo(clamp(C.pos.x+Math.cos(a)*1.8,-6,6),clamp(C.pos.y+Math.sin(a)*1.8,-6,6));C.pose='reach';say(pick(['¿Aquí hay cobertura?','Una rayita… ¡no, se fue!','¡Vamos, vamos, conecta!']),1.6);yield* waitS(1.6);C.pose='stand'}
   if(WIFI.off){react('angry',2);say('¡Quien haya quitado el wifi que lo ponga YA!',2.4);annoy(8)}C.thought=null}
@@ -1430,8 +1469,9 @@ const scarfM=new THREE.Group();props.add(scarfM);let scarfLen=.05;
 {const a=std({color:'#ff7aa8',roughness:1}),b=std({color:'#ffd166',roughness:1});for(let i=0;i<8;i++)add(scarfM,RB(.09,.05,.02,.008),i%2?b:a,0,-.025-i*.05,0,{cast:false})}
 const glassesM=new THREE.Group();NU.headP.add(glassesM);
 {const gm=std({color:'#3d3a44',roughness:.4});[-1,1].forEach(sd=>add(glassesM,new THREE.TorusGeometry(.075,.012,8,20),gm,sd*.16,.02,.47,{cast:false}));add(glassesM,new THREE.CylinderGeometry(.008,.008,.09,6),gm,0,.04,.49,{rz:Math.PI/2,cast:false})}
-function hideProps(){props.children.forEach(c=>c.visible=false);glassesM.visible=false;sunM.visible=false;C.inPool=false;C.onFloat=false;poolG.userData.float.position.set(.6,.49,.2);dumbbells.forEach(d=>d.visible=false);mug.visible=false;C.sipT=0;if(C.pose==='curl')C.pose='stand'}
-hideProps();
+function hideProps(){if(C.ambOn){C.hidden=false;ambG.visible=false;C.ambOn=false;fade(false)}if(EV.cur){evCleanup();C.skyDive=false;if(C.y>.5)C.y=0;C.lieGoal=0}if(MQ.on){MQ.on=false;mosq.visible=false}
+  props.children.forEach(c=>c.visible=false);glassesM.visible=false;sunM.visible=false;C.inPool=false;C.onFloat=false;poolG.userData.float.position.set(.6,.49,.2);dumbbells.forEach(d=>d.visible=false);mug.visible=false;C.sipT=0;if(C.pose==='curl')C.pose='stand'}
+props.children.forEach(c=>c.visible=false);glassesM.visible=false;
 function showProp(k){hideProps();if(k==='console')consoleM.visible=true;else if(k==='read'){bookM.visible=true;glassesM.visible=true}else if(k==='crochet'){yarnM.visible=true;scarfM.visible=true;scarfLen=.05}}
 function stepProps(){if(booze.visible){arms[1].hand.getWorldPosition(booze.position);booze.position.y+=.05}
   if(consoleM.visible||bookM.visible||scarfM.visible){const a=new THREE.Vector3(),b=new THREE.Vector3();arms[0].hand.getWorldPosition(a);arms[1].hand.getWorldPosition(b);const m=a.add(b).multiplyScalar(.5);
@@ -1461,7 +1501,7 @@ function* aBooze(k){const B=BOOZE[k],d0=S.drunk||0;C.status='Bebiendo';C.thought
   if(B.shot){const h=headWorld();spray(h.add(new THREE.Vector3(Math.sin(C.rot)*.3,-.12,Math.cos(C.rot)*.3)),k==='fireball'?22:10,1.6,1.4,k==='fireball'?fireMat:undefined)}
   if(k==='tequila'){SFX.spit();spray(headWorld().add(new THREE.Vector3(Math.sin(C.rot)*.25,-.15,Math.cos(C.rot)*.25)),10,1.2,.8);react('disgust',2.6);say(pick(['¡¡PUAJ!! ¡Odio el tequila!','¡Qué asco! ¿Quién bebe esto?','¡Agh! ¡Sabe a quitaesmalte!']),2.2);voice(.9,1);annoy(12)}
   else if(B.fav){react('party',2.2);say(slur(pick(B.say)),2.2);voice(1.15,1);S.sad=clamp(S.sad-12,0,100);C.happyUntil=clockS+8;const h=headPx();for(let i=0;i<4;i++)setTimeout(()=>pw(h.x+rand(-50,50),h.y+rand(-40,20),'♥',rand(16,22)),i*100)}
-  else if(k==='fireball'){react('crazy',2.6);say(pick(['¡¡FUEGOOO!! …hip… ¿dónde estoy?','¡¡QUÉ FUERTEEE!! …ay, que me caigo','¡¡AAAH!! …hip… todo da vueltas']),2.4);voice(1.35,1.1);cine({zoom:.5,dur:2.2,orbit:1,lift:.4})}
+  else if(k==='fireball'){ach('fireball');react('crazy',2.6);say(pick(['¡¡FUEGOOO!! …hip… ¿dónde estoy?','¡¡QUÉ FUERTEEE!! …ay, que me caigo','¡¡AAAH!! …hip… todo da vueltas']),2.4);voice(1.35,1.1);cine({zoom:.5,dur:2.2,orbit:1,lift:.4})}
   else{react(B.shot?'crazy':'happy',2);say(slur(pick(B.say)),2.2);voice(B.shot?1.35:1.12,1)}
   if(k==='cerveza'&&Math.random()<.65){yield* waitS(1.7);SFX.burp();const h=headPx();pw(h.x,h.y+h.r*.5,'¡BUAARP!',22);say(pick(['Uy, perdón… jijiji','¡Ups! Qué fina soy']),1.8)}
   yield* waitS(1.6);const nd=S.drunk;
@@ -1476,8 +1516,8 @@ function stepDrunk(dt){const d=S.drunk||0;
   if(d>70&&C.walkingNow&&Math.random()<dt*.25&&!(C.stumbleT>0)){C.stumbleT=.7;SFX.thud();C.squash=1;say(pick(['¡Uy!','¡Ups! ¿Quién ha movido el suelo?','¡Hala!']),1.2)}
   if(d>92&&!C.drunkPuke&&!busy()){C.drunkPuke=true;setTimeout(vomit,400)}if(d<70)C.drunkPuke=false;
   if(d>85&&S.energy>8&&!busy()&&Math.random()<dt*.03)S.energy=4}
-const GAIT={normal:[1,10],panic:[2,14],pee:[1.25,17],angry:[1.2,12],tired:[.6,7],sad:[.7,7.5],cold:[1.05,13],happy:[1.1,11],drunk:[.75,8]};
-function gait(){if(C.panic)return'panic';if((S.drunk||0)>45)return'drunk';if((C.actName==='bath'&&!C.inBath)||S.bladder>80)return'pee';if(S.anger>65)return'angry';if(S.energy<30)return'tired';if(S.sad>65)return'sad';if(S.weather==='cold')return'cold';if(clockS<C.happyUntil||(S.drunk||0)>20)return'happy';return'normal'}
+const GAIT={hurt:[.55,8],normal:[1,10],panic:[2,14],pee:[1.25,17],angry:[1.2,12],tired:[.6,7],sad:[.7,7.5],cold:[1.05,13],happy:[1.1,11],drunk:[.75,8]};
+function gait(){if(C.panic)return'panic';if((S.drunk||0)>45)return'drunk';if(clockS<(C.bandageUntil||0))return'hurt';if((C.actName==='bath'&&!C.inBath)||S.bladder>80)return'pee';if(S.anger>65)return'angry';if(S.energy<30)return'tired';if(S.sad>65)return'sad';if(S.weather==='cold')return'cold';if(clockS<C.happyUntil||(S.drunk||0)>20)return'happy';return'normal'}
 /* ---- sofá: consola, ganchillo y leer ---- */
 function startRelax(k){wakeFor();if(cantReach())return;if(busy())return nowNo();fulfill('relax',k);startAct(k,()=>aRelax(k))}
 function* aRelax(k){C.status=k==='console'?'Jugando a la consola':k==='crochet'?'Haciendo ganchillo':'Leyendo';C.thought=null;
@@ -1485,11 +1525,11 @@ function* aRelax(k){C.status=k==='console'?'Jugando a la consola':k==='crochet'?
   say(pick(k==='console'?['¡A jugar! Este nivel me lo paso hoy','Una partidita rápida…']:k==='crochet'?['Voy a tejer una bufanda','Ganchillo, qué relax']:['A ver cómo sigue la historia…','Un ratito de lectura']),2);
   let t=0,next=rand(4,7);const dur=rand(26,34);
   while(t<dur){S.bored=clamp(S.bored-dt_*1.8,0,100);S.stress=clamp(S.stress-dt_*(k==='console'?.4:1.4),0,100);
-    if(k==='console'){if(Math.random()<dt_*7)SFX.chip();if(t>next){next=t+rand(5,8);if(Math.random()<.55){SFX.win();react('party',2);say(pick(['¡¡TOMA!! ¡He ganado!','¡Nivel superado!','¡Soy la mejor!']),1.8);const h=headPx();pw(h.x,h.y-h.r*1.3,'🏆',26)}else{SFX.lose();react('rage',2);say(pick(['¡¡NOOO!! ¡Me han matado!','¡Esto está trucado!','¡¡Otra vez!!']),1.8);annoy(3)}}}
+    if(k==='console'){if(Math.random()<dt_*7)SFX.chip();if(t>next){next=t+rand(5,8);if(Math.random()<.55){ach('gamer');SFX.win();react('party',2);say(pick(['¡¡TOMA!! ¡He ganado!','¡Nivel superado!','¡Soy la mejor!']),1.8);const h=headPx();pw(h.x,h.y-h.r*1.3,'🏆',26)}else{SFX.lose();react('rage',2);say(pick(['¡¡NOOO!! ¡Me han matado!','¡Esto está trucado!','¡¡Otra vez!!']),1.8);annoy(3)}}}
     else if(k==='crochet'){C.knitT=(C.knitT||0)-dt_;if(C.knitT<=0){C.knitT=.35;SFX.knit()}scarfLen=Math.min(1,scarfLen+dt_*.035);if(t>next){next=t+rand(6,9);react('happy',1.5);say(pick(['Punto, punto, cadeneta…','Esta bufanda me está quedando preciosa','Uy, se me ha escapado un punto']),1.8)}}
     else if(t>next){next=t+rand(5,8);SFX.page();const r=pick(['¡No me lo puedo creer!','Ay, qué bonito…','¡Sabía que era el mayordomo!','Un capítulo más y lo dejo','¡Noooo, no lo mates!']);react(r.startsWith('¡No')?'surprised':'happy',1.6);say(r,1.8)}
     t+=yield}
-  if(k==='crochet'){say('¡Terminada! Mira qué bufanda 🧣',2.2);SFX.sparkle();react('party',2);yield* waitS(1.6)}else if(k==='read'){SFX.page();say('Fin. Qué buen libro…',1.8);yield* waitS(1.2)}else{say('Bueno, ya está bien de consola',1.6);yield* waitS(1)}
+  if(k==='crochet'){ach('crochet');say('¡Terminada! Mira qué bufanda 🧣',2.2);SFX.sparkle();react('party',2);yield* waitS(1.6)}else if(k==='read'){ach('read');SFX.page();say('Fin. Qué buen libro…',1.8);yield* waitS(1.2)}else{say('Bueno, ya está bien de consola',1.6);yield* waitS(1)}
   hideProps();C.relaxK=null}
 /* ---- fantasma del susto ---- */
 const spook=new THREE.Group();spook.visible=false;world.add(spook);
@@ -1502,7 +1542,7 @@ const spookMat=new THREE.MeshStandardMaterial({color:'#ffffff',roughness:.6,tran
  const mo=add(spook,new THREE.SphereGeometry(.08,12,10),ink,0,.98,.455,{cast:false});mo.scale.set(.8,1.1,.4);
  [-1,1].forEach(sd=>{const ar=add(spook,new THREE.CapsuleGeometry(.07,.22,4,8),spookMat,sd*.48,.95,.05,{cast:false});ar.rotation.z=sd*1.1})}
 const GH={t:0,on:false};
-function spawnGhost(atDoor){const cy=Math.atan2(camera.position.x-C.pos.x,camera.position.z-C.pos.y);let x,z;
+function spawnGhost(atDoor){ach('ghost');const cy=Math.atan2(camera.position.x-C.pos.x,camera.position.z-C.pos.y);let x,z;
   if(atDoor){x=DOOR_WORLD.x;z=DOOR_WORLD.z}else{x=C.pos.x+Math.cos(cy)*.95;z=C.pos.y-Math.sin(cy)*.95}
   GH.x=x;GH.z=z;GH.t=0;GH.on=true;spook.visible=true;spook.position.set(x,-1.4,z);spook.rotation.y=cy;SFX.ghost()}
 function stepGhost(dt){if(!GH.on)return;GH.t+=dt;const t=GH.t,cy=Math.atan2(camera.position.x-GH.x,camera.position.z-GH.z);
@@ -1561,8 +1601,155 @@ function fulfill(e,a){const w=WANT.cur;if(!w||!w.ok(e,a))return;wantEnd();S.favo
   setTimeout(()=>{react('party',2.4);say(w.th,2.2);voice(1.2,1);SFX.yay();C.happyUntil=clockS+8;S.sad=clamp(S.sad-15,0,100);S.anger=clamp(S.anger-10,0,100);
     const h=headPx();for(let i=0;i<8;i++)setTimeout(()=>pw(h.x+rand(-70,70),h.y+rand(-50,30),pick(['💗','✨','⭐']),rand(16,26)),i*70);toast('💗 ¡Favor cumplido! Llevas '+S.favors);cine({zoom:.62,dur:1.6,lift:.4,bars:false})},900)}
 $('#want').onclick=()=>{const w=WANT.cur;if(!w)return;SFX.click();const g=Object.keys(GROUPS).find(k=>GROUPS[k].includes(w.b));if(g)showGroup(g);const b=wantBtn(w.b);if(b){b.classList.remove('want');void b.offsetWidth;b.classList.add('want')}};
+/* ---- logros: solo se ve el nombre, nunca cómo se consigue ---- */
+const ACH=[['drunk','🥴','Borrachera épica'],['fireball','🔥','KO de Fireball'],['slip','🍌','Resbalón cómico'],['pool','🏊‍♀️','Día de piscina'],['sun','😎','Vuelta y vuelta'],['burn','🦐','Gamba a la plancha'],
+  ['pee','😳','Pis encima'],['happy','🥰','Súper contenta'],['hungry','🍽️','Súper hambrienta'],['sleepy','😴','Sueño todo el día'],['tantrum','😡','Rabieta monumental'],['cry','😭','Lágrimas de cocodrilo'],
+  ['fly','🚀','Vuela, Núria, vuela'],['hospital','🚑','Visita a urgencias'],['roach','🪳','Pánico cucarachil'],['cat','🐈','Alergia gatuna'],['vomit','🤮','Vomitona'],['dance','💃','Reina de la pista'],
+  ['tickle','🪶','Me meo de la risa'],['stache','🥸','Bigotuda sin saberlo'],['fart','💨','Pedorreta'],['wifi','📶','Sin cobertura'],['ghost','👻','Cazafantasmas'],['photo','📸','Sesión de fotos'],
+  ['favor5','💗','Buena amiga'],['favor20','💞','Mejor amiga del mundo'],['pranks100','😈','Pesadilla de Núria'],['sushi','🍣','Sushi lover'],['fish','🐟','Odio el pescado'],['spicy','🌶️','Boca de dragón'],
+  ['gamer','🎮','Gamer'],['crochet','🧶','Bufanda terminada'],['read','📖','Ratón de biblioteca'],['sport','🏋️‍♀️','Deportista'],['pushups','💪','Reina de las flexiones'],['race','🥇','Medalla de oro'],
+  ['cinema','🍿','Palomitera'],['skydive','🪂','Paracaidista'],['mosquito','🦟','Picotazo'],['insomnia','☕','Noche en vela'],['locked','🔒','Encerrada'],['wet','🪣','Empapada'],
+  ['piggy','🐷','Cerdita'],['deaf','📯','Me has dejado sorda'],['model','👗','Top model'],['tub','🛁','Baño de burbujas']];
+if(!S.ach)S.ach={};const achQ=[];let achBusy=false;
+function ach(id){if(!id||S.ach[id])return;const a=ACH.find(x=>x[0]===id);if(!a)return;S.ach[id]=Date.now();save();achQ.push(a);$('#achNew').classList.add('on');refreshAchCount();if(!achBusy)nextAch()}
+function nextAch(){const a=achQ.shift();if(!a){achBusy=false;return}achBusy=true;const el=$('#achPop');el.querySelector('em').textContent=a[1];$('#achPopT').textContent=a[2];el.classList.add('on');SFX.win();vibrate([30,40,30]);
+  setTimeout(()=>{el.classList.remove('on');setTimeout(nextAch,450)},2600)}
+function refreshAchCount(){const n=Object.keys(S.ach).length;$('#achMenuN').textContent=n+' de '+ACH.length}
+function openAch(on){const sh=$('#achSheet');sh.classList.toggle('on',on);sh.setAttribute('aria-hidden',!on);if(!on)return;$('#achNew').classList.remove('on');
+  const n=Object.keys(S.ach).length;$('#achStats').textContent=`${n} de ${ACH.length} logros · 😈 ${S.pranks} trastadas · 💗 ${S.favors||0} favores`;
+  $('#achGrid').innerHTML=ACH.map(a=>S.ach[a[0]]?`<div class="ach on"><em>${a[1]}</em><span>${a[2]}</span></div>`:`<div class="ach off"><em>🔒</em><span>${a[2]}</span></div>`).join('')}
+$('#achBtn').onclick=()=>{initAudio();SFX.click();closePanels();openAch(true)};
+$('#achSheet').addEventListener('click',e=>{if(e.target.id==='achSheet')openAch(false)});
+refreshAchCount();
+let achT=0;function stepAch(dt){if((achT-=dt)>0)return;achT=1;
+  if(!C.sleeping&&!PH.mode&&S.sad<5&&S.anger<5&&S.stress<10&&S.hunger<30)ach('happy');if(S.hunger>=95)ach('hungry');if(S.dirt>=95)ach('piggy');if((S.drunk||0)>=45)ach('drunk');
+  if((S.favors||0)>=5)ach('favor5');if((S.favors||0)>=20)ach('favor20');if(S.pranks>=100)ach('pranks100');
+  if((S.hurt||0)>0&&clockS-(C.hurtT||0)>60){S.hurt--;C.hurtT=clockS}}
+/* ---- hospital: si la lanzas muchas veces seguidas ---- */
+const ambG=new THREE.Group();ambG.visible=false;world.add(ambG);
+{const wh=std({color:'#ffffff',roughness:.45}),rd=std({color:'#e23a3a',roughness:.5}),dk=std({color:'#2b2b33',roughness:.6}),gl=std({color:'#7fd3ff',roughness:.1,metalness:.2});
+ add(ambG,RB(1.9,1.05,.98,.08),wh,-.2,.78,0);add(ambG,RB(.7,.8,.96,.08),wh,1.08,.66,0);add(ambG,RB(.05,.36,.8,.02),gl,1.43,.82,0,{cast:false});
+ add(ambG,RB(2.62,.12,1.0,.03),rd,.13,.52,0);[-1,1].forEach(sd=>{add(ambG,RB(.36,.1,.02,.01),rd,-.2,.95,sd*.5,{cast:false});add(ambG,RB(.1,.36,.02,.01),rd,-.2,.95,sd*.5,{cast:false})});
+ [[-.8,.48],[-.8,-.48],[.95,.48],[.95,-.48]].forEach(([x,z])=>add(ambG,new THREE.CylinderGeometry(.2,.2,.14,16),dk,x,.2,z,{rx:Math.PI/2}));
+ ambG.userData.lights=[add(ambG,new THREE.SphereGeometry(.09,10,8),std({color:'#ff3b3b',emissive:'#ff0000',emissiveIntensity:0}),.75,1.38,.22,{cast:false}),add(ambG,new THREE.SphereGeometry(.09,10,8),std({color:'#3b7bff',emissive:'#0044ff',emissiveIntensity:0}),.75,1.38,-.22,{cast:false})]}
+const bandM=new THREE.Group();NU.headP.add(bandM);
+{const bw=std({color:'#fbfbf6',roughness:.9});const b=add(bandM,new THREE.TorusGeometry(.5,.065,8,28),bw,0,.2,0,{rx:Math.PI/2,cast:false});b.scale.set(1.04,1,1);add(bandM,RB(.12,.04,.02,.01),std({color:'#f1c9a5'}),.2,-.18,.46,{rz:.5,cast:false});add(bandM,RB(.04,.12,.02,.01),std({color:'#f1c9a5'}),.2,-.18,.46,{rz:.5,cast:false})}
+bandM.visible=false;
+function fade(on,txt){$('#fadeT').textContent=txt||'';$('#fade').classList.toggle('on',on)}
+function* aHospital(){C.status='¡Al hospital!';C.thought=['🚑','Ay, ay, ay…'];ach('hospital');showBanner('🚑 ¡AL HOSPITAL!');SFX.siren();react('sad',3);say('Ay… ay… creo que me he roto algo…',2.2);voice(.8,1.1);
+  const R=RIGHT(),tx=C.pos.x+R[0]*1.7,tz=C.pos.y+R[1]*1.7;ambG.visible=true;ambG.rotation.y=CAMYAW+Math.PI;C.ambOn=true;
+  let t=0;while(t<1.8){const k=1-Math.pow(1-t/1.8,3);ambG.position.set(tx+R[0]*11*(1-k),0,tz+R[1]*11*(1-k));if((C.sirT=(C.sirT||0)-dt_)<=0){C.sirT=.9;SFX.siren()}t+=yield}
+  yield* walkTo(tx-R[0]*.95,tz-R[1]*.95);say('¡Llevadme con cuidado!',1.4);yield* waitS(.6);C.hidden=true;SFX.doorClose();yield* waitS(.5);
+  t=0;while(t<1.6){ambG.position.set(tx-R[0]*12*t*t/2.56,0,tz-R[1]*12*t*t/2.56);if((C.sirT-=dt_)<=0){C.sirT=.9;SFX.siren()}t+=yield}
+  fade(true,'🏥 Unas horas más tarde…');yield* waitS(2.2);S.gameMin+=150;S.anger=clamp(S.anger+10,0,100);S.stress=clamp(S.stress-20,0,100);S.hurt=0;C.bandageUntil=clockS+120;bandM.visible=true;
+  ambG.position.set(tx-R[0]*11,0,tz-R[1]*11);ambG.rotation.y=CAMYAW;fade(false);
+  t=0;while(t<1.6){const k=1-Math.pow(1-t/1.6,3);ambG.position.set(tx-R[0]*11*(1-k),0,tz-R[1]*11*(1-k));t+=yield}
+  C.pos.set(tx-R[0]*.95,tz-R[1]*.95);C.hidden=false;SFX.doorClose();faceCam();react('angry',2.5);say(pick(['¡Me has mandado al hospital! ¡Ni se te ocurra volver a tirarme!','Tres puntos en la cabeza… ¡gracias, eh!']),2.6);voice(.95,1.1);yield* waitS(1);
+  t=0;while(t<1.6){ambG.position.set(tx+R[0]*12*t*t/2.56,0,tz+R[1]*12*t*t/2.56);t+=yield}ambG.visible=false;C.ambOn=false;C.thought=null}
+/* ---- mosquito ---- */
+const mosq=new THREE.Group();mosq.visible=false;world.add(mosq);
+{const mk=std({color:'#2b2622',roughness:.5});const b=add(mosq,new THREE.CapsuleGeometry(.012,.05,4,6),mk,0,0,0,{rz:Math.PI/2,cast:false});add(mosq,new THREE.SphereGeometry(.014,6,5),mk,.04,0,0,{cast:false});add(mosq,new THREE.CylinderGeometry(.002,.002,.05,4),mk,.07,-.01,0,{rz:1.2,cast:false});
+ const wm=new THREE.MeshBasicMaterial({color:'#dfe8f5',transparent:true,opacity:.6,side:THREE.DoubleSide});mosq.userData.w=[-1,1].map(sd=>{const w=add(mosq,new THREE.PlaneGeometry(.05,.022),wm,-.005,.012,sd*.025,{rx:Math.PI/2,cast:false});return w})}
+const biteM=add(NU.headP,new THREE.SphereGeometry(.045,10,8),std({color:'#ff6b6b',roughness:.5}),-.22,-.05,.43,{cast:false});biteM.scale.z=.5;biteM.visible=false;
+const MQ={on:false,t:0};
+function* aMosq(){C.status='¡Un mosquito!';C.thought=['🦟','¡Bzzz!'];yield* leaveSpot();faceCam();react('annoyed',1.5);say('¿Qué es ese zumbido? …¡¡UN MOSQUITO!!',2);voice(1.2,1);C.pose='swat';
+  let t=0;while(t<7&&MQ.on){if(Math.random()<dt_*1.3){noise({dur:.05,vol:.3,type:'lowpass',f:1200});C.squash=1;const h=headPx();pw(h.x+rand(-60,60),h.y+rand(-20,40),'¡PLAS!',16)}
+    if(Math.random()<dt_*.35&&!sayOn)say(pick(['¡Fuera, bicho!','¡Estate quieto!','¡Que te mato!','¡Bzzz, bzzz, qué pesado!']),1.2);t+=yield}
+  MQ.on=false;mosq.visible=false;
+  if(Math.random()<.45){C.pose='stand';noise({dur:.08,vol:.4,type:'lowpass',f:900});react('party',2);say('¡¡TOMA!! ¡Muerto! ¡Soy la reina de los mosquitos!',2.2);voice(1.2,1);yield* waitS(1.8)}
+  else{C.pose='itch';ach('mosquito');biteM.visible=true;C.biteUntil=clockS+60;react('rage',2);C.shakeT=1;say('¡¡AY!! ¡Me ha picado! ¡Cómo pica!',2);voice(1.3,1);annoy(12);yield* waitS(3);say('Me pica muchísimo… ¡qué asco de mosquito!',1.8);yield* waitS(2)}
+  C.pose='stand';C.thought=null}
+/* ---- eventos: flexiones, carrera, día de cine y paracaídas ---- */
+const EVS={pushups:['💪','Competición de flexiones'],race:['🏃‍♀️','Carrera contra una rival'],cinema:['🍿','¡Día de cine!'],skydive:['🪂','Salto en paracaídas']};
+const EV={cur:null,next:110,inv:null,invT:0,taps:0,tapTimes:[]};
+let RV=null;
+function rival(){if(!RV){RV=buildAvatar({skin:'#c98e66',hair:'#1a1a1a',top:'#2bb3a3',pants:'#2e3a59',style:'pony',shadow:true});RV.faceMat.map=NV[1].happy;RV.faceMat.needsUpdate=true;world.add(RV.root)}RV.root.visible=true;RV.root.rotation.set(0,0,0);RV.root.position.y=0;return RV}
+function hideRival(){if(RV)RV.root.visible=false}
+function evUI(on,o={}){const e=$('#evt');e.classList.toggle('on',on);$('#evtTime').textContent='';if(!on)return;$('#evtT').textContent=o.title;$('#evtBtn').textContent=o.btn;$('#evtMeRow').style.display=o.bars?'':'none';$('#evtRvRow').style.display=o.bars?'':'none';$('#evtRvName').textContent=o.rival||'Rival'}
+function evBars(me,rv,mx,mn,rn){$('#evtMe').style.width=clamp(me/mx*100,0,100)+'%';$('#evtRv').style.width=clamp(rv/mx*100,0,100)+'%';$('#evtMeN').textContent=mn;$('#evtRvN').textContent=rn}
+function evTime(t){$('#evtTime').textContent=t>0?Math.ceil(t)+' s':''}
+function tapRate(){const n=performance.now();EV.tapTimes=EV.tapTimes.filter(x=>n-x<1000);return EV.tapTimes.length}
+$('#evtBtn').addEventListener('pointerdown',e=>{e.preventDefault();initAudio();EV.taps++;EV.tapTimes.push(performance.now());vibrate(8);if(EV.onTap)EV.onTap()});
+function evCleanup(){if(!EV.cur)return;EV.cur=null;EV.onTap=null;evUI(false);hideRival();trackG.visible=false;chuteG.visible=false;clouds.forEach(c=>c.visible=false);popM.visible=false;C.film=false;tvG.userData.big=1;fade(false);stage.classList.remove('cine')}
+function startEvent(id){$('#invite').classList.remove('on');EV.inv=null;closePanels();openMenu(false);wakeFor();if(cantReach())return;if(busy())return nowNo();
+  const g={pushups:evPushups,race:evRace,cinema:evCinema,skydive:evSky}[id];startAct('ev',g);EV.cur=id;EV.taps=0;EV.tapTimes=[];EV.next=rand(180,260)}
+function* countdown(){for(const n of ['3','2','1','¡YA!']){const sr=stage.getBoundingClientRect();pw(sr.left+sr.width/2,sr.top+sr.height*.35,n,n.length>1?46:56);SFX.pop();yield* waitS(.75)}}
+function stepEvents(dt){
+  if(EV.inv){EV.invT-=dt;if(EV.invT<=0){$('#invite').classList.remove('on');EV.inv=null}return}
+  if(EV.cur||C.sleeping||C.hidden||PH.mode||busy()||WANT.cur||(S.drunk||0)>45)return;
+  if((EV.next-=dt)>0)return;EV.next=rand(150,240);const id=pick(Object.keys(EVS));EV.inv=id;EV.invT=16;$('#invI').textContent=EVS[id][0];$('#invT').textContent=EVS[id][1];$('#invite').classList.add('on');SFX.yay()}
+$('#invYes').onclick=()=>{SFX.click();if(EV.inv)startEvent(EV.inv)};$('#invNo').onclick=()=>{SFX.click();$('#invite').classList.remove('on');EV.inv=null};
+// --- flexiones ---
+function* evPushups(){C.status='Competición de flexiones';C.thought=null;yield* leaveSpot();const R=RIGHT(),F=[Math.sin(CAMYAW),Math.cos(CAMYAW)],rv=rival();
+  rv.root.position.set(C.pos.x-F[0]*1.1,0,C.pos.y-F[1]*1.1);rv.root.rotation.y=Math.atan2(R[0],R[1]);SFX.poof();faceCam();say('¿Flexiones? ¡Te vas a enterar!',1.8);react('angry',1.5);yield* waitS(1.6);
+  C.rot=C.rotGoal=Math.atan2(R[0],R[1]);C.pose='plank';C.lieGoal=-1;C.y=.2;rv.root.rotation.x=Math.PI/2;rv.root.position.y=.2;
+  evUI(true,{title:'💪 Flexiones',btn:'💪 ¡DALE! (toca rápido)',bars:true,rival:'Rival'});yield* countdown();
+  let t=0,mine=0,rr=0;const D=10;EV.onTap=()=>{if(EV.taps%2===0){mine++;SFX.grunt?.();if(mine%5===0){const h=headPx();pw(h.x,h.y-30,mine+'',20)}}C.y=EV.taps%2?.08:.2};
+  while(t<D){rr+=dt_*(1.75+Math.sin(t*1.3)*.25);rv.root.position.y=Math.floor(rr*2)%2?.08:.2;rv.legs[0].rotation.x=rv.legs[1].rotation.x=0;rv.arms.forEach(a=>a.g.rotation.set(-1.5,0,0));
+    evBars(mine,Math.floor(rr),24,mine,Math.floor(rr));evTime(D-t);t+=yield}
+  EV.onTap=null;evUI(false);C.lieGoal=0;C.y=0;C.pose='stand';rv.root.rotation.x=0;rv.root.position.y=0;rv.arms.forEach(a=>a.g.rotation.set(0,0,0));faceCam();S.energy=clamp(S.energy-10,0,100);S.stress=clamp(S.stress-10,0,100);
+  yield* evResult(mine>Math.floor(rr),'pushups',`${mine} a ${Math.floor(rr)}`)}
+function* evResult(win,id,score){if(win){showBanner('🏆 ¡GANA NÚRIA!');ach(id);react('party',2.6);SFX.yay();cine({zoom:.55,dur:2.2,orbit:.8,lift:.35});say(pick(['¡¡SOY LA MEJOR!! ','¡Toma ya! ¡Campeona!'])+' ('+score+')',2.4);C.happyUntil=clockS+10;
+    const h=headPx();for(let i=0;i<10;i++)setTimeout(()=>pw(h.x+rand(-80,80),h.y+rand(-60,30),pick(['🏆','✨','🎉','⭐']),rand(18,28)),i*70)}
+  else{showBanner('😩 ¡HA PERDIDO!');react('sad',2.5);SFX.lose();say(pick(['¡Me ha ganado! Quiero la revancha…','Bah, estaba calentando…'])+' ('+score+')',2.4);annoy(6)}
+  yield* waitS(2.4);hideRival();SFX.poof();evCleanup();C.thought=null}
+// --- carrera ---
+const trackG=new THREE.Group();trackG.visible=false;world.add(trackG);
+{const lm=new THREE.MeshBasicMaterial({color:'#ffffff'}),tm=std({color:'#e86f4c',roughness:.9});add(trackG,new THREE.PlaneGeometry(13,2),tm,6.5,.004,0,{rx:-Math.PI/2,cast:false});
+ [-1,0,1].forEach(z=>add(trackG,new THREE.PlaneGeometry(13,.05),lm,6.5,.008,z*.95,{rx:-Math.PI/2,cast:false}));
+ const ck=ctex(64,16,(g,w,h)=>{for(let x=0;x<8;x++)for(let y=0;y<2;y++){g.fillStyle=(x+y)%2?'#111':'#fff';g.fillRect(x*8,y*8,8,8)}});
+ [-1,1].forEach(z=>add(trackG,new THREE.CylinderGeometry(.04,.04,1.9,8),std({color:'#9aa0aa'}),12,.95,z*1.1));add(trackG,new THREE.PlaneGeometry(2.2,.3),new THREE.MeshBasicMaterial({map:ck,side:THREE.DoubleSide}),12,1.8,0,{ry:Math.PI/2,cast:false});
+ add(trackG,new THREE.PlaneGeometry(.12,2),lm,12,.01,0,{rx:-Math.PI/2,cast:false})}
+function* evRace(){C.status='¡Carrera!';C.thought=null;yield* leaveSpot();const R=RIGHT(),F=[Math.sin(CAMYAW),Math.cos(CAMYAW)];const L=12;
+  const s0=[C.pos.x-R[0]*6,C.pos.y-R[1]*6];trackG.position.set(s0[0],0,s0[1]);trackG.rotation.y=CAMYAW;trackG.visible=true;const rv=rival();
+  const at=(d,lane)=>[s0[0]+R[0]*d+F[0]*lane,s0[1]+R[1]*d+F[1]*lane];
+  SFX.poof();C.pos.set(...at(0,.48));C.rot=C.rotGoal=Math.atan2(R[0],R[1]);rv.root.position.set(...at(0,-.48).slice(0,1),0,at(0,-.48)[1]);rv.root.position.x=at(0,-.48)[0];rv.root.rotation.y=C.rot;
+  say('¡Preparada para ganar!',1.6);evUI(true,{title:'🏃‍♀️ Carrera',btn:'🏃‍♀️ ¡CORRE! (toca rápido)',bars:true,rival:'Rival'});yield* countdown();
+  let me=0,rd=0,t=0,ph=0,rph=0;C.pose='run';
+  while(me<L&&rd<L&&t<20){const v=Math.min(4.8,.7+tapRate()*.58);me+=v*dt_;rd+=dt_*(2.35+Math.sin(t*2)*.2);ph+=v*dt_*3.2;rph+=dt_*2.35*3.2;C.runPh=ph;C.runV=v;
+    const a=at(me,.48),b=at(rd,-.48);C.pos.set(a[0],a[1]);rv.root.position.set(b[0],0,b[1]);const sr=Math.sin(rph);rv.legs[0].rotation.x=sr*.9;rv.legs[1].rotation.x=-sr*.9;rv.arms[0].g.rotation.set(-sr*.8,0,-.1);rv.arms[1].g.rotation.set(sr*.8,0,.1);rv.root.position.y=Math.abs(Math.cos(rph))*.06;
+    if((C.stepT2=(C.stepT2||0)-dt_*v)<=0){C.stepT2=.9;SFX.step()}evBars(me,rd,L,Math.round(me/L*100)+'%',Math.round(rd/L*100)+'%');evTime(0);t+=yield}
+  C.pose='stand';rv.legs.forEach(l=>l.rotation.x=0);rv.arms.forEach(a=>a.g.rotation.set(0,0,0));evUI(false);faceCam();S.energy=clamp(S.energy-12,0,100);S.bored=clamp(S.bored-20,0,100);
+  yield* evResult(me>=rd,'race',me>=rd?'¡por los pelos!':'');trackG.visible=false}
+// --- día de cine ---
+const popM=new THREE.Group();popM.visible=false;world.add(popM);
+{const st=ctex(64,32,(g,w,h)=>{for(let i=0;i<8;i++){g.fillStyle=i%2?'#ffffff':'#e23a3a';g.fillRect(i*8,0,8,h)}});add(popM,new THREE.CylinderGeometry(.09,.065,.17,16,1,true),new THREE.MeshStandardMaterial({map:st,side:THREE.DoubleSide}),0,0,0,{cast:false});
+ const pm=std({color:'#fff6d8',roughness:.9});for(let i=0;i<9;i++)add(popM,new THREE.SphereGeometry(.03,6,5),pm,rand(-.05,.05),.09+rand(0,.04),rand(-.05,.05),{cast:false})}
+function drawFilm(t){const g=tvX,w=256,h=150,sc=C.filmT||0;
+  if(sc<6){g.fillStyle='#ffd166';g.fillRect(0,0,w,h);for(let i=0;i<2;i++){const x=w*(.3+i*.4)+Math.sin(t*4+i)*20,y=h*.6-Math.abs(Math.sin(t*6+i))*25;g.fillStyle=i?'#4fc3f7':'#ff5a6e';g.beginPath();g.arc(x,y,16,0,7);g.fill()}g.fillStyle='#3d3a44';g.font='bold 16px sans-serif';g.fillText('😂 COMEDIA',8,20)}
+  else if(sc<11){g.fillStyle='#ffc2dc';g.fillRect(0,0,w,h);g.fillStyle='#ff3b6b';g.font='40px sans-serif';g.fillText('💕',w/2-24+Math.sin(t*2)*10,h/2+14);g.fillStyle='#7a2040';g.font='bold 16px sans-serif';g.fillText('💗 ROMANCE',8,20)}
+  else if(sc<16){g.fillStyle='#0b0b12';g.fillRect(0,0,w,h);if(Math.sin(t*9)>.6){g.fillStyle='#fff';g.font='56px sans-serif';g.fillText('👻',w/2-30,h/2+20)}g.fillStyle='#ff2b2b';g.font='bold 16px sans-serif';g.fillText('😱 TERROR',8,20)}
+  else{const k=Math.min(1,(sc-16)/3);g.fillStyle=`hsl(${25-k*20},80%,${55-k*25}%)`;g.fillRect(0,0,w,h);g.fillStyle='#fff';g.font='bold 30px sans-serif';g.fillText('FIN',w/2-28,h/2+10)}
+  tvTex.needsUpdate=true}
+function* evCinema(){C.status='¡Día de cine!';C.thought=['🍿','¡Peli!'];placeTV();S.tv=true;C.film=true;C.filmT=0;tvG.userData.big=1.7;refreshDock();yield* goTo('sofa');yield* sitAt('sofa');C.pose='tv';popM.visible=true;
+  say('¡Día de cine! Palomitas y peli',1.8);evUI(true,{title:'🍿 Día de cine',btn:'🍿 Dale palomitas',bars:false});
+  EV.onTap=()=>{SFX.chomp();C.sipT=.5;C.squash=.6;C.happyUntil=clockS+3;S.hunger=clamp(S.hunger-2,0,100);const h=headPx();pw(h.x+rand(-30,30),h.y+30,'🍿',16)};
+  let t=0,said=-1;const lines=[[1,'laugh','¡Jajaja! ¡Qué tonto!'],[6.5,'happy','Ooooh… qué bonito…'],[11.5,'surprised','¡¡AAAAH!! ¡¡NO ABRAS ESA PUERTA!!'],[13.5,'surprised','¡¡QUÉ MIEDO!!'],[16.5,'sad','Snif… qué final más bonito…']];
+  while(t<20){C.filmT=t;evTime(20-t);for(let i=0;i<lines.length;i++)if(t>=lines[i][0]&&said<i){said=i;react(lines[i][1],2.5);say(lines[i][2],2.2);if(lines[i][1]==='surprised'){SFX.scream();C.jumpT=.8;shakeStage()}}
+    if(popM.visible){arms[1].hand.getWorldPosition(popM.position);popM.position.y+=.05}t+=yield}
+  EV.onTap=null;evUI(false);popM.visible=false;C.film=false;tvG.userData.big=1;SFX.yay();react('party',2);say('¡Qué peliculón! 👏👏',2);ach('cinema');S.bored=clamp(S.bored-35,0,100);S.stress=clamp(S.stress-20,0,100);yield* waitS(2);setTV(false,true);evCleanup();C.thought=null}
+// --- paracaídas ---
+const chuteG=new THREE.Group();chuteG.visible=false;world.add(chuteG);
+{const ct=ctex(128,32,(g,w,h)=>{const c=['#ff5a6e','#ffd166','#4fc3f7','#7bd389','#a77bff','#ff9f43'];for(let i=0;i<12;i++){g.fillStyle=c[i%6];g.fillRect(i*w/12,0,w/12,h)}});
+ add(chuteG,new THREE.SphereGeometry(1.1,24,10,0,Math.PI*2,0,Math.PI/2.3),new THREE.MeshStandardMaterial({map:ct,side:THREE.DoubleSide,roughness:.8}),0,2.4,0,{cast:false});
+ const lm=new THREE.MeshBasicMaterial({color:'#666'});[[.8,.4],[-.8,.4],[.8,-.4],[-.8,-.4]].forEach(([x,z])=>{const a=new THREE.Vector3(x*.95,2.55,z*1.6),b=new THREE.Vector3(x*.15,1.35,z*.2),d=b.clone().sub(a);const l=add(chuteG,new THREE.CylinderGeometry(.006,.006,d.length(),4),lm,(a.x+b.x)/2,(a.y+b.y)/2,(a.z+b.z)/2,{cast:false});l.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),d.normalize())})}
+const clouds=[];for(let i=0;i<9;i++){const c=new THREE.Group();const m=new THREE.MeshBasicMaterial({color:'#ffffff',transparent:true,opacity:.85,fog:false});for(let j=0;j<4;j++){const b=add(c,new THREE.SphereGeometry(rand(.6,1.1),12,8),m,j*.8-1.2,rand(-.2,.3),rand(-.3,.3),{cast:false});b.scale.y=.6}c.visible=false;world.add(c);clouds.push(c)}
+function* evSky(){C.status='¡Salto en paracaídas!';C.thought=['🪂','¡¡Que me tiro!!'];yield* leaveSpot();faceCam();say('¿Saltar de un avión? ¡¿Estás loco?! …vale, vamos',2.2);yield* waitS(2);
+  fade(true,'✈️ A 4.000 metros de altura…');SFX.rumble();yield* waitS(1.8);const H=34;C.y=H;C.pose='skydive';C.skyDive=true;
+  clouds.forEach((c,i)=>{c.visible=true;const a=rand(0,Math.PI*2),r=rand(2.5,5);c.position.set(C.pos.x+Math.cos(a)*r,rand(6,H-2),C.pos.y+Math.sin(a)*r-1)});fade(false);
+  evUI(true,{title:'🪂 ¡Abre el paracaídas a tiempo!',btn:'🪂 ¡ABRE EL PARACAÍDAS!',bars:false});say('¡¡AAAAAAAAH!!',2);SFX.scream();voice(1.4,1.1);
+  let open=false,openAlt=0;EV.onTap=()=>{if(!open){open=true;openAlt=C.y/H*4000}};let v=0,t=0;
+  while(C.y>0){const alt=C.y/H*4000;$('#evtTime').textContent=Math.max(0,Math.round(alt))+' m';
+    if(!open&&alt<300){open=true;openAlt=alt;say('¡¡SE ABRE EL DE EMERGENCIA!!',1.6)}
+    if(open&&!chuteG.visible){chuteG.visible=true;chuteG.scale.setScalar(.1);SFX.whoosh();C.pose='hang';$('#evtBtn').textContent='🪂 ¡Abierto!'}
+    if(chuteG.visible){chuteG.scale.setScalar(Math.min(1,chuteG.scale.x+dt_*3));chuteG.position.set(C.pos.x,C.y,C.pos.y);chuteG.rotation.z=Math.sin(t*1.5)*.08;chuteG.rotation.y=C.rot}
+    v=open?damp(v,openAlt>2200?1.5:2.4,3,dt_):Math.min(6.2,v+dt_*9);C.y=Math.max(0,C.y-v*dt_);if(!open&&Math.random()<dt_*.6&&!sayOn)say(pick(['¡¡QUE ME ESTRELLO!!','¡¡ÁBRELO YA!!','¡¡MAMÁÁÁ!!']),1);t+=yield}
+  EV.onTap=null;evUI(false);C.skyDive=false;clouds.forEach(c=>c.visible=false);chuteG.visible=false;C.y=0;
+  if(openAlt<=800){SFX.thud();shakeStage();C.pose='floorsit';C.y=-.31;react('rage',2.4);dizzy(2.4);say('¡¡MI CULO!! ¡Lo has abierto tardísimo!',2.4);S.hurt=(S.hurt||0)+1;C.hurtT=clockS;annoy(15);yield* waitS(2.5);C.y=0;C.pose='stand';clearDizzy();evCleanup()}
+  else{SFX.step();C.squash=1;C.pose='stand';faceCam();react('party',2.4);ach('skydive');showBanner(openAlt>2200?'🪂 ¡ATERRIZAJE SUAVE!':'🪂 ¡PERFECTO!');SFX.yay();cine({zoom:.55,dur:2,orbit:.8,lift:.35});say(openAlt>2200?'¡Qué vistas! Aunque lo abriste prontísimo…':'¡¡QUÉ PASADA!! ¡Otra vez!',2.4);yield* waitS(2.2);evCleanup()}
+  C.thought=null}
 // cuando una acción no puede hacerse, avisar en vez de no hacer nada
-function cantReach(){if(PH.mode){toast('¡Espera a que aterrice!');return true}if(C.inBath||C.hidden){say(pick(['¡Estoy en el váter!','¡Ocupado!','¡Un momento, que estoy en el baño!']),1.4);return true}return false}
+function cantReach(){if(PH.mode){toast('¡Espera a que aterrice!');return true}if(C.actName==='hospital'){toast('🚑 Está en el hospital…');return true}if(C.inBath||C.hidden){say(pick(['¡Estoy en el váter!','¡Ocupado!','¡Un momento, que estoy en el baño!']),1.4);return true}return false}
 function nowNo(){say(pick(['¡Ahora no!','¡Espera, que estoy liada!','¡Un momento!','¡Luego, luego!']),1.2)}
 let lastScare=-99;
 const ACT={
@@ -1577,10 +1764,11 @@ const ACT={
       C.pose='floorsit';C.y=-.31;yield* waitS(.35);fartGag();C.y=0;C.pose='stand';yield* waitS(2.2);C.thought=null})},
   stache(){if(S.stache)return toast('🥸 Ya lleva bigote… (se quita con la esponja o un baño)');if(cantReach())return;prank();S.stache=true;stacheM.visible=true;SFX.knit();SFX.knit();const h=headPx();pw(h.x,h.y,'🖊️',24);
     if(C.sleeping){S.stacheKnown=false;toast('🤫 No se ha enterado… (hazle una foto)')}else{S.stacheKnown=true;react('rage',2);C.shakeT=1;say(pick(['¡¿ME HAS PINTADO UN BIGOTE?!','¡¡QUÍTAME ESTO DE LA CARA!!']),2.2);voice(1.2,1);annoy(14)}},
-  horn(){if(PH.mode)return toast('¡Espera a que aterrice!');prank();SFX.horn();vibrate([200]);shakeStage();const sr=stage.getBoundingClientRect();pw(sr.left+sr.width/2,sr.top+sr.height*.35,'📯 ¡¡MOOOC!!',32);
+  horn(){if(PH.mode)return toast('¡Espera a que aterrice!');ach('deaf');prank();SFX.horn();vibrate([200]);shakeStage();const sr=stage.getBoundingClientRect();pw(sr.left+sr.width/2,sr.top+sr.height*.35,'📯 ¡¡MOOOC!!',32);
     if(C.hidden){say('¡¡AAAH!! ¡¿QUÉ HA SIDO ESO?!',1.8);annoy(10);return}
     const was=wakeFor();C.jumpT=1;C.squash=1;C.shakeT=1;react('surprised',2);C.earsT=1.8;say(was?'¡¡¿QUÉ?!! ¡¡¿UN BARCO?!!':pick(['¡¡QUÉ SUSTO!! ¡Me has dejado sorda!','¡¡¿ESTÁS LOCO?!! ¡Mis oídos!','¿Qué? ¡¿QUÉ?! ¡No oigo nada!']),2.2);voice(1.4,1.1);annoy(14);S.stress=clamp(S.stress+12,0,100);crowdReact('look',C.pos,8);cine({zoom:.6,dur:1.2,lift:.4})},
   wifi(){if(WIFI.off){WIFI.off=false;wifiBack();return}WIFI.off=true;WIFI.until=clockS+40;prank();SFX.switch();toast('📶❌ Wifi cortado');refreshMore()},
+  mosquito(){if(MQ.on)return toast('🦟 Ya hay un mosquito dando la lata');if(cantReach())return;prank();if(C.sleeping){C.wakeBy='mosquito';annoy(8)}startAct('mosquito',aMosq);MQ.on=true;MQ.t=0;mosq.visible=true},
   ice(){if(cantReach())return;prank();const was=wakeFor();SFX.ice();const h=headWorld();spray(h.add(new THREE.Vector3(-Math.sin(C.rot)*.25,-.3,-Math.cos(C.rot)*.25)),10,.5,.3,iceMat);
     C.jumpT=1;C.squash=1;C.shakeT=1.5;C.shiverT=4;react('surprised',2);say(was?'¡¡AAAH!! ¡¿QUÉ FRÍO?! ¡¿QUÉ PASA?!':pick(['¡¡AAAY!! ¡¡HIELO POR LA ESPALDA NO!!','¡¡QUÉ FRÍOOO!!','¡¡Brrr!! ¡Te voy a matar!']),2.2);voice(1.45,1.1);annoy(12);S.stress=clamp(S.stress+8,0,100)},
   scare(){if(PH.mode)return toast('¡Espera a que aterrice!');prank();
@@ -1647,7 +1835,7 @@ const musicPop=$('#musicPop');function toggleMusic(f){musicPop.hidden=f!==undefi
 document.querySelectorAll('.food[data-m]').forEach(b=>b.onclick=()=>{initAudio();SFX.click();toggleMusic(false);setMusic(b.dataset.m==='off'?null:b.dataset.m)});
 const LOOK_T={normal:['¡Mi ropa de siempre!','Así, cómoda'],vestido:['¿Un vestido? Bueno… voy monísima','¡Qué vestido más mono!'],montana:['¿Ropa de montaña? Qué pereza…','No pienso subir ningún monte, que lo sepas'],
   melena:['Melena al viento','¡Pelazo!'],coleta:['Una coleta, práctico','Coleta y a correr… o no'],mono:['Un moño, ¡qué elegante!','Moño alto, como una bailarina']};
-function changeLook(kind,v){if(kind==='o'){if(S.outfit===v)return;S.outfit=v;S.peeWet=false}else{if(S.hairStyle===v)return;S.hairStyle=v}
+function changeLook(kind,v){if(v==='vestido')ach('model');if(kind==='o'){if(S.outfit===v)return;S.outfit=v;S.peeWet=false}else{if(S.hairStyle===v)return;S.hairStyle=v}
   applyLook();markLook();SFX.poof();SFX.sparkle();fulfill('look',v);if(!C.hidden){spray(headWorld().add(new THREE.Vector3(0,-.4,0)),14,1.4,1.6,sparkMat);C.jumpT=1;
   if(!C.sleeping&&!PH.mode){react(v==='montana'?'annoyed':'happy',2);say(pick(LOOK_T[v]),2)}}}
 const sparkMat=new THREE.MeshBasicMaterial({color:'#ffe066'});
@@ -1719,8 +1907,8 @@ function release(){const h=PH.hist,a=h[0],b=h[h.length-1];const dtv=Math.max(.03
   PH.mode='fly';PH.t=0;PH.bounces=0;PH.v.copy(v);PH.c.copy(PH.p);PH.c.y-=TOP-HALF;
   const hv=new THREE.Vector3(v.x,0,v.z);PH.axis=hv.lengthSq()>.01?new THREE.Vector3().crossVectors(UP,hv).normalize():new THREE.Vector3(1,0,0);
   PH.spin=0;const strong=hs>2||up>3;PH.spinV=strong?rand(7,11):1.5;PH.pose='fly';C.thought=['😱','¡¡AAAAH!!'];
-  if(strong){SFX.whoosh();say(pick(T.fly),1.4);voice(1.35,1.1);prank()}else say('¡Uy!',.8)}
-function land(g){if(g.name==='floor')dirty(8);S.messy=clamp(S.messy+35,0,100);S.sad=clamp(S.sad+5,0,100);PH.throws=(PH.throws||[]).filter(t=>clockS-t<30);PH.throws.push(clockS);if(PH.throws.length>=2)C.pendingPuke=true;
+  if(strong){ach('fly');SFX.whoosh();say(clockS<(C.bandageUntil||0)?'¡¡QUE ESTOY CONVALECIENTE!!':pick(T.fly),1.4);voice(1.35,1.1);prank()}else say('¡Uy!',.8)}
+function land(g){if(PH.spinV>3){S.hurt=(S.hurt||0)+1;C.hurtT=clockS}if(g.name==='floor')dirty(8);S.messy=clamp(S.messy+35,0,100);S.sad=clamp(S.sad+5,0,100);PH.throws=(PH.throws||[]).filter(t=>clockS-t<30);PH.throws.push(clockS);if(PH.throws.length>=2)C.pendingPuke=true;
   PH.mode='down';PH.t=0;PH.pose='floorsit';PH.groundY=g.h;PH.land=g;C.rot=Math.atan2(camera.position.x-PH.c.x,camera.position.z-PH.c.z);
   const cp=new THREE.Vector2(PH.c.x,PH.c.z);
   if(g.name==='fountain'){SFX.splash();spray(new THREE.Vector3(PH.c.x,.4,PH.c.z),30,2.2,3);wetT=16;say(pick(T.fountain),2.4)}
@@ -1730,6 +1918,7 @@ function land(g){if(g.name==='floor')dirty(8);S.messy=clamp(S.messy+35,0,100);S.
 function standUp(){const g=PH.land||{ex:null};let x=PH.c.x,z=PH.c.z;
   if(g.ex==='radial'){const l=Math.hypot(x,z)||1;x=x/l*1.95;z=z/l*1.95}else if(g.ex){if(g.ex[0]!=null)x=g.ex[0];if(g.ex[1]!=null)z=g.ex[1]}
   PH.mode=null;rig.scale.setScalar(CH);rig.rotation.set(0,0,0);C.roll=0;C.lie=0;C.lieGoal=0;nuri.rotation.set(0,C.rot,0);C.pos.set(x,z);C.y=0;C.rotGoal=C.rot;C.at=null;C.actName='';C.act=null;C.thought=null;C.jumpT=.7;C.pose='stand';faceCam();
+  if((S.hurt||0)>=3){S.hurt=0;clearDizzy();C.pendingPuke=false;PH.throws=[];startAct('hospital',aHospital);return}
   react('angry',2.2);say(pick(T.getUp),2);SFX.grr();clearDizzy();if(C.pendingPuke){C.pendingPuke=false;PH.throws=[];setTimeout(vomit,1300)}}
 function stepPhys(dt){PH.t+=dt;
   if(PH.mode==='held'){const tgt=planeAt(lastPtr.x,lastPtr.y,PY),prev=PH.p.clone();PH.p.lerp(tgt,1-Math.exp(-22*dt));
@@ -1891,6 +2080,7 @@ function step(dt){
       else if(g==='tired'){P.legL=s*.4;P.legR=-s*.4;P.armLx=.1-s*.12;P.armRx=.1+s*.12;P.armLz=.08;P.armRz=-.08;P.lean=.32;P.headX=.35;P.bob=-.04+Math.abs(c)*.02;P.yaw=s*.06}
       else if(g==='pee'){P.legL=s*.22;P.legR=-s*.22;P.armLx=P.armRx=-.5;P.armLz=.45;P.armRz=-.45;P.lean=.15;P.bob=Math.abs(c)*.02;P.tilt=s*.09}
       else if(g==='cold'){P.legL=s*.45;P.legR=-s*.45;P.armLx=P.armRx=-1.05;P.armLz=.95;P.armRz=-.95;P.lean=.12;P.yaw=Math.sin(t*45)*.03}
+      else if(g==='hurt'){P.legL=s*.6;P.legR=-s*.12;P.tilt=Math.max(0,s)*.18;P.armLx=-.3;P.armRx=-1.2;P.armRz=-.4;P.bob=Math.max(0,s)*.05;P.headX=.15}
       else if(g==='drunk'){const w=Math.sin(C.walkPhase*.35);P.legL=s*.5;P.legR=-s*.5;P.armLz=-.9+w*.4;P.armRz=.9+w*.4;P.armLx=P.armRx=-.2;P.sx=w*.28;P.tilt=w*.22;P.yaw=Math.sin(C.walkPhase*.5)*.35;P.headX=.1+Math.sin(t*2)*.1;P.bob=Math.abs(c)*.03}
       break}
     case'stand':{const g=C.gait;
@@ -1901,6 +2091,12 @@ function step(dt){
       else if(g==='happy'){P.bob=Math.abs(Math.sin(t*4))*.03;P.armLx=P.armRx=.3;P.tilt=Math.sin(t*2)*.05}
       else if(g==='pee'){P.legL=Math.sin(t*12)*.2;P.legR=-Math.sin(t*12)*.2;P.armLx=P.armRx=-.4;P.armLz=.4;P.armRz=-.4;P.lean=.1}
       break}
+    case'plank':P.armLx=P.armRx=-1.45;P.armLz=-.12;P.armRz=.12;P.headX=-.35;break;
+    case'run':{const r=Math.sin(C.runPh||0),v=clamp((C.runV||0)/4,0,1);P.legL=r*(.5+v*.5);P.legR=-r*(.5+v*.5);P.armLx=-r*(.5+v*.4);P.armRx=r*(.5+v*.4);P.armLz=-.2;P.armRz=.2;P.lean=.12+v*.12;P.bob=Math.abs(Math.cos(C.runPh||0))*.07;break}
+    case'skydive':P.armLz=-2.3+Math.sin(t*20)*.15;P.armRz=2.3-Math.sin(t*19)*.15;P.armLx=P.armRx=-.4;P.legL=-.35+Math.sin(t*17)*.2;P.legR=.25-Math.sin(t*16)*.2;P.lean=.35;P.headX=-.25;break;
+    case'hang':P.armLz=-2.6;P.armRz=2.6;P.armLx=P.armRx=-.2;P.legL=Math.sin(t*2)*.15;P.legR=-Math.sin(t*2)*.15;P.headX=-.1;break;
+    case'swat':P.armLz=-1.8+Math.sin(t*14)*.8;P.armRz=1.8+Math.sin(t*13+1)*.8;P.armLx=-.8+Math.sin(t*11)*.5;P.armRx=-.8+Math.cos(t*12)*.5;P.yaw=Math.sin(t*9)*.25;P.headX=Math.sin(t*7)*.1;break;
+    case'itch':P.armRx=-2.2+Math.sin(t*25)*.12;P.armRz=-.5;P.armLx=-1.1+Math.sin(t*22)*.1;P.armLz=.4;P.headX=.1;break;
     case'swim':{const sw=Math.sin(t*5);P.armLz=-1.2-Math.max(0,sw)*1.4;P.armRz=1.2+Math.max(0,-sw)*1.4;P.armLx=P.armRx=-.6;P.lean=.25;P.headX=-.1;P.legL=Math.sin(t*9)*.25;P.legR=-P.legL;break}
     case'float':P.legL=P.legR=-1.35;P.armLz=-2.4;P.armRz=2.4;P.armLx=P.armRx=.5;P.lean=-.2;P.headX=-.15;break;
     case'sunbathe':P.armLz=-2.7;P.armRz=2.7;P.armLx=P.armRx=.4;P.headX=-.15;P.legR=-.2;break;
@@ -1931,6 +2127,7 @@ function step(dt){
     case'ears':{const s2=Math.sin(t*14);P.armLz=-2.55;P.armRz=2.55;P.armLx=P.armRx=-.55;P.headX=.1+s2*.04;P.yaw=s2*.08;P.bob=Math.abs(s2)*.02;break}
     case'stomp':{const s=Math.sin(t*10);P.legL=Math.max(0,s)*-.8;P.legR=Math.max(0,-s)*-.8;P.armLz=-.5+s*.3;P.armRz=.5+s*.3;P.armLx=P.armRx=-.4;P.bob=Math.abs(s)*.05;break}
   }
+  if(C.bandageUntil&&clockS>C.bandageUntil){C.bandageUntil=0;bandM.visible=false}if(C.biteUntil&&clockS>C.biteUntil){C.biteUntil=0;biteM.visible=false}
   if(C.earsT>0){C.earsT-=dt;P.armLz=-2.55;P.armRz=2.55;P.armLx=P.armRx=-.55}
   if(C.shiverT>0){C.shiverT-=dt;P.armLx=P.armRx=-1.05;P.armLz=.95;P.armRz=-.95;P.yaw+=Math.sin(t*45)*.04}
   if(C.emote){C.emote.t+=dt;const k=C.emote.t/C.emote.d;if(k>=1||walking||C.pose!=='stand'||PH.mode||C.seat)C.emote=null;else EMOTES[C.emote.k].p(P,t,k)}
@@ -1968,7 +2165,9 @@ function step(dt){
   if(glass.visible){arms[1].hand.getWorldPosition(glass.position);glass.position.y+=.04}
   if(dumbbells[0].visible){arms[0].hand.getWorldPosition(dumbbells[0].position);arms[1].hand.getWorldPosition(dumbbells[1].position);dumbbells.forEach(d=>{d.rotation.y=C.rot+Math.PI/2})}
   if(mug.visible){if(!mug.parent)world.add(mug);arms[0].hand.getWorldPosition(mug.position);mug.position.y+=.05}
-  if(dumbbells[0].visible&&C.actName!=='weights')dumbbells.forEach(d=>d.visible=false);if(mug.visible&&C.actName!=='coffee')mug.visible=false;stepProps();stepGhost(dt);stepDrunk(dt);stepWant(dt);stepExtra(dt);
+  if(dumbbells[0].visible&&C.actName!=='weights')dumbbells.forEach(d=>d.visible=false);if(mug.visible&&C.actName!=='coffee')mug.visible=false;stepProps();stepGhost(dt);stepDrunk(dt);stepWant(dt);stepExtra(dt);stepAch(dt);stepEvents(dt);
+  if(MQ.on){MQ.t+=dt;const h=headWorld();mosq.position.set(h.x+Math.cos(MQ.t*7)*.45,h.y+.1+Math.sin(MQ.t*11)*.25,h.z+Math.sin(MQ.t*5)*.45);mosq.rotation.y=-MQ.t*7;mosq.userData.w.forEach((w,i)=>w.rotation.x=Math.PI/2+Math.sin(MQ.t*90+i)*.6);if((MQ.bz=(MQ.bz||0)-dt)<=0){MQ.bz=.22;osc({type:'sawtooth',f:rand(560,640),dur:.22,vol:.025,vib:40,vibF:30,filter:{type:'bandpass',f:1200,q:2}})}}
+  if(C.ambOn){const on=Math.sin(clockS*14)>0;ambG.userData.lights[0].material.emissiveIntensity=on?2:0;ambG.userData.lights[1].material.emissiveIntensity=on?0:2}
   if(!C.emote&&!C.walkingNow&&C.pose==='stand'&&!C.seat&&!busy()&&!C.sleeping&&!C.hidden&&!PH.mode&&!TOOL.mode&&['look','stroll','search',''].includes(C.actName)){C.emoteT=(C.emoteT??5)-dt;if(C.emoteT<=0){C.emoteT=rand(6,12);startEmote()}}
   if(C.holdPhone&&!phoneHidden){arms[1].hand.getWorldPosition(phone.position);phone.position.y+=.03;phone.rotation.set(-1.1,C.rot,0,'YXZ')}
   for(let i=faceDeco.length-1;i>=0;i--){const d=faceDeco[i];d.life-=dt;if(d.life<1)d.g.scale.setScalar(Math.max(.01,d.life));if(d.life<=0){headP.remove(d.g);faceDeco.splice(i,1)}}
@@ -1976,7 +2175,7 @@ function step(dt){
   if(bucketFX){const B=bucketFX;B.t+=dt;const h=headWorld();
     if(B.stage===0){B.m.position.set(h.x,h.y+1.1,h.z);B.m.scale.setScalar(Math.min(1,B.t*4));if(B.t>.5){B.stage=1;B.t=0}}
     else if(B.stage===1){B.m.position.set(h.x,h.y+1.0,h.z);B.m.rotation.z=Math.min(2.6,B.t*6);if(B.t>.25&&B.t<.8){spray(new THREE.Vector3(h.x+rand(-.1,.1),h.y+.85,h.z),3,.6,0)}
-      if(B.t>.45&&!B.wet){B.wet=1;SFX.splash();shakeStage();wetT=14;rinse(65);annoy(22);if(C.sleeping)C.wakeBy='bucket';else if(!PH.mode){react('rage',2.4);say(pick(T.bucket),2.2);voice(1.05,1.1);C.shakeT=1}crowdReact('laugh',C.pos,6)}
+      if(B.t>.45&&!B.wet){B.wet=1;ach('wet');SFX.splash();shakeStage();wetT=14;rinse(65);annoy(22);if(C.sleeping)C.wakeBy='bucket';else if(!PH.mode){react('rage',2.4);say(pick(T.bucket),2.2);voice(1.05,1.1);C.shakeT=1}crowdReact('laugh',C.pos,6)}
       if(B.t>.9){B.stage=2;B.t=0}}
     else if(B.stage===2){const tgt=h.clone().add(new THREE.Vector3(0,.42,0));B.m.position.lerp(tgt,1-Math.exp(-12*dt));B.m.rotation.z=damp(B.m.rotation.z,Math.PI,10,dt);if(B.t>.4&&!B.hat){B.hat=1;SFX.bonk();if(!C.sleeping&&!PH.mode)say(pick(T.bucketHat),1.8)}if(B.t>2.6){B.stage=3;B.t=0;B.v=new THREE.Vector3(rand(-1,1),2.5,rand(-1,1))}}
     else{B.v.y-=12*dt;B.m.position.addScaledVector(B.v,dt);B.m.rotation.x+=dt*5;if(B.m.position.y<.2){B.m.position.y=.2;B.v.set(0,0,0)}if(B.t>3){B.m.scale.multiplyScalar(1-dt*3);if(B.t>3.8){world.remove(B.m);bucketFX=null}}}}
@@ -2055,7 +2254,7 @@ function step(dt){
   // día / noche
   const h=hour(),dayF=smooth(6.5,8.5,h)*(1-smooth(19.5,21.5,h));
   sun.intensity=lerp(.12,1.55,dayF);hemi.intensity=lerp(.2,.6,dayF);fillL.intensity=lerp(.08,.35,dayF);rimL.intensity=lerp(.25,1.1,dayF);
-  darkK=damp(darkK,C.actName==='sleep'&&C.seat==='bed'?1:0,1.6,dt);
+  darkK=damp(darkK,C.actName==='sleep'&&C.seat==='bed'?1:C.film?.8:0,1.6,dt);
   {const lk=1-darkK*.82;sun.intensity*=lk;hemi.intensity*=lk;fillL.intensity*=lk;rimL.intensity*=lk;
    const ek=Math.round((1-Math.max(darkK*.85,(1-dayF)*.5))*50)/50;if(ek!==envK){envK=ek;ENV_MATS.forEach(m=>m.envMapIntensity=.35*ek);faceMat.envMapIntensity=.4*ek}faceMat.emissiveIntensity=.28*(1-darkK*.65)}
   const twK=dayF*(1-dayF)*4;sun.color.copy(SUN_DAY).lerp(SUN_DUSK,twK);
@@ -2115,7 +2314,7 @@ if(location.search.includes('debug'))window.__m={S,C,PH,RO,CAT,setWeather,startS
 })();
 /* =================== foto =================== */
 let photoBlob=null,photoUrl=null;
-$('#snap').onclick=()=>{initAudio();if(C.hidden||C.inBath){toast('Está en el váter… mejor no 😳');return}closePanels();fulfill('photo');if(S.stache&&!S.stacheKnown&&!C.sleeping){S.stacheKnown=true;setTimeout(()=>{react('rage',2.4);C.shakeT=1;say('¡¿QUÉ TENGO EN LA CARA?! ¡¡UN BIGOTE!! ¡¿QUIÉN HA SIDO?!',2.4);voice(1.25,1.1);annoy(15)},1500)}
+$('#snap').onclick=()=>{initAudio();if(C.hidden||C.inBath){toast('Está en el váter… mejor no 😳');return}closePanels();fulfill('photo');ach('photo');if(S.stache&&!S.stacheKnown&&!C.sleeping){S.stacheKnown=true;ach('stache');setTimeout(()=>{react('rage',2.4);C.shakeT=1;say('¡¿QUÉ TENGO EN LA CARA?! ¡¡UN BIGOTE!! ¡¿QUIÉN HA SIDO?!',2.4);voice(1.25,1.1);annoy(15)},1500)}
   const angry=S.anger>70&&!C.sleeping;if(!C.sleeping&&!PH.mode){react(angry?'angry':'happy',2);say(angry?'¡¡Ni se te ocurra hacerme una foto!!':pick(['¡Patataaa!','¡Espera, que salgo fatal!','¡Sácame guapa, eh!']),1.4)}
   setTimeout(()=>{SFX.switch();SFX.poof();const f=$('#flash');f.classList.remove('go');void f.offsetWidth;f.classList.add('go');
     renderer.render(scene,camera);const src=renderer.domElement,W=src.width,H=src.height,pad=Math.round(W*.04),cap=Math.round(W*.14);
@@ -2138,6 +2337,9 @@ menuEl.addEventListener('click',e=>{if(e.target===menuEl)openMenu(false)});
 function syncMute(){$('#mute .ic').innerHTML=muted?IC_MUTE:IC_SND;$('#muteTxt').textContent=muted?'No':'Sí'}
 syncMute();
 $('#mute').onclick=()=>{initAudio();muted=!muted;if(muted&&MUS.kind)setMusic(null);try{localStorage.setItem('molestaNuriaMute',muted?'1':'0')}catch(e){}syncMute();SFX.click()};
+$('#achMenuBtn').onclick=()=>{SFX.click();openMenu(false);openAch(true)};
+$('#evBtn').onclick=()=>{SFX.click();$('#evList').classList.toggle('on')};
+document.querySelectorAll('.food[data-e]').forEach(b=>b.onclick=()=>{initAudio();SFX.click();startEvent(b.dataset.e)});
 $('#helpBtn').onclick=()=>{SFX.click();$('#help').classList.toggle('on')};
 $('#shareBtn').onclick=async()=>{SFX.click();const url=location.protocol.startsWith('http')&&!/localhost|127\.0\.0\.1/.test(location.hostname)?location.href.split('?')[0]:'https://caorjavier.github.io/molesta-a-nuria/';
   const data={title:'Molesta a Núria',text:'¿Te atreves a chinchar a Núria? 😈',url};
