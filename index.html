@@ -124,7 +124,7 @@ button{font-family:inherit;color:inherit;border:0;background:none;cursor:pointer
 #banner{position:absolute;left:0;right:0;top:30%;text-align:center;z-index:7;font-weight:900;font-size:clamp(28px,9vw,42px);color:#fff;-webkit-text-stroke:2px var(--red);paint-order:stroke;text-shadow:0 5px 0 #c42a3f;opacity:0;pointer-events:none}
 #banner.go{animation:ban 1.6s ease-out forwards}
 @keyframes ban{0%{opacity:0;transform:scale(.4)}20%{opacity:1;transform:scale(1.15)}30%{transform:scale(1)}80%{opacity:1}100%{opacity:0;transform:translateY(-14px)}}
-#hint{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);z-index:5;font-size:12px;font-weight:800;background:#3d3a44d9;color:#fff;padding:5px 11px;border-radius:999px;white-space:nowrap;transition:opacity .6s;pointer-events:none}
+#hint{display:none;position:absolute;left:50%;bottom:8px;transform:translateX(-50%);z-index:5;font-size:12px;font-weight:800;background:#3d3a44d9;color:#fff;padding:5px 11px;border-radius:999px;white-space:nowrap;transition:opacity .6s;pointer-events:none}
 #doorTag{position:absolute;left:0;top:0;transform:translate(-50%,-100%);z-index:4;pointer-events:none;font-size:12px;font-weight:900;color:#fff;background:var(--red);padding:3px 9px;border-radius:999px;display:none;white-space:nowrap;box-shadow:0 3px 8px #0003}
 #doorTag.on{display:block}
 nav{position:relative;background:#fff;border-top:2px solid var(--line);z-index:5}
@@ -280,6 +280,7 @@ nav{position:relative;background:#fff;border-top:2px solid var(--line);z-index:5
       <button class="b" data-a="pet"><svg viewBox="0 0 48 48"><path d="M24 41S7 31 7 18a9 9 0 0 1 17-4 9 9 0 0 1 17 4c0 13-17 23-17 23z" fill="#ff6b8a" stroke="#3d3a44" stroke-width="3" stroke-linejoin="round"/><path d="M14 18a4 4 0 0 1 4-4" stroke="#fff" stroke-width="3" stroke-linecap="round" fill="none"/></svg><span>Mimos</span></button>
       <button class="b" data-a="music"><svg viewBox="0 0 48 48"><path d="M18 34V10l20-4v24" fill="none" stroke="#3d3a44" stroke-width="3.5" stroke-linejoin="round"/><ellipse cx="13" cy="35" rx="6" ry="5" fill="#a77bff" stroke="#3d3a44" stroke-width="3"/><ellipse cx="33" cy="31" rx="6" ry="5" fill="#a77bff" stroke="#3d3a44" stroke-width="3"/></svg><span>Música</span></button>
       <button class="b" data-a="messup"><svg viewBox="0 0 48 48"><circle cx="24" cy="28" r="12" fill="#f2c4a2" stroke="#3d3a44" stroke-width="3"/><path d="M10 22l-4-8 8 3 1-9 6 7 4-9 3 9 7-6-1 9 8-2-5 7" fill="#7a4a2f" stroke="#3d3a44" stroke-width="3" stroke-linejoin="round"/></svg><span>Despeinar</span></button>
+      <button class="b" data-a="nap"><svg viewBox="0 0 48 48"><path d="M30 6a17 17 0 1 0 12 26A14 14 0 0 1 30 6z" fill="#ffd34d" stroke="#3d3a44" stroke-width="3" stroke-linejoin="round"/><path d="M30 14h7l-7 8h7" fill="none" stroke="#3d3a44" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Dormir</span></button>
       <button class="b" data-a="sport"><svg viewBox="0 0 48 48"><g stroke="#3d3a44" stroke-width="3" stroke-linejoin="round"><rect x="4" y="16" width="7" height="16" rx="2" fill="#7a8494"/><rect x="37" y="16" width="7" height="16" rx="2" fill="#7a8494"/><rect x="10" y="12" width="6" height="24" rx="2" fill="#3d3a44"/><rect x="32" y="12" width="6" height="24" rx="2" fill="#3d3a44"/></g><rect x="16" y="22" width="16" height="4" fill="#b8bec8" stroke="#3d3a44" stroke-width="2"/></svg><span>Deporte</span></button>
       <button class="b" data-a="weather"><svg viewBox="0 0 48 48"><circle cx="17" cy="17" r="8" fill="#ffd34d" stroke="#3d3a44" stroke-width="3"/><path d="M17 3v3M17 28v3M3 17h3M28 17h3M7 7l2 2M27 7l-2 2" stroke="#3d3a44" stroke-width="2.5" stroke-linecap="round"/><path d="M33 26v18M25 30l16 10M25 40l16-10" stroke="#5aa9e6" stroke-width="3.5" stroke-linecap="round"/></svg><span>Frío/calor</span></button>
     </div>
@@ -472,7 +473,7 @@ let renderer;
 try{renderer=new THREE.WebGLRenderer({canvas,antialias:true})}catch(e){$('#playTxt').textContent='Tu móvil no puede mostrar 3D 😢';$('#introTip').textContent='Prueba con otro navegador (Chrome o Safari actualizados).';throw e}
 renderer.setPixelRatio(Math.min(devicePixelRatio,2));
 renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.outputColorSpace=THREE.SRGBColorSpace;
-const scene=new THREE.Scene();const BG_DAY=new THREE.Color('#ffffff'),BG_NIGHT=new THREE.Color('#c9cfde'),BG_DARK=new THREE.Color('#1f2640'),FLOOR_DARK=new THREE.Color('#3b4463');let darkK=0;
+const scene=new THREE.Scene();const BG_DAY=new THREE.Color('#ffffff'),BG_NIGHT=new THREE.Color('#2b3456'),BG_DUSK=new THREE.Color('#ffc29a'),SUN_DUSK=new THREE.Color('#ffa86b'),SUN_DAY=new THREE.Color('#fff0dc'),FLOOR_DUSK=new THREE.Color('#ffe0c8'),BG_DARK=new THREE.Color('#1f2640'),FLOOR_DARK=new THREE.Color('#3b4463');let darkK=0;
 scene.background=BG_DAY.clone();scene.fog=new THREE.Fog(BG_DAY.clone(),11,24);
 const camera=new THREE.PerspectiveCamera(38,1,.1,80);
 const std=o=>new THREE.MeshStandardMaterial(o);
@@ -664,7 +665,7 @@ function* aZumba(){C.status='Haciendo zumba';C.thought=['💃','¡Zumba!'];yield
   let t=0;while(t<14&&MUS.kind==='zumba'){S.bored=clamp(S.bored-dt_*2.5,0,100);S.stress=clamp(S.stress-dt_*1.3,0,100);S.sad=clamp(S.sad-dt_*1,0,100);S.energy=clamp(S.energy-dt_*.4,0,100);C.sweatUntil=clockS+5;C.happyUntil=clockS+2;
     if(Math.random()<dt_*.25&&!sayOn)say(pick(['¡Y arriba!','¡Y abajo!','¡Derecha! ¡Izquierda!','¡Uuuh!','¡Zumbaaa!']),1.1);t+=yield}
   if(MUS.kind==='zumba')setMusic(null);C.pose='tired';say('¡Qué bien! Aunque estoy sudando como un pollo',2);yield* waitS(2);C.pose='stand';C.thought=null}
-function startSport(k){if(C.sleeping)return say('Zzz…',1.2);if(C.hidden||PH.mode)return;if(busy())return say('¡Ahora no!',1.2);
+function startSport(k){wakeFor();if(C.hidden||PH.mode||C.inBath)return;
   if(k==='run')startAct('run',aRun);else if(k==='weights')startAct('weights',aWeights);else startAct('zumba',aZumba)}
 // radio para la música
 const radio=new THREE.Group();world.add(radio);const radioIn=new THREE.Group();radio.add(radioIn);
@@ -873,26 +874,26 @@ const combM=new THREE.Group();toolMesh.add(combM);{const cm=std({color:'#ff6fa5'
 const foamGeo=new THREE.SphereGeometry(1,10,8),foamMat=new THREE.MeshStandardMaterial({color:'#ffffff',roughness:.4,transparent:true,opacity:.95});
 function scrub(x,y,first){setRay(x,y);const hs=ray.intersectObjects(nuriParts,false);if(!hs.length){TOOL.last=null;toolMesh.visible=false;return}const p=hs[0].point;
   toolMesh.position.copy(p).add(hs[0].face?hs[0].face.normal.clone().transformDirection(hs[0].object.matrixWorld).multiplyScalar(.06):new THREE.Vector3());toolMesh.lookAt(camera.position);toolMesh.visible=true;
-  const mv=TOOL.last?p.distanceTo(TOOL.last):0;TOOL.last=p.clone();if(first||mv>.4)return;TOOL.acc+=mv;TOOL.sndT-=mv;C.happyUntil=clockS+1;
+  const mv=TOOL.last?p.distanceTo(TOOL.last):0;TOOL.last=p.clone();if(first||mv>.4)return;TOOL.acc+=mv;TOOL.work=(TOOL.work||0)+mv;TOOL.sndT-=mv;C.happyUntil=clockS+1;
   if(TOOL.mode==='sponge'){S.dirt=clamp(S.dirt-mv*30,0,100);faceDeco.forEach(d=>d.life=Math.min(d.life,.6));
     if(TOOL.acc>.05){TOOL.acc=0;if(TOOL.foam.length<45){const f=new THREE.Mesh(foamGeo,foamMat);f.scale.setScalar(rand(.035,.07));f.position.copy(nuri.worldToLocal(p.clone()));nuri.add(f);TOOL.foam.push(f)}}
     if(TOOL.sndT<0){TOOL.sndT=.12;SFX.bubble();SFX.scrub()}}
   else{if(p.y<headWorld().y-.3)return;S.messy=clamp(S.messy-mv*45,0,100);if(TOOL.sndT<0){TOOL.sndT=.15;SFX.brush()}if(TOOL.acc>.12){TOOL.acc=0;const sp=toScreen(p);pw(sp.x,sp.y,'✨',14)}}}
 const hintEl=$('#hint');const HINT0=matchMedia('(pointer:coarse)').matches?hintEl.textContent:hintEl.textContent.replace('Pellizca','Usa la rueda');hintEl.textContent=HINT0;
 function refreshTools(){if(dockBtns.sponge){dockBtns.sponge.classList.toggle('on',TOOL.mode==='sponge');dockBtns.comb.classList.toggle('on',TOOL.mode==='comb')}
-  hintEl.textContent=TOOL.mode==='sponge'?'🧽 Frota a Núria con el dedo':TOOL.mode==='comb'?'🪮 Pasa el dedo por su pelo':HINT0;if(TOOL.mode)hintEl.style.opacity=1}
+  hintEl.textContent=TOOL.mode==='sponge'?'🧽 Frota a Núria con el dedo':TOOL.mode==='comb'?'🪮 Pasa el dedo por su pelo':HINT0;if(TOOL.mode)hintEl.style.opacity=1;hintEl.style.display=TOOL.mode?'block':'none'}
 function endTool(done){if(!TOOL.mode)return;const m=TOOL.mode;TOOL.mode=null;TOOL.last=null;toolMesh.visible=false;refreshTools();
   TOOL.foam.forEach((f,i)=>setTimeout(()=>nuri.remove(f),250+i*30));TOOL.foam=[];
   if(done){SFX.sparkle();react('happy',2);C.happyUntil=clockS+5;S.sad=clamp(S.sad-12,0,100);
     if(m==='sponge'){wetT=Math.max(wetT,5);S.peeWet=false;S.stress=clamp(S.stress-10,0,100);say(pick(['¡Qué gustito! Limpita','Mmm, huelo a jabón','Vale, esto me ha gustado']),2)}
     else{S.stress=clamp(S.stress-6,0,100);say(pick(['¡Peinadita!','Ahora sí, pelazo','Gracias, estaba hecha un cuadro']),2)}}
   if(C.actName==='groom'){C.act=null;C.actName=''}}
-function toolToggle(m){if(TOOL.mode===m){endTool(false);return}if(TOOL.mode)endTool(false);if(C.sleeping)return say('Zzz…',1.2);if(C.hidden||PH.mode)return;if(busy())return say('¡Ahora no!',1.2);
-  if(m==='sponge'&&S.dirt<3&&!faceDeco.length)return say('¡Pero si estoy limpia!',1.6);if(m==='comb'&&S.messy<3)return say('¡Ya estoy peinada!',1.6);
+function toolToggle(m){if(TOOL.mode===m){endTool(false);return}if(TOOL.mode)endTool(false);wakeFor();if(C.hidden||PH.mode||C.inBath)return;TOOL.work=0;
+  if(m==='sponge'&&S.dirt<3&&!faceDeco.length)setTimeout(()=>say('¿Más jabón? Si ya estoy limpia… bueno, vale',1.8),900);if(m==='comb'&&S.messy<3)setTimeout(()=>say('Ya estoy peinada… pero vale, me gusta',1.8),900);
   TOOL.mode=m;spongeM.visible=m==='sponge';combM.visible=m==='comb';startAct('groom',aGroom);refreshTools()}
 function* aGroom(){const m=TOOL.mode;C.status=m==='sponge'?'Bañándola con esponja':'Peinándola';C.thought=[m==='sponge'?'🧽':'🪮',m==='sponge'?'Frota, frota…':'Con cuidado, ¿eh?'];yield* leaveSpot();faceCam();C.pose='stand';
   say(m==='sponge'?pick(['¿Con esponja? Bueno, vale…','¡Que tengo cosquillas!']):pick(['Péiname, pero sin tirones','Cuidado con los enredos']),1.8);
-  let t=0;while(TOOL.mode===m&&t<40){if(m==='sponge'&&S.dirt<=0&&!faceDeco.length){endTool(true);break}if(m==='comb'&&S.messy<=0){endTool(true);break}
+  let t=0;while(TOOL.mode===m&&t<60){if(m==='sponge'&&S.dirt<=0&&!faceDeco.length&&TOOL.work>1.2){endTool(true);break}if(m==='comb'&&S.messy<=0&&TOOL.work>1.2){endTool(true);break}
     if(clockS<C.happyUntil&&Math.random()<dt_*.35&&!sayOn)say(pick(m==='sponge'?['Jajaja, ¡cosquillas!','Ahí, ahí','Mmm…']:['¡Ay, un tirón!','Así mejor','Qué gustito']),1.2);t+=yield}
   if(TOOL.mode)endTool(false);C.thought=null}
 /* ---- manchas de suciedad ---- */
@@ -971,10 +972,19 @@ function* sitAt(name){const s=SP[name];C.rotGoal=s.rot;if(name==='sofa')C.jumpT=
 function* getInBed(){C.rotGoal=0;C.rot=0;yield* slideTo(BED_LIE.x,BED_LIE.y,.72,.7,1);C.seat='bed';C.pose='lie'}
 function* reach(){C.pose='reach';yield* waitS(.5);C.pose='stand'}
 function faceCam(){C.faceCam=true;C.faceOff=pick([-1,1])*rand(.15,.6)}
-function startAct(name,fn){if(PH.mode)return;if(PLACE[name])PLACE[name]();C.faceCam=false;C.panic=false;C.sleeping=false;C.searching=false;C.waitingFood=false;C.thought=null;C.wakeBy=null;
+function wakeFor(){if(!C.sleeping)return false;C.sleeping=false;S.energy=clamp(S.energy-5,0,100);SFX.yawn();react('sleep',1.4);
+  say(pick(['¿Eh…? ¿Qué pasa…? Vaaale…','Mmm… cinco minutitos más… bueno, voy','*bostezo* ¿Ya es de día?','¡Estaba durmiendo! …Vale, ya voy']),1.8);
+  if(C.floorSleep){C.floorSleep=false;C.floorGrace=clockS+12;C.lieGoal=0;C.y=0;C.pose='stand'}if(['sleep','floorsleep'].includes(C.actName)){C.act=null;C.actName=''}return true}
+function* aFloorSleep(){C.status='Dormida en el suelo';C.thought=['😴','No puedo más…'];C.pose='stand';SFX.yawn();react('sleep',2);
+  say(pick(['No puedo más… me duermo aquí mismo','Zzz… da igual dónde…','Cinco minutitos… en el suelo mismo']),2);voice(.7,.8);yield* waitS(1.6);
+  C.rotGoal=CAMYAW+Math.PI/2;yield* slideTo(C.pos.x,C.pos.y,.22,.6,1);C.pose='lie';C.sleeping=true;C.floorSleep=true;
+  while(true){if(C.wakeBy){C.wakeBy=null;break}if((S.energy>=70&&!isNight())||S.energy>=95||S.bladder>85)break;yield}
+  C.sleeping=false;C.floorSleep=false;C.floorGrace=clockS+12;yield* slideTo(C.pos.x,C.pos.y,0,.4,0);C.pose='stand';faceCam();react('angry',1.6);
+  say(pick(['¿Qué hago yo durmiendo en el suelo?','Ay, mi espalda…','Me he quedado frita en el suelo…']),1.8);S.messy=clamp(S.messy+30,0,100);dirty(8);C.thought=null;yield* waitS(1)}
+function startAct(name,fn){if(PH.mode)return;if(C.sleeping&&name!=='sleep'&&name!=='floorsleep')wakeFor();if(C.floorSleep&&name!=='floorsleep'){C.floorSleep=false;C.lieGoal=0;C.y=0}if(PLACE[name])PLACE[name]();C.faceCam=false;C.panic=false;C.sleeping=false;C.searching=false;C.waitingFood=false;C.thought=null;C.wakeBy=null;
   if(C.holdPhone){C.holdPhone=false;if(!phoneHidden){phone.position.copy(PHONE_TABLE);phone.rotation.set(0,0,0)}}
   C.act={name,gen:fn()};C.actName=name;if(C.pose!=='lie'&&C.pose!=='sitbed')C.pose=C.seat?C.pose:'stand'}
-const busy=()=>['bath','tantrum','sleep','eat','panic','bathe','roll','slide','cat','coffee','groom','hatemusic','cry','run','weights','zumba'].includes(C.actName)||C.inBath||!!PH.mode;
+const busy=()=>['bath','tantrum','eat','panic','bathe','roll','slide','cat','coffee','groom','hatemusic','cry','run','weights','zumba'].includes(C.actName)||C.inBath||!!PH.mode;
 
 // destinos hacia la cámara o de lado, nunca alejándose (así no se le ve la espalda)
 function frontish(x,z){const dx=x-C.pos.x,dz=z-C.pos.y,l=Math.hypot(dx,dz)||1;return(dx*Math.sin(CAMYAW)+dz*Math.cos(CAMYAW))/l>-.2}
@@ -1133,7 +1143,7 @@ function setDoor(o){if(doorOpen===o)return;doorOpen=o;o?SFX.door():setTimeout(SF
 function clearFood(){if(foodOnTable){world.remove(foodOnTable.mesh);foodOnTable=null}plate.visible=false}
 let bucketFX=null;
 const ACT={
-  water(){if(C.sleeping){say('Zzz…',1.2);return}if(C.inBath||PH.mode){return}if(C.drinkT>0)return;
+  water(){wakeFor();if(C.inBath||PH.mode){return}if(C.drinkT>0)return;
     if(S.bladder>90){say(pick(T.waterFull),1.6);react('angry',1.4);return}
     glassesInRow++;C.drinkT=2.4;glass.visible=true;SFX.gulp();if(S.weather==='hot'&&glassesInRow<3){react('happy',2);say('¡Agua fresquita! ¡Gracias!',1.8);S.stress=clamp(S.stress-8,0,100)}else if(glassesInRow>=3){react('sus',2.6);say(pick(T.waterSus),2.2)}else{react('happy',2.4);say(pick(T.water),1.8)}
     S.bladder=clamp(S.bladder+32,0,100);prank()},
@@ -1148,6 +1158,7 @@ const ACT={
   wardrobe(){openPanel(lookPop)},
   music(){openPanel(musicPop)},
   sport(){openPanel(sportPop)},
+  nap(){if(C.sleeping)return say('Zzz…',1.2);if(C.hidden||PH.mode||C.inBath)return;if(S.energy>85){react('annoyed',1.2);return say('¡Pero si no tengo nada de sueño!',1.6)}say('Vale… una siestecita',1.4);startAct('sleep',aSleep)},
   weather(){openPanel(weatherPop)},
   sponge(){toolToggle('sponge')},comb(){toolToggle('comb')},
   pet(){if(C.hidden||PH.mode)return;if(C.sleeping){S.sad=clamp(S.sad-10,0,100);const h=headPx();pw(h.x,h.y-h.r,'♥',20);return}
@@ -1164,7 +1175,7 @@ const ACT={
     else{phoneHidden=false;phone.visible=true;phone.position.copy(PHONE_TABLE);SFX.poof();if(C.searching){say('¿Eh? ¡¿Estaba en la mesa?!',2);react('sus',2)}}
     refreshDock()},
   bathe(){if(busy())return say('¡Ahora no!',1.2);startAct('bathe',aBathe)},
-  coffee(){if(C.sleeping){say('Zzz…',1.2);return}if(busy())return say('¡Ahora no!',1.2);if(isNight())prank();C.giftCoffee=true;startAct('coffee',aCoffee)},
+  coffee(){wakeFor();if(C.hidden||PH.mode||C.inBath)return;if(isNight())prank();C.giftCoffee=true;startAct('coffee',aCoffee)},
   roll(){if(busy())return say('¡Ahora no!',1.2);prank();startAct('roll',aRoll)},
   slide(){if(busy())return say('¡Ahora no!',1.2);startAct('slide',aSlide)},
   cat(){if(CAT.mode)return;const a=rand(0,Math.PI*2);CAT.pos.set(C.pos.x+Math.cos(a)*2.6,C.pos.y+Math.sin(a)*2.6);CAT.mode='follow';CAT.t=0;CAT.meowT=.3;cat.visible=true;SFX.meow();prank();if(!busy())startAct('cat',aCat)},
@@ -1194,11 +1205,11 @@ document.querySelectorAll('.look').forEach(b=>b.onclick=()=>{initAudio();SFX.cli
 document.querySelectorAll('.food[data-f]').forEach(b=>b.onclick=()=>{initAudio();SFX.click();toggleFood(false);serveFood(b.dataset.f)});
 function serveFood(kind){if(foodOnTable){say('¡Ya hay comida en la mesa!',1.6);return}
   placeTable();const m=makeFood(kind);m.position.set(plate.position.x,.775,plate.position.z);world.add(m);plate.visible=true;foodOnTable={kind,mesh:m};SFX.poof();if(kind!=='sushi'&&kind!=='carne')prank();
-  if(C.sleeping||PH.mode)return;if(S.hunger<25&&!C.waitingFood&&!busy())say('No tengo hambre… bueno, vale, a ver qué es',1.8);if(!C.waitingFood&&!busy())startAct('eat',aEat)}
-const GROUPS={prank:['water','bucket','lock','alarm','tv','phone','light','cat'],care:['food','bathe','sponge','comb','pet','wardrobe','coffee'],fun:['music','sport','roll','slide','messup','weather']};
+  if(C.sleeping)wakeFor();if(PH.mode)return;if(S.hunger<25&&!C.waitingFood&&!busy())say('No tengo hambre… bueno, vale, a ver qué es',1.8);if(!C.waitingFood&&!busy())startAct('eat',aEat)}
+const GROUPS={prank:['lock','alarm','bucket','tv','phone','light','cat','messup'],care:['food','water','coffee','nap','bathe','sponge','comb','pet'],fun:['music','sport','roll','slide','wardrobe','weather']};
 function showGroup(g){document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.g===g));for(const k in dockBtns)dockBtns[k].classList.toggle('hide',!GROUPS[g].includes(k));closePanels()}
 const dockBtns={};document.querySelectorAll('.b[data-a]').forEach(b=>{dockBtns[b.dataset.a]=b;b.onclick=()=>{initAudio();SFX.click();ACT[b.dataset.a]()}});
-document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{initAudio();SFX.click();showGroup(t.dataset.g)});setTimeout(()=>{showGroup('prank');refreshWeather()},0);
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{initAudio();SFX.click();showGroup(t.dataset.g)});setTimeout(()=>{const dk=$('#dock');[...GROUPS.prank,...GROUPS.care,...GROUPS.fun].forEach(k=>{if(dockBtns[k])dk.appendChild(dockBtns[k])});showGroup('prank');refreshWeather()},0);
 function refreshDock(){dockBtns.lock.classList.toggle('on',S.locked);dockBtns.lock.querySelector('span').textContent=S.locked?'Quitar':'Pestillo';
   dockBtns.tv.classList.toggle('on',S.tv);dockBtns.light.classList.toggle('on',S.light);dockBtns.phone.classList.toggle('on',phoneHidden);dockBtns.phone.querySelector('span').textContent=phoneHidden?'Devolver':'Móvil'}
 
@@ -1213,7 +1224,7 @@ canvas.addEventListener('pointerdown',e=>{initAudio();if(PANELS().some(p=>!p.hid
   touches.set(e.pointerId,{x:e.clientX,y:e.clientY});try{canvas.setPointerCapture(e.pointerId)}catch(_){}
   if(touches.size>=2){const[a,b]=[...touches.values()];pinch={d:Math.hypot(a.x-b.x,a.y-b.y)||1,k:zoomGoal};if(down){clearTimeout(down.timer);if(down.grab&&PH.mode==='held')release();down=null}return}
   const h=hit(e.clientX,e.clientY);down={x:e.clientX,y:e.clientY,h,id:e.pointerId,grab:false};lastPtr.x=e.clientX;lastPtr.y=e.clientY;
-  if(h==='nuri'&&TOOL.mode&&C.actName==='groom'){down.tool=true;scrub(e.clientX,e.clientY,true)}
+  if(TOOL.mode&&C.actName==='groom'){down.tool=true;scrub(e.clientX,e.clientY,true)}
   else if(h==='nuri'&&!C.hidden&&!C.inBath)down.timer=setTimeout(()=>{if(down&&!down.grab&&down.id===e.pointerId){down.grab=true;grab()}},230)});
 canvas.addEventListener('pointermove',e=>{if(touches.has(e.pointerId))touches.set(e.pointerId,{x:e.clientX,y:e.clientY});
   if(pinch&&touches.size>=2){const[a,b]=[...touches.values()];zoomGoal=clamp(pinch.k*pinch.d/(Math.hypot(a.x-b.x,a.y-b.y)||1),.4,2.2);return}
@@ -1369,7 +1380,7 @@ const clk=new THREE.Clock();let tvT=0,tvChatT=0,lastNight=null,zT=0,snT=0,dripT=
 function loop(){step(Math.min(.1,clk.getDelta()));requestAnimationFrame(loop)}
 function step(dt){
   dt_=dt;clockS+=dt;const now=clockS;zoomK=damp(zoomK,zoomGoal,7,dt);
-  S.gameMin=(S.gameMin+dt*(C.sleeping&&isNight()?7:2))%1440;
+  S.gameMin=(S.gameMin+dt*(C.sleeping&&isNight()?8:3))%1440;
   S.hunger=clamp(S.hunger+dt*(C.sleeping?.08:.22),0,100);S.bladder=clamp(S.bladder+dt*(C.sleeping?.05:.12),0,100);
   if(S.bladder>=99.5&&!C.sleeping&&!C.hidden&&!C.inBath&&!PH.mode&&C.actName!=='bath'){C.fullT=(C.fullT||0)+dt;if(C.fullT>6){C.fullT=0;peeAccident();if(busy()){C.act=null;C.actName=''}}}else C.fullT=0;
   S.energy=clamp(S.energy+dt*(C.sleeping?.55:clockS<C.caffeineUntil?.02:-.08),0,100);S.anger=clamp(S.anger-dt*.6,0,100);
@@ -1381,6 +1392,8 @@ function step(dt){
    let sr=-.12;if(S.messy>60)sr+=.1;if(S.bored>80)sr+=.12;if(S.dirt>70)sr+=.08;if(C.actName==='dance')sr-=1.5;if(clockS<C.happyUntil)sr-=.6;S.sad=clamp(S.sad+dt*sr,0,100);
    if(S.sad>=99.5&&!busy()&&!PH.mode&&!C.hidden&&!C.sleeping){S.sad=96;startAct('cry',aCry)}
    else if(S.bored>=99.5&&!busy()&&!PH.mode&&!C.hidden&&!C.sleeping&&!['tv','phone','dance'].includes(C.actName)){S.bored=85;say('¡¡ME ABURROOOO!!',2);voice(.9,1.1);startAct('tv',aTV)}}
+  if(!C.sleeping&&!C.hidden&&!PH.mode&&S.energy<30){C.yawnT=(C.yawnT==null?4:C.yawnT)-dt;if(C.yawnT<=0){C.yawnT=rand(7,12);SFX.yawn();react('sleep',1.3);if(!sayOn)say(pick(['Aaaaah… qué sueño','Me caigo de sueño…','*bostezo*','Se me cierran los ojos…']),1.4)}}
+  if(S.energy<6&&clockS>(C.floorGrace||0)&&!C.sleeping&&!C.hidden&&!C.inBath&&!PH.mode&&!['floorsleep','sleep','bath'].includes(C.actName))startAct('floorsleep',aFloorSleep);
   musicTick();if(MUS.kind){radioBeat=Math.max(0,radioBeat-dt*4);radioIn.scale.set(1+radioBeat*.08,1-radioBeat*.06,1+radioBeat*.08);MUS.noteT-=dt;if(MUS.noteT<=0&&shown(radio)){MUS.noteT=MUS.kind==='flute'?.7:.45;const sp=toScreen(radio.position.clone().add(new THREE.Vector3(rand(-.2,.2),.5,0)));pw(sp.x,sp.y,MUS.kind!=='flute'?pick(['♪','♫','♬']):pick(['♪?','♩!','🎶💢']),rand(16,22))}}
   if(TOOL.mode&&C.actName!=='groom')endTool(false);
   if(clockS<C.sweatUntil&&!C.hidden&&!PH.mode){C.swT=(C.swT||0)-dt;if(C.swT<=0){C.swT=.45;const sd=pick([-1,1]);const e=headP.localToWorld(new THREE.Vector3(sd*.42,.25,.18));const m=new THREE.Mesh(SH.drop,SH.dropMat);m.position.copy(e);world.add(m);drops.push({m,v:new THREE.Vector3(sd*.3,.2,0),life:.9})}}
@@ -1398,7 +1411,7 @@ function step(dt){
     if(RO.mode==='flee'&&(d<.1||RO.t>14)){RO.mode=null;roach.visible=false}}
   // movimiento
   let walking=false;
-  if(!PH.mode&&C.path.length){const tg=C.path[0],dx=tg.x-C.pos.x,dz=tg.y-C.pos.y,d=Math.hypot(dx,dz),sp=(C.panic?2:C.actName==='bath'?1.4:1.0)*dt;
+  if(!PH.mode&&C.path.length){const tg=C.path[0],dx=tg.x-C.pos.x,dz=tg.y-C.pos.y,d=Math.hypot(dx,dz),sp=(C.panic?2:C.actName==='bath'?1.4:1.0)*(S.energy<30&&!C.panic?.65:1)*dt;
     if(d<=sp){C.pos.copy(tg);C.path.shift()}else{C.pos.x+=dx/d*sp;C.pos.y+=dz/d*sp;C.rotGoal=Math.atan2(dx,dz);walking=true}}
   if(C.faceCam&&!walking&&!C.path.length&&!C.slide&&!PH.mode&&!C.seat)C.rotGoal=Math.atan2(camera.position.x-C.pos.x,camera.position.z-C.pos.y)+C.faceOff;
   if(!PH.mode&&C.slide){const s=C.slide;s.t+=dt;const k=smooth(0,1,s.t/s.dur);C.pos.set(lerp(s.fx,s.tx,k),lerp(s.fz,s.tz,k));C.y=lerp(s.fy,s.ty,k);if(s.t>=s.dur)C.slide=null}
@@ -1551,8 +1564,10 @@ function step(dt){
   darkK=damp(darkK,C.actName==='sleep'&&C.seat==='bed'?1:0,1.6,dt);
   {const lk=1-darkK*.82;sun.intensity*=lk;hemi.intensity*=lk;fillL.intensity*=lk;rimL.intensity*=lk;
    const ek=Math.round((1-Math.max(darkK*.85,(1-dayF)*.5))*50)/50;if(ek!==envK){envK=ek;ENV_MATS.forEach(m=>m.envMapIntensity=.35*ek);faceMat.envMapIntensity=.4*ek}faceMat.emissiveIntensity=.28*(1-darkK*.65)}
-  scene.background.copy(BG_NIGHT).lerp(BG_DAY,dayF).lerp(BG_DARK,darkK*.92);scene.fog.color.copy(scene.background);
-  floorM.material.color.setRGB(1,1,1).lerp(FLOOR_DARK,Math.max(darkK*.85,(1-dayF)*.25));stepWeather(dt);
+  const twK=dayF*(1-dayF)*4;sun.color.copy(SUN_DAY).lerp(SUN_DUSK,twK);
+  scene.background.copy(BG_NIGHT).lerp(BG_DAY,dayF).lerp(BG_DUSK,twK*.55).lerp(BG_DARK,darkK*.92);scene.fog.color.copy(scene.background);
+  floorM.material.color.setRGB(1,1,1).lerp(FLOOR_DUSK,twK*.45).lerp(FLOOR_DARK,Math.max(darkK*.85,(1-dayF)*.72));
+  {const nk=1-dayF;skyStars.visible=moon.visible=nk>.05;if(skyStars.visible){skyStars.position.set(camT.x,0,camT.z);skyStars.material.opacity=nk*.95;const d=new THREE.Vector3(camT.x-camera.position.x,0,camT.z-camera.position.z).normalize();moon.position.set(camT.x+d.x*30+5,12,camT.z+d.z*30);moon.lookAt(camera.position);moon.material.opacity=nk}}stepWeather(dt);
   const nightK=Math.max(1-dayF,darkK);lampHeads.forEach(l=>l.material.emissiveIntensity=nightK*1.2);
   postLight.intensity=damp(postLight.intensity,S.light?nightK*3+.2:0,10,dt);postHead.material.emissiveIntensity=S.light?.3+nightK*1.2:0;
   renderer.toneMappingExposure=lerp(1.0,.95,dayF);
@@ -1560,7 +1575,7 @@ function step(dt){
   if(C.sleeping){zT-=dt;if(zT<=0){zT=1.1;const z=document.createElement('span');z.className='zz';z.textContent='Z';z.style.cssText=`left:${hp.x+hp.r*.4}px;top:${hp.y-hp.r}px;font-size:${rand(16,24)}px`;fx.appendChild(z);z.addEventListener('animationend',()=>z.remove())}
     snT-=dt;if(snT<=0){snT=3;SFX.snore()}}
   updateCamera(dt);
-  needsT-=dt;if(needsT<=0){needsT=.2;drawNeeds()}const hh=Math.floor(h),mm=Math.floor(S.gameMin%60);clockEl.textContent=`${String(hh).padStart(2,'0')}:${String(mm).padStart(2,'0')}`;
+  needsT-=dt;if(needsT<=0){needsT=.2;drawNeeds()}const hh=Math.floor(h),mm=Math.floor(S.gameMin%60);clockEl.textContent=`${dayF>.5?'☀️':'🌙'} ${String(hh).padStart(2,'0')}:${String(mm).padStart(2,'0')}`;
   statusEl.textContent=PH.mode==='held'?'¡La tienes colgando!':PH.mode==='fly'?'¡Volando por los aires!':PH.mode==='down'?'Sentada de culo':C.status||'…';
   dockBtns.food.classList.toggle('hot',(S.hunger>60||C.waitingFood)&&!foodOnTable);dockBtns.lock.classList.toggle('hot',C.actName==='bath'&&!S.locked&&!C.inBath&&!doorOpen);
   renderer.render(scene,camera);
@@ -1579,7 +1594,11 @@ function stepNPC(n,dt,now){
   n.blinkT-=dt;if(n.blinkT<0){n.blinkT=rand(2,5);n.blinkU=now+.13}
   let f=n.mood==='laugh'?'laugh':n.mood==='surprised'?'surprised':n.mood==='angry'?'angry':walking?'neutral':'happy';if(n.blinkU>now&&(f==='neutral'||f==='happy'))f='blink';npcSetFace(n,f)}
 // menos reflejo del entorno para que los colores no se laven
-const FLIES=[];const ENV_MATS=new Set();setTimeout(()=>scene.traverse(o=>{const m=o.material;if(m&&m.isMeshStandardMaterial&&m!==faceMat){m.envMapIntensity=.35;ENV_MATS.add(m)}}),0);let envK=1;
+const FLIES=[];
+// cielo de noche: estrellas y luna
+const skyStars=(()=>{const n=260,a=new Float32Array(n*3);for(let i=0;i<n;i++){const th=rand(0,Math.PI*2),el=rand(.12,1.4),r=40;a[i*3]=Math.cos(th)*Math.cos(el)*r;a[i*3+1]=Math.sin(el)*r;a[i*3+2]=Math.sin(th)*Math.cos(el)*r}
+  const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(a,3));const p=new THREE.Points(g,new THREE.PointsMaterial({color:'#ffffff',size:2.2,sizeAttenuation:false,transparent:true,opacity:0,fog:false,depthWrite:false}));p.frustumCulled=false;p.visible=false;scene.add(p);return p})();
+const moon=new THREE.Mesh(new THREE.CircleGeometry(1.6,40),new THREE.MeshBasicMaterial({color:'#f6f1d8',fog:false,toneMapped:false,transparent:true,opacity:0}));moon.visible=false;scene.add(moon);const ENV_MATS=new Set();setTimeout(()=>scene.traverse(o=>{const m=o.material;if(m&&m.isMeshStandardMaterial&&m!==faceMat){m.envMapIntensity=.35;ENV_MATS.add(m)}}),0);let envK=1;
 if(location.search.includes('debug'))window.__m={S,C,PH,RO,CAT,setWeather,startSport,peeAccident,MUS,TOOL,setMusic,scrub,get darkK(){return darkK},get zoomGoal(){return zoomGoal},changeLook,NU,props:{cab,sofa,tvG,table,bedPivot,tub,slideG,post},vomit,pukes,get zoomK(){return zoomK},step,ACT,serveFood,grab,release,lastPtr,launch,makeItem,ballistic,headWorld,camera,world,projectiles,NPCS};
 
 /* =================== arranque =================== */
