@@ -44,9 +44,9 @@ button{font-family:inherit;color:inherit;border:0;background:none;cursor:pointer
 .rb svg{width:21px;height:21px}
 /* necesidades: anillos que se llenan (verde → rojo) con el icono dentro */
 @property --v{syntax:'<number>';inherits:true;initial-value:0}
-.needs{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:2px;padding:2px 8px 8px;background:#fff;border-bottom:2px solid var(--line);z-index:5}
+.needs{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:2px;padding:0 6px 5px;background:#fff;border-bottom:2px solid var(--line);z-index:5}
 .nd{display:flex;flex-direction:column;align-items:center;gap:3px;min-width:0;--v:0;--c:#7bd389;transition:--v .6s ease}
-.nd em{position:relative;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:17px;line-height:1;
+.nd em{position:relative;width:33px;height:33px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:17px;line-height:1;
   background:radial-gradient(closest-side,#fff 74%,transparent 76% 100%),conic-gradient(var(--c) calc(var(--v)*1%),#eceff4 0)}
 .nd span{font-size:9.5px;font-weight:800;color:var(--soft);line-height:1;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .nd.hot em{animation:needPulse .8s ease-in-out infinite}
@@ -107,10 +107,10 @@ button{font-family:inherit;color:inherit;border:0;background:none;cursor:pointer
 #evList{display:none;grid-template-columns:repeat(4,1fr);gap:6px;margin:0 0 6px}#evList.on{display:grid}#evList .food span{font-size:11px}
 #fade{position:absolute;inset:0;z-index:57;background:#111;color:#fff;display:grid;place-items:center;font-family:'Fredoka','Nunito',sans-serif;font-size:24px;font-weight:700;opacity:0;pointer-events:none;transition:opacity .5s;text-align:center;padding:20px}
 #fade.on{opacity:1}
-#invite{position:absolute;left:50%;top:10px;z-index:7;display:flex;align-items:center;gap:8px;background:#fff;border:2px solid #a77bff;border-radius:18px;padding:7px 8px;box-shadow:0 6px 18px #0002;transform:translate(-50%,-160%);opacity:0;transition:transform .35s cubic-bezier(.3,1.5,.5,1),opacity .25s;max-width:calc(100% - 20px)}
-#invite.on{transform:translate(-50%,0);opacity:1}#invite em{font-style:normal;font-size:28px;width:42px;height:42px;border-radius:50%;background:#efe6ff;display:grid;place-items:center;flex:none}
-#invite small{display:block;font-size:10.5px;font-weight:900;color:#7a55d8;text-transform:uppercase;letter-spacing:.05em}#invite b{display:block;font-size:14px;font-weight:900;line-height:1.15}
-#invYes{height:38px;padding:0 12px;border-radius:999px;background:#7a55d8;color:#fff;font-weight:900;font-size:14px;flex:none;touch-action:manipulation}#invNo{width:30px;height:30px;border-radius:50%;background:#f1f4f8;font-weight:900;flex:none;touch-action:manipulation}
+#invite{position:absolute;left:50%;top:6px;padding:4px 5px 4px 4px!important;gap:6px!important;border-radius:999px!important;z-index:7;display:flex;align-items:center;gap:8px;background:#fff;border:2px solid #a77bff;border-radius:18px;padding:7px 8px;box-shadow:0 6px 18px #0002;transform:translate(-50%,-160%);opacity:0;transition:transform .35s cubic-bezier(.3,1.5,.5,1),opacity .25s;max-width:calc(100% - 20px)}
+#invite.on{transform:translate(-50%,0);opacity:1}#invite em{font-style:normal;font-size:20px;width:32px;height:32px;border-radius:50%;background:#efe6ff;display:grid;place-items:center;flex:none}
+#invite small{display:none;font-size:10.5px;font-weight:900;color:#7a55d8;text-transform:uppercase;letter-spacing:.05em}#invite b{display:block;font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:900;line-height:1.15}
+#invYes{height:32px;padding:0 10px;font-size:13px!important;border-radius:999px;background:#7a55d8;color:#fff;font-weight:900;font-size:14px;flex:none;touch-action:manipulation}#invNo{width:30px;height:30px;border-radius:50%;background:#f1f4f8;font-weight:900;flex:none;touch-action:manipulation}
 #evt{position:absolute;left:10px;right:10px;bottom:10px;z-index:9;background:#ffffffee;border:2px solid var(--line);border-radius:20px;padding:10px 12px;box-shadow:0 8px 24px #0003;display:none}
 #evt.on{display:block}#evt .et{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}#evt .et b{font-family:'Fredoka','Nunito',sans-serif;font-size:18px}#evt .et span{font-weight:900;font-size:15px;color:var(--red)}
 #evt .er{display:flex;align-items:center;gap:8px;margin:4px 0;font-size:12px;font-weight:900}#evt .er span{width:52px;flex:none}#evt .er b{width:30px;text-align:right;font-size:15px}
@@ -135,10 +135,10 @@ button{font-family:inherit;color:inherit;border:0;background:none;cursor:pointer
 #stage::before,#stage::after{content:'';position:absolute;left:0;right:0;height:0;background:#111;z-index:8;pointer-events:none;transition:height .35s ease}
 #stage::before{top:0}#stage::after{bottom:0}
 #stage.cine::before,#stage.cine::after{height:9%}
-#want{position:absolute;left:50%;top:10px;z-index:7;display:flex;align-items:center;gap:10px;background:#fff;border:2px solid var(--line);border-radius:18px;padding:7px 12px 7px 8px;box-shadow:0 6px 18px #0002;
+#want{position:absolute;left:auto;right:8px;top:8px;width:54px;height:54px;padding:0!important;border:0!important;border-radius:50%!important;justify-content:center;background:conic-gradient(var(--red) calc(var(--p,100)*1%),#e6e9ef 0)!important;transform:scale(0)!important;z-index:7;display:flex;align-items:center;gap:10px;background:#fff;border:2px solid var(--line);border-radius:18px;padding:7px 12px 7px 8px;box-shadow:0 6px 18px #0002;
   transform:translate(-50%,-140%);opacity:0;transition:transform .35s cubic-bezier(.3,1.5,.5,1),opacity .25s;max-width:calc(100% - 24px);cursor:pointer;touch-action:manipulation}
-#want.on{transform:translate(-50%,0);opacity:1}
-#want em{font-style:normal;font-size:28px;line-height:1;width:44px;height:44px;border-radius:50%;background:#fff3c4;display:grid;place-items:center;flex:none;animation:wantBob 1.2s ease-in-out infinite}
+#want.on{transform:scale(1)!important;opacity:1}#want>div{display:none}#want::after{content:'💬';position:absolute;left:-7px;top:-7px;font-size:16px}
+#want em{font-style:normal;font-size:24px;line-height:1;width:44px;height:44px;border-radius:50%;background:#fff;display:grid;place-items:center;flex:none;animation:wantBob 1.2s ease-in-out infinite}
 @keyframes wantBob{50%{transform:scale(1.12) rotate(-6deg)}}
 #want small{display:block;font-size:10.5px;font-weight:900;color:var(--soft);text-transform:uppercase;letter-spacing:.05em}
 #want b{display:block;font-size:14px;font-weight:900;line-height:1.15}
@@ -183,24 +183,32 @@ button{font-family:inherit;color:inherit;border:0;background:none;cursor:pointer
 #doorTag{position:absolute;left:0;top:0;transform:translate(-50%,-100%);z-index:4;pointer-events:none;font-size:12px;font-weight:900;color:#fff;background:var(--red);padding:3px 9px;border-radius:999px;display:none;white-space:nowrap;box-shadow:0 3px 8px #0003}
 #doorTag.on{display:block}
 nav{position:relative;background:#fff;border-top:2px solid var(--line);z-index:5}
-.tray{padding:7px 10px 2px}
-.trayHead{display:flex;align-items:baseline;gap:8px;margin:0 2px 5px}
+.navBody{max-height:260px;transition:max-height .35s ease,opacity .25s;overflow:hidden}
+nav.min .navBody,#app.immersive nav .navBody{max-height:0;opacity:0}
+#app.immersive nav{border-top-width:0}
+#navToggle{position:absolute;left:50%;top:-15px;transform:translateX(-50%);width:54px;height:15px;border-radius:10px 10px 0 0;background:#fff;border:2px solid var(--line);border-bottom:0;font-size:12px;line-height:1;color:var(--soft);display:grid;place-items:center;touch-action:manipulation;z-index:6}
+nav.min #navToggle span{display:inline-block;transform:rotate(180deg)}
+#app.immersive #navToggle{display:none}
+.needs{transition:max-height .35s ease,padding .35s,opacity .25s;max-height:70px;overflow:hidden}
+#app.immersive .needs{max-height:0;padding-top:0;padding-bottom:0;opacity:0;border-bottom-width:0}
+.tray{padding:4px 10px calc(8px + env(safe-area-inset-bottom))}.tray[hidden]{display:none}
+.trayHead{display:flex;align-items:baseline;justify-content:center;gap:8px;margin:0 2px 3px}
 .trayHead b{font-size:13px;font-weight:900}
 .trayHead small{font-size:11px;font-weight:700;color:var(--soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.chips{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px}
+.chips{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px;padding-top:4px}.tray .t em{width:44px;height:44px}
 .t{display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:0;padding:0;min-width:0;touch-action:none;-webkit-user-select:none;user-select:none}
 .t em{width:46px;height:46px;max-width:100%;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:25px;background:var(--c,#f3f6fa);border:2px solid var(--line);box-shadow:0 3px 0 var(--line);transition:transform .12s,box-shadow .12s}
 .t:active em,.t.held em{transform:translateY(3px) scale(.92);box-shadow:0 0 0 var(--line)}
 .t span{font-size:10px;font-weight:900;color:var(--ink)}
 #ghost{position:fixed;left:0;top:0;z-index:30;font-size:40px;line-height:1;pointer-events:none;transform:translate(-50%,-50%);filter:drop-shadow(0 6px 6px #0004);display:none}
-.tabs{display:flex;gap:6px;padding:4px 10px 0}
-.tab{flex:1;height:30px;border-radius:999px;border:2px solid var(--line);background:#f6f8fb;font-weight:900;font-size:12px;color:var(--soft);touch-action:manipulation;white-space:nowrap}
+.tabs{display:flex;gap:4px;padding:5px 8px 0}
+.tab{flex:1;min-width:0;height:28px;padding:0 2px;border-radius:999px;border:2px solid var(--line);background:#f6f8fb;font-weight:900;font-size:11px;overflow:hidden;text-overflow:ellipsis;color:var(--soft);touch-action:manipulation;white-space:nowrap}
 .tab.on{background:#3d3a44;color:#fff;border-color:#3d3a44}
 .tab{position:relative}.food.on{background:#ffe1e6;border-color:var(--red)}.tab.dot::after{content:'';position:absolute;top:-3px;right:10px;width:10px;height:10px;border-radius:50%;background:var(--red);border:2px solid #fff}
-.dock{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:54px;gap:6px;padding:6px 10px calc(10px + env(safe-area-inset-bottom))}
-.dock .b{height:54px;flex-direction:column;gap:2px;padding:2px}
-.dock .b svg{width:24px;height:24px}
-.dock .b span{font-size:10.5px}
+.dock{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:46px;gap:5px;padding:5px 8px calc(8px + env(safe-area-inset-bottom))}
+.dock .b{height:46px;flex-direction:column;gap:1px;padding:2px;border-radius:13px}
+.dock .b svg{width:21px;height:21px}
+.dock .b span{font-size:10px}
 .b.hide{display:none}
 .dock::-webkit-scrollbar{display:none}
 .dock .b{touch-action:manipulation}
@@ -316,16 +324,16 @@ nav{position:relative;background:#fff;border-top:2px solid var(--line);z-index:5
     </div>
     <div class="pop" id="drinkPop" hidden>
       <h3>¿Qué le pones de beber?</h3>
-      <div class="foods" style="grid-template-columns:repeat(3,1fr)">
-        <button class="food" data-d="agua"><em>💧</em><span>Agua</span><small>fresquita</small></button>
-        <button class="food" data-d="cafe"><em>☕</em><span>Café</span><small>la despierta</small></button>
-        <button class="food" data-d="cerveza"><em>🍺</em><span>Cerveza</span><small>una caña</small></button>
-        <button class="food" data-d="vino"><em>🍷</em><span>Vino</span><small>le encanta</small></button>
-        <button class="food" data-d="vermut"><em>🫒</em><span>Vermut</span><small>su favorito</small></button>
-        <button class="food" data-d="fireball"><em>🔥</em><span>Fireball</span><small>¡KO directo!</small></button>
-        <button class="food" data-d="tequila"><em>🌵</em><span>Tequila</span><small>lo odia</small></button>
-        <button class="food" data-d="mojito"><em>🍹</em><span>Mojito</span><small>fiesta</small></button>
-        <button class="food" data-d="cava"><em>🍾</em><span>Cava</span><small>¡chin chin!</small></button>
+      <div class="foods" style="grid-template-columns:repeat(5,1fr)">
+        <button class="food" data-d="agua"><em>💧</em><span>Agua</span></button>
+        <button class="food" data-d="cafe"><em>☕</em><span>Café</span></button>
+        <button class="food" data-d="cerveza"><em>🍺</em><span>Cerveza</span></button>
+        <button class="food" data-d="vino"><em>🍷</em><span>Vino</span></button>
+        <button class="food" data-d="vermut"><em>🫒</em><span>Vermut</span></button>
+        <button class="food" data-d="fireball"><em>🔥</em><span>Fireball</span></button>
+        <button class="food" data-d="tequila"><em>🌵</em><span>Tequila</span></button>
+        <button class="food" data-d="mojito"><em>🍹</em><span>Mojito</span></button>
+        <button class="food" data-d="cava"><em>🍾</em><span>Cava</span></button>
       </div>
     </div>
     <div class="pop" id="relaxPop" hidden>
@@ -358,7 +366,10 @@ nav{position:relative;background:#fff;border-top:2px solid var(--line);z-index:5
         <button class="look" data-h="mono"><em>🍡</em><span>Moño</span></button>
       </div>
     </div>
-    <div class="tray"><div class="trayHead"><b>🎯 Lánzale</b><small>Toca para lanzar · arrastra para apuntar</small></div><div class="chips">
+    <button id="navToggle" aria-label="Ocultar los botones"><span>▾</span></button>
+    <div class="navBody">
+    <div class="tabs"><button class="tab on" data-g="prank">😈 Trastadas</button><button class="tab" data-g="throw">🎯 Lanzar</button><button class="tab" data-g="care">💗 Cuidar</button><button class="tab" data-g="fun">🎉 Jugar</button></div>
+    <div class="tray" hidden><div class="trayHead"><small>Toca para lanzar · arrastra para apuntar</small></div><div class="chips">
       <button class="t" data-t="tomato" style="--c:#ffe1de"><em>🍅</em><span>Tomate</span></button>
       <button class="t" data-t="balloon" style="--c:#dff0ff"><em>🎈</em><span>Globo</span></button>
       <button class="t" data-t="pie" style="--c:#fff1d9"><em>🥧</em><span>Tarta</span></button>
@@ -366,7 +377,6 @@ nav{position:relative;background:#fff;border-top:2px solid var(--line);z-index:5
       <button class="t" data-t="roach" style="--c:#efe6dc"><em>🪳</em><span>Bicho</span></button>
       <button class="t" data-t="mud" style="--c:#eadfd3"><em>🟤</em><span>Barro</span></button>
     </div></div>
-    <div class="tabs"><button class="tab on" data-g="prank">😈 Trastadas</button><button class="tab" data-g="care">💗 Cuidar</button><button class="tab" data-g="fun">🎉 Jugar</button></div>
     <div class="dock" id="dock">
       <button class="b" data-a="bucket"><svg viewBox="0 0 48 48"><path d="M12 20c0-11 20-11 20 0" fill="none" stroke="#3d3a44" stroke-width="3"/><path d="M8 20h28l-4 22H12z" fill="#5c8cf5" stroke="#3d3a44" stroke-width="3" stroke-linejoin="round"/><path d="M40 6c2.5 3.5 3.5 5 3.5 6.5a3.5 3.5 0 0 1-7 0c0-1.5 1-3 3.5-6.5z" fill="#5cc3f5" stroke="#3d3a44" stroke-width="2"/></svg><span>Cubo</span></button>
       <button class="b" data-a="lock"><svg viewBox="0 0 48 48"><rect x="10" y="21" width="28" height="22" rx="5" fill="#ff5a6e" stroke="#3d3a44" stroke-width="3"/><path d="M16 21v-6a8 8 0 0 1 16 0v6" fill="none" stroke="#3d3a44" stroke-width="3"/><circle cx="24" cy="31" r="3" fill="#fff"/></svg><span>Pestillo</span></button>
@@ -395,6 +405,7 @@ nav{position:relative;background:#fff;border-top:2px solid var(--line);z-index:5
       <button class="b" data-a="outdoor"><svg viewBox="0 0 48 48"><circle cx="34" cy="13" r="7" fill="#ffd34d" stroke="#3d3a44" stroke-width="3"/><rect x="5" y="24" width="38" height="18" rx="5" fill="#5cc3f5" stroke="#3d3a44" stroke-width="3"/><path d="M9 32c4-3 7 3 11 0s7 3 11 0 7 3 9 0" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/><path d="M12 24V12a3 3 0 0 1 6 0M20 24V12" fill="none" stroke="#3d3a44" stroke-width="2.6" stroke-linecap="round"/></svg><span>Verano</span></button>
       <button class="b" data-a="weather"><svg viewBox="0 0 48 48"><circle cx="17" cy="17" r="8" fill="#ffd34d" stroke="#3d3a44" stroke-width="3"/><path d="M17 3v3M17 28v3M3 17h3M28 17h3M7 7l2 2M27 7l-2 2" stroke="#3d3a44" stroke-width="2.5" stroke-linecap="round"/><path d="M33 26v18M25 30l16 10M25 40l16-10" stroke="#5aa9e6" stroke-width="3.5" stroke-linecap="round"/></svg><span>Frío/calor</span></button>
     </div>
+    </div>
   </nav>
   <div id="toast"></div>
   <div id="achPop"><em>🏆</em><div><small>¡Logro desbloqueado!</small><b id="achPopT">…</b></div></div>
@@ -412,7 +423,8 @@ nav{position:relative;background:#fff;border-top:2px solid var(--line);z-index:5
     <button class="mi" id="helpBtn"><i class="ic">❓</i><span>Cómo se juega</span></button>
     <ul id="help">
       <li><b>Toca a Núria</b> para chincharla. Mantén el dedo y arrástrala: si haces el gesto de lanzar sale volando; si la sueltas quieta, la dejas en el suelo con cuidado.</li>
-      <li><b>Lánzale cosas</b>: toca un objeto de la fila «Lánzale» o arrástralo para apuntar.</li>
+      <li><b>Lánzale cosas</b> desde la pestaña <b>🎯 Lanzar</b>: toca un objeto o arrástralo para apuntar.</li>
+      <li>La pestañita <b>▾</b> encima de los botones los esconde para ver mejor a Núria. En los momentos de cine se esconden solos.</li>
       <li>Abajo tienes <b>Trastadas</b>, <b>Cuidar</b> y <b>Jugar</b>. Si un botón se mueve, ¡es lo que Núria necesita!</li>
       <li>En <b>Bebidas</b> hay agua, café… y alcohol: si bebe mucho se emborracha (y anda haciendo eses). En el <b>Sofá</b> juega a la consola, hace ganchillo o lee.</li>
       <li>En <b>Verano</b> puede nadar en la piscina o tomar el sol en la hamaca (¡cuidado, que se quema!). En <b>Más</b> hay más trastadas: plátano, cojín pedorro, bigote, bocina, cortar el wifi y hielo.</li>
@@ -1113,6 +1125,9 @@ function crowdReact(kind,pos,radius=5.5){NPCS.forEach(n=>{const d=n.pos.distance
 
 /* =================== cámara =================== */
 const camT=new THREE.Vector3(0,.7,3);
+const appEl=$('#app');let immersive=false;
+$('#navToggle').onclick=()=>{initAudio();SFX.click();$('nav').classList.toggle('min')};
+if(window.ResizeObserver)new ResizeObserver(()=>resize()).observe($('#stage'));
 function resize(){const w=stage.clientWidth,h=stage.clientHeight;if(!w||!h)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}
 addEventListener('resize',resize);
 // momentos de cine: la cámara se acerca a su cara, gira un poco, salen franjas negras y a veces cámara lenta
@@ -1588,19 +1603,19 @@ const WANTS=[
 const WANT={cur:null,t:0,dur:28,next:25,last:null};
 const wantBtn=k=>dockBtns[k]||$('#'+k);
 function stepWant(dt){
-  if(WANT.cur){WANT.t-=dt;$('#wantBar').style.width=Math.max(0,WANT.t/WANT.dur*100)+'%';if(WANT.t<=0)wantFail();return}
+  if(WANT.cur){WANT.t-=dt;$('#want').style.setProperty('--p',Math.max(0,WANT.t/WANT.dur*100));if(!WANT.rem&&WANT.t<WANT.dur*.5){WANT.rem=true;if(!sayOn&&!C.sleeping&&!C.hidden)say(WANT.cur.t,2)}if(WANT.t<=0)wantFail();return}
   if(C.sleeping||C.hidden||PH.mode||C.inBath||busy()||(S.drunk||0)>70)return;
   if((WANT.next-=dt)>0)return;
   const o=WANTS.filter(w=>w.id!==WANT.last).map(w=>[w,w.w()]).filter(x=>x[1]>0);if(!o.length){WANT.next=20;return}
   let r=Math.random()*o.reduce((a,x)=>a+x[1],0),w=o[0][0];for(const x of o)if((r-=x[1])<=0){w=x[0];break}
-  WANT.cur=w;WANT.t=WANT.dur;WANT.last=w.id;$('#wantI').textContent=w.i;$('#wantT').textContent=w.t;$('#want').classList.add('on');wantBtn(w.b)?.classList.add('want');
+  WANT.cur=w;WANT.t=WANT.dur;WANT.rem=false;WANT.last=w.id;$('#wantI').textContent=w.i;$('#wantT').textContent=w.t;$('#want').classList.add('on');wantBtn(w.b)?.classList.add('want');
   SFX.pop();if(!sayOn)say(w.t,2.4);react('happy',1.6);voice(1.1,.9)}
 function wantEnd(){const w=WANT.cur;if(w)wantBtn(w.b)?.classList.remove('want');$('#want').classList.remove('on');WANT.cur=null;WANT.next=rand(35,60)}
 function wantFail(){wantEnd();if(C.sleeping||C.hidden||PH.mode)return;react('sad',2);say(pick(['Pues nada… ya veo que no me haces caso 😒','Vale, ignórame…','Hmpf. Ni caso.']),2.2);S.sad=clamp(S.sad+12,0,100);S.anger=clamp(S.anger+5,0,100)}
 function fulfill(e,a){const w=WANT.cur;if(!w||!w.ok(e,a))return;wantEnd();S.favors=(S.favors||0)+1;
   setTimeout(()=>{react('party',2.4);say(w.th,2.2);voice(1.2,1);SFX.yay();C.happyUntil=clockS+8;S.sad=clamp(S.sad-15,0,100);S.anger=clamp(S.anger-10,0,100);
     const h=headPx();for(let i=0;i<8;i++)setTimeout(()=>pw(h.x+rand(-70,70),h.y+rand(-50,30),pick(['💗','✨','⭐']),rand(16,26)),i*70);toast('💗 ¡Favor cumplido! Llevas '+S.favors);cine({zoom:.62,dur:1.6,lift:.4,bars:false})},900)}
-$('#want').onclick=()=>{const w=WANT.cur;if(!w)return;SFX.click();const g=Object.keys(GROUPS).find(k=>GROUPS[k].includes(w.b));if(g)showGroup(g);const b=wantBtn(w.b);if(b){b.classList.remove('want');void b.offsetWidth;b.classList.add('want')}};
+$('#want').onclick=()=>{const w=WANT.cur;if(!w)return;SFX.click();say(w.t,2);const g=Object.keys(GROUPS).find(k=>GROUPS[k].includes(w.b));if(g)showGroup(g);const b=wantBtn(w.b);if(b){b.classList.remove('want');void b.offsetWidth;b.classList.add('want')}};
 /* ---- logros: solo se ve el nombre, nunca cómo se consigue ---- */
 const ACH=[['drunk','🥴','Borrachera épica'],['fireball','🔥','KO de Fireball'],['slip','🍌','Resbalón cómico'],['pool','🏊‍♀️','Día de piscina'],['sun','😎','Vuelta y vuelta'],['burn','🦐','Gamba a la plancha'],
   ['pee','😳','Pis encima'],['happy','🥰','Súper contenta'],['hungry','🍽️','Súper hambrienta'],['sleepy','😴','Sueño todo el día'],['tantrum','😡','Rabieta monumental'],['cry','😭','Lágrimas de cocodrilo'],
@@ -1848,8 +1863,8 @@ document.querySelectorAll('.food[data-f]').forEach(b=>b.onclick=()=>{initAudio()
 function serveFood(kind){if(foodOnTable){say('¡Ya hay comida en la mesa!',1.6);return}fulfill('food',kind);
   placeTable();const m=makeFood(kind);m.position.set(plate.position.x,.775,plate.position.z);world.add(m);plate.visible=true;foodOnTable={kind,mesh:m};SFX.poof();if(kind!=='sushi'&&kind!=='carne')prank();
   if(C.sleeping)wakeFor();if(PH.mode)return;if(S.hunger<25&&!C.waitingFood&&!busy())say('No tengo hambre… bueno, vale, a ver qué es',1.8);if(!C.waitingFood&&!busy())startAct('eat',aEat)}
-const GROUPS={prank:['bucket','lock','scare','cat','alarm','tv','phone','more'],care:['food','drinks','pet','bathe','sponge','comb','relax','nap'],fun:['feather','music','wardrobe','messup','sport','roll','outdoor','weather']};
-function showGroup(g){document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.g===g));for(const k in dockBtns)dockBtns[k].classList.toggle('hide',!GROUPS[g].includes(k));closePanels()}
+const GROUPS={throw:[],prank:['bucket','lock','scare','cat','alarm','tv','phone','more'],care:['food','drinks','pet','bathe','sponge','comb','relax','nap'],fun:['feather','music','wardrobe','messup','sport','roll','outdoor','weather']};
+function showGroup(g){document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.g===g));$('.tray').hidden=g!=='throw';$('#dock').style.display=g==='throw'?'none':'';for(const k in dockBtns)dockBtns[k].classList.toggle('hide',!GROUPS[g].includes(k));closePanels()}
 const dockBtns={};document.querySelectorAll('.b[data-a]').forEach(b=>{dockBtns[b.dataset.a]=b;b.onclick=()=>{initAudio();SFX.click();ACT[b.dataset.a]()}});
 document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{initAudio();SFX.click();showGroup(t.dataset.g)});setTimeout(()=>{const dk=$('#dock');[...GROUPS.prank,...GROUPS.care,...GROUPS.fun].forEach(k=>{if(dockBtns[k])dk.appendChild(dockBtns[k])});showGroup('prank');refreshWeather()},0);
 function refreshDock(){dockBtns.lock.classList.toggle('on',S.locked);dockBtns.lock.querySelector('span').textContent=S.locked?'Quitar':'Pestillo';
@@ -2166,6 +2181,7 @@ function step(dt){
   if(dumbbells[0].visible){arms[0].hand.getWorldPosition(dumbbells[0].position);arms[1].hand.getWorldPosition(dumbbells[1].position);dumbbells.forEach(d=>{d.rotation.y=C.rot+Math.PI/2})}
   if(mug.visible){if(!mug.parent)world.add(mug);arms[0].hand.getWorldPosition(mug.position);mug.position.y+=.05}
   if(dumbbells[0].visible&&C.actName!=='weights')dumbbells.forEach(d=>d.visible=false);if(mug.visible&&C.actName!=='coffee')mug.visible=false;stepProps();stepGhost(dt);stepDrunk(dt);stepWant(dt);stepExtra(dt);stepAch(dt);stepEvents(dt);
+  {const im=CINE.dur>0||!!EV.cur||C.actName==='hospital'||!!C.skyDive;if(im!==immersive){immersive=im;appEl.classList.toggle('immersive',im);if(im)closePanels()}}
   if(MQ.on){MQ.t+=dt;const h=headWorld();mosq.position.set(h.x+Math.cos(MQ.t*7)*.45,h.y+.1+Math.sin(MQ.t*11)*.25,h.z+Math.sin(MQ.t*5)*.45);mosq.rotation.y=-MQ.t*7;mosq.userData.w.forEach((w,i)=>w.rotation.x=Math.PI/2+Math.sin(MQ.t*90+i)*.6);if((MQ.bz=(MQ.bz||0)-dt)<=0){MQ.bz=.22;osc({type:'sawtooth',f:rand(560,640),dur:.22,vol:.025,vib:40,vibF:30,filter:{type:'bandpass',f:1200,q:2}})}}
   if(C.ambOn){const on=Math.sin(clockS*14)>0;ambG.userData.lights[0].material.emissiveIntensity=on?2:0;ambG.userData.lights[1].material.emissiveIntensity=on?0:2}
   if(!C.emote&&!C.walkingNow&&C.pose==='stand'&&!C.seat&&!busy()&&!C.sleeping&&!C.hidden&&!PH.mode&&!TOOL.mode&&['look','stroll','search',''].includes(C.actName)){C.emoteT=(C.emoteT??5)-dt;if(C.emoteT<=0){C.emoteT=rand(6,12);startEmote()}}
@@ -2240,8 +2256,8 @@ function step(dt){
     else if(phoneHidden)th=['📱','¿Y mi móvil?'];else if(S.peeWet)th=['😳','Qué vergüenza… necesito un baño'];else if(S.weather==='cold')th=['🥶','¡Qué frío hace!'];else if(S.weather==='hot')th=['🥵','Me derrito…'];else if(S.anger>70)th=['😡','Estoy hasta el moño'];else if(S.sad>60)th=['😢','Qué triste estoy…'];else if(S.messy>60)th=['💇‍♀️','Tengo el pelo hecho un desastre'];else if(S.bored>70)th=['🥱','Me aburrooo…'];else if(S.stress>70)th=['😵‍💫','Qué estrés, por favor…'];else if(clockS<C.caffeineUntil&&isNight())th=['☕','No puedo dormir… el café'];else if(S.energy<25)th=['😴','Qué sueño…'];else th=['☁️','¿Qué hago hoy?']}
   const key=th[0]+th[1];if(key!==lastThought){lastThought=key;thE.textContent=th[0];thT.textContent=th[1];think.classList.remove('flash');void think.offsetWidth;think.classList.add('flash')}
   const hp=headPx(),sr=stage.getBoundingClientRect();
-  think.style.opacity=C.hidden||sayOn?0:1;const tw=think.offsetWidth||150;think.style.left=clamp(hp.x-sr.left,tw/2+6,sr.width-tw/2-6)+'px';think.style.top=Math.max(WANT.cur?92:50,hp.y-sr.top-hp.r*1.35)+'px';
-  if(sayOn){const bw=sayEl.offsetWidth||160;let sx=hp.x-sr.left,sy=hp.y-sr.top-hp.r*1.35;if(C.hidden){const d=toScreen(DOOR_WORLD);sx=d.x-sr.left;sy=d.y-sr.top}sayEl.style.left=clamp(sx,bw/2+6,sr.width-bw/2-6)+'px';sayEl.style.top=Math.max(WANT.cur?92:50,sy)+'px'}
+  think.style.opacity=C.hidden||sayOn?0:1;const tw=think.offsetWidth||150;think.style.left=clamp(hp.x-sr.left,tw/2+6,sr.width-tw/2-6)+'px';think.style.top=Math.max(50,hp.y-sr.top-hp.r*1.35)+'px';
+  if(sayOn){const bw=sayEl.offsetWidth||160;let sx=hp.x-sr.left,sy=hp.y-sr.top-hp.r*1.35;if(C.hidden){const d=toScreen(DOOR_WORLD);sx=d.x-sr.left;sy=d.y-sr.top}sayEl.style.left=clamp(sx,bw/2+6,sr.width-bw/2-6)+'px';sayEl.style.top=Math.max(50,sy)+'px'}
   // puerta / pestillo
   doorAngle=damp(doorAngle,doorOpen?-1.4:0,7,dt);doorPivot.rotation.y=doorAngle;
   latch.position.x=S.locked?.52:.62;latchMat.emissiveIntensity=S.locked?.6+Math.sin(now*5)*.3:0;
