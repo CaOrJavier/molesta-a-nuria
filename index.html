@@ -1776,7 +1776,7 @@ function nextAch(){const a=achQ.shift();if(!a){achBusy=false;return}achBusy=true
 function refreshAchCount(){const n=Object.keys(S.ach).length;$('#achMenuN').textContent=n+' de '+ACH.length}
 function openAch(on){const sh=$('#achSheet');sh.classList.toggle('on',on);sh.setAttribute('aria-hidden',!on);if(!on)return;$('#achNew').classList.remove('on');
   const n=Object.keys(S.ach).length;$('#achStats').textContent=`${n} de ${ACH.length} logros · 😈 ${S.pranks} trastadas · 💗 ${S.favors||0} favores`+(S.ljBest?` · 🦘 ${fmtM(S.ljBest)}`:'')+(S.throwBest?` · 🎳 ${fmtM(S.throwBest)}`:'');
-  $('#achGrid').innerHTML=ACH.map(a=>{const rw=REWARD[a[0]],g=rw?`<i class="gift">🎁 ${rw.n}</i>`:'';return S.ach[a[0]]?`<div class="ach on"><em>${a[1]}</em><span>${a[2]}</span>${g}</div>`:`<div class="ach off"><em>🔒</em><span>${a[2]}</span><small>${HINT[a[0]]||''}</small>${g}</div>`}).join('')}
+  $('#achGrid').innerHTML=ACH.map(a=>{const rw=REWARD[a[0]],g=rw?`<i class="gift">🎁 ${rw.n}</i>`:'';return S.ach[a[0]]?`<div class="ach on"><em>${a[1]}</em><span>${a[2]}</span>${g}</div>`:`<div class="ach off"><em>🔒</em><span>${a[2]}</span>${g}</div>`}).join('')}
 $('#achBtn').onclick=()=>{initAudio();SFX.click();closePanels();openAch(true)};
 $('#achSheet').addEventListener('click',e=>{if(e.target.id==='achSheet')openAch(false)});
 refreshAchCount();
@@ -2116,7 +2116,7 @@ function markLook(){const ac=S.acc||{},oE=$('#looksO'),aE=$('#looksA');
   if(oE){oE.innerHTML=Object.entries(OUTFITS).map(([id,x])=>lookBtn('o',id,x,S.outfit===id)).join('');aE.innerHTML=Object.entries(ACCS).map(([id,x])=>lookBtn('a',id,x,ac[x.s]===id)).join('');
     const all=[...Object.values(OUTFITS),...Object.values(ACCS)];$('#lookN').textContent=all.filter(unlockedX).length+' de '+all.length+' desbloqueados';
     lookPop.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>{initAudio();SFX.click();const k=b.dataset.k,v=b.dataset.v,x=k==='o'?OUTFITS[v]:ACCS[v];
-      if(!unlockedX(x)){const a=ACH.find(q=>q[0]===x.need);toast('🔒 Logro «'+(a?a[1]+' '+a[2]:'?')+'»: '+(HINT[x.need]||''));return}changeLook(k,v)})}
+      if(!unlockedX(x)){const a=ACH.find(q=>q[0]===x.need);toast('🔒 Se desbloquea con el logro «'+(a?a[1]+' '+a[2]:'?')+'»');return}changeLook(k,v)})}
   document.querySelectorAll('.look[data-h]').forEach(b=>b.classList.toggle('on',b.dataset.h===S.hairStyle))}
 function toggleLook(f){lookPop.hidden=f!==undefined?!f:!lookPop.hidden;markLook();zoomVis()}
 function zoomVis(){$('#zoomBox').style.visibility=PANELS().every(p=>p.hidden)?'':'hidden'}
@@ -2163,7 +2163,7 @@ const pickables=[...nuriParts,doorPanel,knob,latch,wcSign,...wcBoard.children,tv
 function setRay(x,y){const r=canvas.getBoundingClientRect();ndc.set((x-r.left)/r.width*2-1,-(y-r.top)/r.height*2+1);ray.setFromCamera(ndc,camera)}
 function hit(x,y){setRay(x,y);const h=ray.intersectObjects(pickables,false);if(!h.length)return null;const o=h[0].object;if(o.userData.puke){lastPuke=o.userData.puke;return'puke'}
   if(nuriParts.includes(o))return'nuri';if([doorPanel,knob,latch,wcSign].includes(o)||wcBoard.children.includes(o))return'door';if(o===tvBody||o===tvScreen)return'tv';if(o===postBtn||o===postHead)return'light';if(o===clockBody)return'alarm';if(o===phoneBody)return'phone';return null}
-let down=null;const lastPtr={x:0,y:0};const touches=new Map();let pinch=null,zoomK=1,zoomGoal=1;
+let down=null;const lastPtr={x:0,y:0};const touches=new Map();let pinch=null,zoomK=1.35,zoomGoal=1.35;
 canvas.addEventListener('pointerdown',e=>{if(EV.cur==='ghosts'){ghostTap(e.clientX,e.clientY);e.stopImmediatePropagation()}},true);
 canvas.addEventListener('pointerdown',e=>{initAudio();if(EV.cur==='ghosts')return;if(PANELS().some(p=>!p.hidden)){closePanels();return}
   touches.set(e.pointerId,{x:e.clientX,y:e.clientY});try{canvas.setPointerCapture(e.pointerId)}catch(_){}
@@ -2330,7 +2330,7 @@ function moodNow(){if(!PH.mode&&(S.burn||0)>50)return'🦐 Quemada';if(['pool','
   if(C.actName==='dance')return'🥳 Feliz';if(S.anger>75)return'😡 Furiosa';if(pukes.length||S.dirt>70)return'🤢 Asqueada';if(S.sad>60)return'😢 Triste';if(S.stress>65)return'😵‍💫 Estresada';
   if(S.anger>45)return'😠 Enfadada';if(S.bored>70)return'🥱 Aburrida';if(S.energy<20)return'😪 Agotada';if(clockS<C.happyUntil||(C.faceUntil>clockS&&['happy','laugh'].includes(C.faceOv)))return'😄 Contenta';return'🙂 Tranquila'}
 const moodEl=$('#mood');let lastMood='';
-let needsT=0;function drawNeeds(){const md=moodNow();if(md!==lastMood){lastMood=md;moodEl.textContent=md}for(const q of NEEDS){const v=Math.round(clamp(needVal(q.n),0,100));if(v===q.last)continue;q.last=v;q.el.style.setProperty('--v',Math.max(v,4));
+let needsT=0;function drawNeeds(){const md=moodNow();if(md!==lastMood&&clockS-(C.mdT0||-9)>1.5){C.mdT0=clockS;lastMood=md;moodEl.textContent=md}for(const q of NEEDS){const v=Math.round(clamp(needVal(q.n),0,100));if(v===q.last)continue;q.last=v;q.el.style.setProperty('--v',Math.max(v,4));
   q.el.style.setProperty('--c',`hsl(${Math.round(130-v*1.25)},72%,${v>70?52:56}%)`);q.el.classList.toggle('hot',v>=80)}}
 const statusEl=$('#status'),clockEl=$('#clock'),thE=$('#thE'),thT=$('#thT'),doorTag=$('#doorTag');
 const clk=new THREE.Clock();let hotT=0,tvT=0,tvChatT=0,lastNight=null,zT=0,snT=0,dripT=0,lastThought='';
@@ -2541,10 +2541,10 @@ function step(dt){
   // pensamiento y bocadillos
   let th=C.thought;
   if(!th){if(C.sleeping)th=['💤','Zzz… sushi… zzz'];else if(C.actName==='pool')th=['🏊‍♀️','¡Qué fresquita!'];else if(C.actName==='sun')th=['😎','Qué gustito…'];else if((S.burn||0)>40)th=['🦐','Me escuece todo…'];else if(S.stache&&S.stacheKnown)th=['🥸','Tengo un bigote pintado…'];else if(WIFI.off&&['phone','console'].includes(C.actName))th=['📶','¿Y el wifi?'];else if((S.drunk||0)>45)th=S.drunk>70?['🌀','El mundo da vueltas…']:['🥴','Estoy perfectamente…'];else if(C.relaxK==='console')th=['🎮','¡Este nivel es dificilísimo!'];else if(C.relaxK==='crochet')th=['🧶','Punto, punto…'];else if(C.relaxK==='read')th=['📖','Qué intriga…'];else if(C.actName==='dance')th=['🎵','¡Qué temazo!'];else if(C.actName==='tv'&&S.tv)th=['📺','¡Qué buena mi serie!'];else if(C.holdPhone)th=['📱','Mirando memes…'];
-    else if(CAT.mode==='follow')th=['🐈','¡Ese gato otra vez!'];else if(pukes.length)th=['🤮','Qué asco de charco…'];else if(S.dirt>50)th=['🤢',pick(T.dirty)];
+    else if(CAT.mode==='follow')th=['🐈','¡Ese gato otra vez!'];else if(pukes.length)th=['🤮','Qué asco de charco…'];else if(S.dirt>50)th=['🤢',T.dirty[Math.floor(clockS/6)%T.dirty.length]];
     else if(wetT>0)th=['💦','¡Estoy empapada!'];else if(faceDeco.length)th=['🤢','Tengo la cara pringada…'];else if(S.bladder>65)th=['🚽','Me estoy haciendo pis…'];else if(S.hunger>60)th=['🍣','Me apetece sushi…'];
     else if(phoneHidden)th=['📱','¿Y mi móvil?'];else if(S.peeWet)th=['😳','Qué vergüenza… necesito un baño'];else if(S.weather==='cold')th=['🥶','¡Qué frío hace!'];else if(S.weather==='hot')th=['🥵','Me derrito…'];else if(S.anger>70)th=['😡','Estoy hasta el moño'];else if(S.sad>60)th=['😢','Qué triste estoy…'];else if(S.messy>60)th=['💇‍♀️','Tengo el pelo hecho un desastre'];else if(S.bored>70)th=['🥱','Me aburrooo…'];else if(S.stress>70)th=['😵‍💫','Qué estrés, por favor…'];else if(clockS<C.caffeineUntil&&isNight())th=['☕','No puedo dormir… el café'];else if(S.energy<25)th=['😴','Qué sueño…'];else th=['☁️','¿Qué hago hoy?']}
-  const key=th[0]+th[1];if(key!==lastThought){lastThought=key;thE.textContent=th[0];thT.textContent=th[1];think.classList.remove('flash');void think.offsetWidth;think.classList.add('flash')}
+  const key=th[0]+th[1];if(key!==lastThought&&clockS-(C.thT0||-9)>1.2){C.thT0=clockS;lastThought=key;thE.textContent=th[0];thT.textContent=th[1];think.classList.remove('flash');void think.offsetWidth;think.classList.add('flash')}
   const hp=headPx(),sr=stage.getBoundingClientRect();
   think.style.opacity=C.hidden||sayOn?0:1;const tw=think.offsetWidth||150;think.style.left=clamp(hp.x-sr.left,tw/2+6,sr.width-tw/2-6)+'px';think.style.top=Math.max(50,hp.y-sr.top-hp.r*1.35)+'px';
   if(sayOn){const bw=sayEl.offsetWidth||160;let sx=hp.x-sr.left,sy=hp.y-sr.top-hp.r*1.35;if(C.hidden){const d=toScreen(DOOR_WORLD);sx=d.x-sr.left;sy=d.y-sr.top}sayEl.style.left=clamp(sx,bw/2+6,sr.width-bw/2-6)+'px';sayEl.style.top=Math.max(50,sy)+'px'}
