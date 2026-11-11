@@ -1173,7 +1173,7 @@ const camT=new THREE.Vector3(0,.7,3);
 const appEl=$('#app');let immersive=false;
 $('#navToggle').onclick=()=>{initAudio();SFX.click();$('nav').classList.toggle('min')};
 if(window.ResizeObserver)new ResizeObserver(()=>resize()).observe($('#stage'));
-function resize(){const w=stage.clientWidth,h=stage.clientHeight;if(!w||!h)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}
+let lastRW=0,lastRH=0;function resize(){const w=stage.clientWidth,h=stage.clientHeight;if(!w||!h||(w===lastRW&&h===lastRH))return;lastRW=w;lastRH=h;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();try{renderer.render(scene,camera)}catch(e){}}
 addEventListener('resize',resize);
 // momentos de cine: la cámara se acerca a su cara, gira un poco, salen franjas negras y a veces cámara lenta
 const CINE={t:0,dur:0,zoom:1,orbit:0,lift:0,slow:1,k:0};
@@ -2389,7 +2389,7 @@ function step(dt){
   {const lk=1-darkK*.82;sun.intensity*=lk;hemi.intensity*=lk;fillL.intensity*=lk;rimL.intensity*=lk;
    const ek=Math.round((1-Math.max(darkK*.85,(1-dayF)*.5))*50)/50;if(ek!==envK){envK=ek;ENV_MATS.forEach(m=>m.envMapIntensity=.35*ek);faceMat.envMapIntensity=.4*ek}faceMat.emissiveIntensity=.28*(1-darkK*.65)}
   const twK=dayF*(1-dayF)*4;sun.color.copy(SUN_DAY).lerp(SUN_DUSK,twK);
-  scene.background.copy(BG_NIGHT).lerp(BG_DAY,dayF).lerp(BG_DUSK,twK*.55).lerp(BG_DARK,darkK*.92);scene.fog.color.copy(scene.background);
+  scene.background.copy(BG_NIGHT).lerp(BG_DAY,dayF).lerp(BG_DUSK,twK*.55).lerp(BG_DARK,darkK*.92);{const bg='#'+scene.background.getHexString();if(bg!==stage.dataset.bg){stage.dataset.bg=bg;stage.style.background=bg}}scene.fog.color.copy(scene.background);
   floorM.material.color.setRGB(1,1,1).lerp(FLOOR_DUSK,twK*.45).lerp(FLOOR_DARK,Math.max(darkK*.85,(1-dayF)*.72));
   {const nk=1-dayF;skyStars.visible=moon.visible=nk>.05;if(skyStars.visible){skyStars.position.set(camT.x,0,camT.z);skyStars.material.opacity=nk*.95;const d=new THREE.Vector3(camT.x-camera.position.x,0,camT.z-camera.position.z).normalize();moon.position.set(camT.x+d.x*30+5,12,camT.z+d.z*30);moon.lookAt(camera.position);moon.material.opacity=nk}}stepWeather(dt);
   const nightK=Math.max(1-dayF,darkK);lampHeads.forEach(l=>l.material.emissiveIntensity=nightK*1.2);
