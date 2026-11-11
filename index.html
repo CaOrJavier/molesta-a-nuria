@@ -379,6 +379,7 @@ nav.min #navToggle span{display:inline-block;transform:rotate(180deg)}
         <button class="look" data-h="melena"><em>💇‍♀️</em><span>Melena</span></button>
         <button class="look" data-h="coleta"><em>🎀</em><span>Coleta</span></button>
         <button class="look" data-h="mono"><em>🍡</em><span>Moño</span></button>
+        <button class="look" data-h="trenzas"><em>👧</em><span>Trenzas</span></button>
       </div>
     </div>
     <button id="navToggle" aria-label="Ocultar los botones"><span>▾</span></button>
@@ -1013,7 +1014,12 @@ function buildAvatar(o){
     const mono=new THREE.Group();headM.add(mono);
     A(mono,new THREE.SphereGeometry(.21,20,14),M.hair,0,.55,-.12);A(mono,new THREE.TorusGeometry(.15,.04,8,20),std({color:'#ff5a8a'}),0,.41,-.1,{rx:Math.PI/2.3});
     [-1,1].forEach(sd=>{const w=A(mono,new THREE.CapsuleGeometry(.035,.3,4,8),M.hair,sd*.47,-.12,.2);w.rotation.z=sd*.12});
-    o.hairSets={coleta:pony,melena:mel,mono};
+    const tr=new THREE.Group();headM.add(tr);const tie=std({color:'#ff5a8a',roughness:.5});
+    [-1,1].forEach(sd=>{const a=new THREE.Vector3(sd*.43,-.16,.02),b=new THREE.Vector3(sd*.35,-.95,.27),N=8;
+      for(let i=0;i<N;i++){const k=i/(N-1),p=a.clone().lerp(b,k),r=.088-k*.022;const m=A(tr,new THREE.SphereGeometry(r,14,10),M.hair,p.x+(i%2?.022:-.022)*sd,p.y,p.z);m.scale.set(1,1.25,1)}
+      A(tr,new THREE.TorusGeometry(.05,.022,8,14),tie,b.x,b.y-.07,b.z+.005,{rx:Math.PI/2});
+      const tip=A(tr,new THREE.ConeGeometry(.06,.16,10),M.hair,b.x,b.y-.17,b.z+.01);tip.rotation.x=Math.PI});
+    o.hairSets={coleta:pony,melena:mel,mono,trenzas:tr};
   }else{
     add(headM,GEO.drawnFace,faceMat,0,0,0,{cast:false,recv:false});A(headM,GEO.hairCap,M.hair,0,0,0);
     A(headM,st==='short'||st==='bun'?GEO.hairBackShort:GEO.hairBack,M.hair,0,0,0);
@@ -1766,7 +1772,7 @@ const ARULE={first:()=>S.pranks>=1,pranks25:()=>S.pranks>=25,pranks50:()=>S.pran
   night:()=>(S.nightT||0)>=60,bedtime:()=>cc('do_sleep'),floor:()=>cc('do_floorsleep'),comb:()=>cc('act_comb')>=3,sponge:()=>cc('act_sponge')>=3,pet10:()=>cc('act_pet')>=10,
   tomatina:()=>cc('throw_tomato')>=10,pie:()=>cc('throw_pie'),balloons:()=>cc('throw_balloon')>=10,shoe:()=>cc('throw_shoe')>=5,mud:()=>cc('throw_mud')>=5,aim:()=>cc('throw')>=50,
   alarm:()=>cc('act_alarm')>=3,tv:()=>cc('act_tv'),phone:()=>cc('act_phone'),slide:()=>cc('do_slide'),roll:()=>cc('do_roll'),hatemusic:()=>cc('do_hatemusic'),
-  fashion:()=>triedN('o')>=5,hair:()=>triedN('h')>=3,accs:()=>triedN('a')>=3,relax:()=>cc('relax'),days3:()=>(S.days||0)>=3,days7:()=>(S.days||0)>=7,
+  fashion:()=>triedN('o')>=5,hair:()=>triedN('h')>=4,accs:()=>triedN('a')>=3,relax:()=>cc('relax'),days3:()=>(S.days||0)>=3,days7:()=>(S.days||0)>=7,
   collector:()=>Object.keys(S.ach).length>=30,all:()=>ACH.every(a=>a[0]==='all'||S.ach[a[0]])};
 const cc=k=>S.cnt[k]||0,triedN=k=>Object.keys(S.tried).filter(x=>x.startsWith(k+':')).length;
 if(!S.ach)S.ach={};const achQ=[];let achBusy=false;
@@ -2135,7 +2141,7 @@ const LOOK_T={deporte:['¡A sudar! Bueno… un poquito','Ropa de deporte: ya no 
   gato:['¡Miau! Soy una gatita'],cuernos:['Hoy soy un diablillo'],aureola:['Soy un angelito… casi siempre'],lazo:['¡Qué lazo más mono!'],cascos:['Con mis cascos no te oigo, je'],
   casco:['Casco puesto, por si me vuelves a lanzar'],bruja:['¡Abracadabra! Te convierto en sapo'],lana:['Gorrito de lana, ¡qué calentito!'],sol:['Gafas de sol, ¡soy una estrella!'],pasta:['Con gafas parezco muy lista, ¿verdad?'],
   normal:['¡Mi ropa de siempre!','Así, cómoda'],vestido:['¿Un vestido? Bueno… voy monísima','¡Qué vestido más mono!'],montana:['¿Ropa de montaña? Qué pereza…','No pienso subir ningún monte, que lo sepas'],
-  melena:['Melena al viento','¡Pelazo!'],coleta:['Una coleta, práctico','Coleta y a correr… o no'],mono:['Un moño, ¡qué elegante!','Moño alto, como una bailarina']};
+  melena:['Melena al viento','¡Pelazo!'],coleta:['Una coleta, práctico','Coleta y a correr… o no'],mono:['Un moño, ¡qué elegante!','Moño alto, como una bailarina'],trenzas:['¡Trenzas! Como cuando era pequeña','Dos trenzas, ¡qué monada!']};
 function changeLook(kind,v){if(kind==='o'&&OUTFITS[v]&&OUTFITS[v].skirt)ach('model');let off=false;
   if(kind==='o'){if(S.outfit===v)return;S.outfit=v;S.peeWet=false}else if(kind==='a'){const sl=ACCS[v].s;off=S.acc[sl]===v;S.acc[sl]=off?null:v}else{if(S.hairStyle===v)return;S.hairStyle=v}
   S.tried[kind+':'+v]=1;delete S.newItems[kind+v];applyLook();markLook();save();SFX.poof();SFX.sparkle();fulfill('look',v);if(!C.hidden){spray(headWorld().add(new THREE.Vector3(0,-.4,0)),14,1.4,1.6,sparkMat);C.jumpT=1;
