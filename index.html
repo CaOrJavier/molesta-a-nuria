@@ -115,6 +115,12 @@ button{font-family:inherit;color:inherit;border:0;background:none;cursor:pointer
 #evt.on{display:block}#evt .et{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}#evt .et b{font-family:'Fredoka','Nunito',sans-serif;font-size:18px}#evt .et span{font-weight:900;font-size:15px;color:var(--red)}
 #evt .er{display:flex;align-items:center;gap:8px;margin:4px 0;font-size:12px;font-weight:900}#evt .er span{width:52px;flex:none}#evt .er b{width:30px;text-align:right;font-size:15px}
 #evt .eb{flex:1;height:12px;background:#eef1f5;border-radius:9px;overflow:hidden}#evt .eb i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff5a6e,#ffb347);border-radius:9px;transition:width .1s}#evt .eb.rv i{background:#9aa3b2}
+#evtChoices{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+#evtChoices button{height:62px;border-radius:18px;background:#fff;border:2px solid var(--line);box-shadow:0 4px 0 var(--line);font-size:32px;touch-action:manipulation}
+#evtChoices button:active{transform:translateY(3px);box-shadow:0 1px 0 var(--line)}
+#paint{position:absolute;left:50%;top:10px;transform:translateX(-50%);z-index:9;background:#c98a52;border-radius:14px;padding:7px;box-shadow:0 10px 26px #0004;display:none;width:min(94%,340px)}
+#paint.on{display:block}#paintC{display:block;width:100%;aspect-ratio:320/230;background:#fff;border-radius:6px;touch-action:none;cursor:crosshair}
+#paint .pal{display:flex;justify-content:space-between;gap:4px;margin-top:6px}#paint .pal button{width:28px;height:28px;border-radius:50%;border:2px solid #fff;font-size:14px;touch-action:manipulation}#paint .pal button.on{outline:3px solid #3d3a44}
 #evtBtn{width:100%;height:58px;margin-top:8px;border-radius:999px;background:var(--red);color:#fff;font-family:'Fredoka','Nunito',sans-serif;font-weight:700;font-size:22px;box-shadow:0 5px 0 #c42a3f;touch-action:manipulation}
 #evtBtn:active{transform:translateY(4px);box-shadow:0 1px 0 #c42a3f}
 #toast{position:absolute;left:50%;top:14px;transform:translate(-50%,-30px);opacity:0;z-index:58;background:var(--ink);color:#fff;font-weight:800;font-size:14px;padding:9px 16px;border-radius:999px;transition:.25s;pointer-events:none;white-space:nowrap}
@@ -268,9 +274,10 @@ nav.min #navToggle span{display:inline-block;transform:rotate(180deg)}
     <div id="want"><em id="wantI">🍣</em><div><small>Núria te pide</small><b id="wantT">…</b><div class="wb"><i id="wantBar"></i></div></div></div>
     <div id="invite"><em id="invI">🎪</em><div><small>¡Evento!</small><b id="invT">…</b></div><button id="invYes">¡Vamos!</button><button id="invNo" aria-label="Ahora no">✕</button></div>
     <div id="evt"><div class="et"><b id="evtT">Evento</b><span id="evtTime"></span></div>
-      <div class="er" id="evtMeRow"><span>Núria</span><div class="eb"><i id="evtMe"></i></div><b id="evtMeN">0</b></div>
+      <div class="er" id="evtMeRow"><span id="evtMeName">Núria</span><div class="eb"><i id="evtMe"></i></div><b id="evtMeN">0</b></div>
       <div class="er" id="evtRvRow"><span id="evtRvName">Rival</span><div class="eb rv"><i id="evtRv"></i></div><b id="evtRvN">0</b></div>
-      <button id="evtBtn">💪 ¡DALE!</button></div>
+      <button id="evtBtn">💪 ¡DALE!</button><div id="evtChoices"><button data-c="0">✊</button><button data-c="1">✋</button><button data-c="2">✌️</button></div></div>
+    <div id="paint"><canvas id="paintC" width="320" height="230"></canvas><div class="pal"><button data-col="#3d3a44" class="on" style="background:#3d3a44"></button><button data-col="#ff5a6e" style="background:#ff5a6e"></button><button data-col="#ffb02e" style="background:#ffb02e"></button><button data-col="#2fb36a" style="background:#2fb36a"></button><button data-col="#3b8fe0" style="background:#3b8fe0"></button><button data-col="#a77bff" style="background:#a77bff"></button><button data-col="#8a5a3a" style="background:#8a5a3a"></button><button data-col="#ffffff" style="background:#fff">🧽</button></div></div>
     <div id="hint">Arrastra a Núria para lanzarla · Pellizca para hacer zoom</div>
     <div id="zoomBox"><button id="snap" aria-label="Hacer una foto"><svg viewBox="0 0 24 24" width="22" height="22"><g stroke="#3d3a44" stroke-width="2.2" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z" fill="#ffd166"/><circle cx="12" cy="13" r="3.6" fill="#fff"/></g></svg></button><button id="zin" aria-label="Acercar">+</button><button id="zout" aria-label="Alejar">−</button></div>
   </div>
@@ -418,8 +425,8 @@ nav.min #navToggle span{display:inline-block;transform:rotate(180deg)}
     <button class="mi" id="mute"><i class="ic"></i><span>Sonido</span><b id="muteTxt">Sí</b></button>
     <button class="mi" id="fs"><i class="ic"></i><span>Pantalla completa</span></button>
     <button class="mi" id="achMenuBtn"><i class="ic">🏆</i><span>Logros<small id="achMenuN">0 de 0</small></span></button>
-    <button class="mi" id="evBtn"><i class="ic">🎪</i><span>Organizar un evento<small>flexiones, carrera, cine, paracaídas</small></span></button>
-    <div id="evList"><button class="food" data-e="pushups"><em>💪</em><span>Flexiones</span></button><button class="food" data-e="race"><em>🏃‍♀️</em><span>Carrera</span></button><button class="food" data-e="cinema"><em>🍿</em><span>Día de cine</span></button><button class="food" data-e="skydive"><em>🪂</em><span>Paracaídas</span></button></div>
+    <button class="mi" id="evBtn"><i class="ic">🎪</i><span>Organizar un evento<small>8 minijuegos</small></span></button>
+    <div id="evList"><button class="food" data-e="pushups"><em>💪</em><span>Flexiones</span></button><button class="food" data-e="race"><em>🏃‍♀️</em><span>Carrera</span></button><button class="food" data-e="cinema"><em>🍿</em><span>Día de cine</span></button><button class="food" data-e="skydive"><em>🪂</em><span>Paracaídas</span></button><button class="food" data-e="climb"><em>🧗‍♀️</em><span>Escalar</span></button><button class="food" data-e="ghosts"><em>👻</em><span>Fantasmas</span></button><button class="food" data-e="paint"><em>🎨</em><span>Pintar</span></button><button class="food" data-e="rps"><em>✊</em><span>Piedra…</span></button></div>
     <button class="mi" id="helpBtn"><i class="ic">❓</i><span>Cómo se juega</span></button>
     <ul id="help">
       <li><b>Toca a Núria</b> para chincharla. Mantén el dedo y arrástrala: si haces el gesto de lanzar sale volando; si la sueltas quieta, la dejas en el suelo con cuidado.</li>
@@ -1624,7 +1631,7 @@ const ACH=[['drunk','🥴','Borrachera épica'],['fireball','🔥','KO de Fireba
   ['favor5','💗','Buena amiga'],['favor20','💞','Mejor amiga del mundo'],['pranks100','😈','Pesadilla de Núria'],['sushi','🍣','Sushi lover'],['fish','🐟','Odio el pescado'],['spicy','🌶️','Boca de dragón'],
   ['gamer','🎮','Gamer'],['crochet','🧶','Bufanda terminada'],['read','📖','Ratón de biblioteca'],['sport','🏋️‍♀️','Deportista'],['pushups','💪','Reina de las flexiones'],['race','🥇','Medalla de oro'],
   ['cinema','🍿','Palomitera'],['skydive','🪂','Paracaidista'],['mosquito','🦟','Picotazo'],['insomnia','☕','Noche en vela'],['locked','🔒','Encerrada'],['wet','🪣','Empapada'],
-  ['piggy','🐷','Cerdita'],['deaf','📯','Me has dejado sorda'],['model','👗','Top model'],['tub','🛁','Baño de burbujas']];
+  ['piggy','🐷','Cerdita'],['deaf','📯','Me has dejado sorda'],['model','👗','Top model'],['tub','🛁','Baño de burbujas'],['climb','🏔️','Cima conquistada'],['ghosts','🕸️','Cazadora de fantasmas'],['paint','🎨','Artista incomprendida'],['rps','✌️','Piedra, papel… ¡victoria!']];
 if(!S.ach)S.ach={};const achQ=[];let achBusy=false;
 function ach(id){if(!id||S.ach[id])return;const a=ACH.find(x=>x[0]===id);if(!a)return;S.ach[id]=Date.now();save();achQ.push(a);$('#achNew').classList.add('on');refreshAchCount();if(!achBusy)nextAch()}
 function nextAch(){const a=achQ.shift();if(!a){achBusy=false;return}achBusy=true;const el=$('#achPop');el.querySelector('em').textContent=a[1];$('#achPopT').textContent=a[2];el.classList.add('on');SFX.win();vibrate([30,40,30]);
@@ -1675,24 +1682,24 @@ function* aMosq(){C.status='¡Un mosquito!';C.thought=['🦟','¡Bzzz!'];yield* 
   else{C.pose='itch';ach('mosquito');biteM.visible=true;C.biteUntil=clockS+60;react('rage',2);C.shakeT=1;say('¡¡AY!! ¡Me ha picado! ¡Cómo pica!',2);voice(1.3,1);annoy(12);yield* waitS(3);say('Me pica muchísimo… ¡qué asco de mosquito!',1.8);yield* waitS(2)}
   C.pose='stand';C.thought=null}
 /* ---- eventos: flexiones, carrera, día de cine y paracaídas ---- */
-const EVS={pushups:['💪','Competición de flexiones'],race:['🏃‍♀️','Carrera contra una rival'],cinema:['🍿','¡Día de cine!'],skydive:['🪂','Salto en paracaídas']};
-const EV={cur:null,next:110,inv:null,invT:0,taps:0,tapTimes:[]};
+const EVS={pushups:['💪','Competición de flexiones'],race:['🏃‍♀️','Carrera contra una rival'],cinema:['🍿','¡Día de cine!'],skydive:['🪂','Salto en paracaídas'],climb:['🧗‍♀️','¡A escalar una montaña!'],ghosts:['👻','¡Caza de fantasmas!'],paint:['🎨','Pintar un cuadro'],rps:['✊','Piedra, papel o tijera']};
+const EV={cur:null,next:60,inv:null,invT:0,taps:0,tapTimes:[]};
 let RV=null;
 function rival(){if(!RV){RV=buildAvatar({skin:'#c98e66',hair:'#1a1a1a',top:'#2bb3a3',pants:'#2e3a59',style:'pony',shadow:true});RV.faceMat.map=NV[1].happy;RV.faceMat.needsUpdate=true;world.add(RV.root)}RV.root.visible=true;RV.root.rotation.set(0,0,0);RV.root.position.y=0;return RV}
 function hideRival(){if(RV)RV.root.visible=false}
-function evUI(on,o={}){const e=$('#evt');e.classList.toggle('on',on);$('#evtTime').textContent='';if(!on)return;$('#evtT').textContent=o.title;$('#evtBtn').textContent=o.btn;$('#evtMeRow').style.display=o.bars?'':'none';$('#evtRvRow').style.display=o.bars?'':'none';$('#evtRvName').textContent=o.rival||'Rival'}
+function evUI(on,o={}){const e=$('#evt');e.classList.toggle('on',on);$('#evtTime').textContent='';if(!on)return;$('#evtT').textContent=o.title;$('#evtBtn').textContent=o.btn||'';$('#evtBtn').style.display=o.btn?'':'none';$('#evtChoices').style.display=o.choices?'':'none';$('#evtMeRow').style.display=o.bars?'':'none';$('#evtRvRow').style.display=o.bars&&!o.one?'':'none';$('#evtRvName').textContent=o.rival||'Rival';$('#evtMeName').textContent=o.me||'Núria'}
 function evBars(me,rv,mx,mn,rn){$('#evtMe').style.width=clamp(me/mx*100,0,100)+'%';$('#evtRv').style.width=clamp(rv/mx*100,0,100)+'%';$('#evtMeN').textContent=mn;$('#evtRvN').textContent=rn}
 function evTime(t){$('#evtTime').textContent=t>0?Math.ceil(t)+' s':''}
 function tapRate(){const n=performance.now();EV.tapTimes=EV.tapTimes.filter(x=>n-x<1000);return EV.tapTimes.length}
 $('#evtBtn').addEventListener('pointerdown',e=>{e.preventDefault();initAudio();EV.taps++;EV.tapTimes.push(performance.now());vibrate(8);if(EV.onTap)EV.onTap()});
-function evCleanup(){if(!EV.cur)return;EV.cur=null;EV.onTap=null;evUI(false);hideRival();trackG.visible=false;chuteG.visible=false;clouds.forEach(c=>c.visible=false);popM.visible=false;C.film=false;tvG.userData.big=1;fade(false);stage.classList.remove('cine')}
+function evCleanup(){if(!EV.cur)return;EV.cur=null;EV.onTap=null;EV.choice=null;evUI(false);mtG.visible=false;easelG.visible=false;$('#paint').classList.remove('on');GHS.forEach(g=>{g.on=false;g.m.visible=false});hideRival();trackG.visible=false;chuteG.visible=false;clouds.forEach(c=>c.visible=false);popM.visible=false;C.film=false;tvG.userData.big=1;fade(false);stage.classList.remove('cine')}
 function startEvent(id){$('#invite').classList.remove('on');EV.inv=null;closePanels();openMenu(false);wakeFor();if(cantReach())return;if(busy())return nowNo();
-  const g={pushups:evPushups,race:evRace,cinema:evCinema,skydive:evSky}[id];startAct('ev',g);EV.cur=id;EV.taps=0;EV.tapTimes=[];EV.next=rand(180,260)}
+  const g={pushups:evPushups,race:evRace,cinema:evCinema,skydive:evSky,climb:evClimb,ghosts:evGhosts,paint:evPaint,rps:evRPS}[id];startAct('ev',g);EV.cur=id;EV.taps=0;EV.tapTimes=[];EV.next=rand(100,160)}
 function* countdown(){for(const n of ['3','2','1','¡YA!']){const sr=stage.getBoundingClientRect();pw(sr.left+sr.width/2,sr.top+sr.height*.35,n,n.length>1?46:56);SFX.pop();yield* waitS(.75)}}
 function stepEvents(dt){
   if(EV.inv){EV.invT-=dt;if(EV.invT<=0){$('#invite').classList.remove('on');EV.inv=null}return}
   if(EV.cur||C.sleeping||C.hidden||PH.mode||busy()||WANT.cur||(S.drunk||0)>45)return;
-  if((EV.next-=dt)>0)return;EV.next=rand(150,240);const id=pick(Object.keys(EVS));EV.inv=id;EV.invT=16;$('#invI').textContent=EVS[id][0];$('#invT').textContent=EVS[id][1];$('#invite').classList.add('on');SFX.yay()}
+  if((EV.next-=dt)>0)return;EV.next=rand(80,140);const id=pick(Object.keys(EVS).filter(k=>k!==EV.lastInv));EV.lastInv=id;EV.inv=id;EV.invT=16;$('#invI').textContent=EVS[id][0];$('#invT').textContent=EVS[id][1];$('#invite').classList.add('on');SFX.yay()}
 $('#invYes').onclick=()=>{SFX.click();if(EV.inv)startEvent(EV.inv)};$('#invNo').onclick=()=>{SFX.click();$('#invite').classList.remove('on');EV.inv=null};
 // --- flexiones ---
 function* evPushups(){C.status='Competición de flexiones';C.thought=null;yield* leaveSpot();const R=RIGHT(),F=[Math.sin(CAMYAW),Math.cos(CAMYAW)],rv=rival();
@@ -1763,6 +1770,75 @@ function* evSky(){C.status='¡Salto en paracaídas!';C.thought=['🪂','¡¡Que 
   if(openAlt<=800){SFX.thud();shakeStage();C.pose='floorsit';C.y=-.31;react('rage',2.4);dizzy(2.4);say('¡¡MI CULO!! ¡Lo has abierto tardísimo!',2.4);S.hurt=(S.hurt||0)+1;C.hurtT=clockS;annoy(15);yield* waitS(2.5);C.y=0;C.pose='stand';clearDizzy();evCleanup()}
   else{SFX.step();C.squash=1;C.pose='stand';faceCam();react('party',2.4);ach('skydive');showBanner(openAlt>2200?'🪂 ¡ATERRIZAJE SUAVE!':'🪂 ¡PERFECTO!');SFX.yay();cine({zoom:.55,dur:2,orbit:.8,lift:.35});say(openAlt>2200?'¡Qué vistas! Aunque lo abriste prontísimo…':'¡¡QUÉ PASADA!! ¡Otra vez!',2.4);yield* waitS(2.2);evCleanup()}
   C.thought=null}
+/* ---- minijuegos: escalar, fantasmas, pintar y piedra-papel-tijera ---- */
+// montaña
+const mtG=new THREE.Group();mtG.visible=false;world.add(mtG);
+{const rock=std({color:'#8a7b6c',roughness:.95,flatShading:true}),snow=std({color:'#ffffff',roughness:.8,flatShading:true});
+ add(mtG,new THREE.ConeGeometry(2.6,7,9),rock,0,3.5,0);add(mtG,new THREE.ConeGeometry(.95,2.4,9),snow,0,6.2,0,{cast:false});
+ for(let i=0;i<10;i++){const a=rand(0,Math.PI*2),y=rand(.4,5),r=2.6*(1-y/7);const b=add(mtG,new THREE.DodecahedronGeometry(rand(.15,.3)),rock,Math.sin(a)*r,y,Math.cos(a)*r);b.rotation.set(rand(0,3),rand(0,3),0)}
+ add(mtG,new THREE.CylinderGeometry(.03,.03,1,6),std({color:'#9aa0aa'}),0,7.5,0,{cast:false});mtG.userData.flag=add(mtG,new THREE.PlaneGeometry(.55,.36),new THREE.MeshStandardMaterial({color:'#ff5a6e',side:THREE.DoubleSide}),.28,7.8,0,{cast:false});mtG.userData.flag.visible=false}
+function* evClimb(){C.status='¡A escalar!';C.thought=null;yield* leaveSpot();faceCam();const F=[Math.sin(CAMYAW),Math.cos(CAMYAW)],cx=C.pos.x-F[0]*2.9,cz=C.pos.y-F[1]*2.9,H=6.3,D=16;
+  mtG.position.set(cx,0,cz);mtG.visible=true;mtG.userData.flag.visible=false;mtG.scale.setScalar(.05);SFX.rumble();say('¿Escalar esa montaña? ¡Pan comido!',1.8);for(let t=0;t<1;t+=yield)mtG.scale.setScalar(Math.min(1,.05+t*1.2));mtG.scale.setScalar(1);
+  C.rot=C.rotGoal=Math.atan2(-F[0],-F[1]);evUI(true,{title:'🧗‍♀️ ¡Llega a la cima!',btn:'🧗‍♀️ ¡SUBE! (toca rápido)',bars:true,one:true});yield* countdown();
+  let h=0,t=0;C.pose='climb';EV.onTap=()=>{h=Math.min(H,h+.21);if(Math.random()<.3)SFX.step()};
+  while(t<D&&h<H){h=Math.max(0,h-dt_*.38);const r=2.6*(1-h/7)+.28;C.pos.set(cx+F[0]*r,cz+F[1]*r);C.y=h;evBars(h,0,H,Math.round(h/H*100)+'%','');evTime(D-t);
+    if(Math.random()<dt_*.25&&!sayOn)say(pick(['¡Uf, uf!','¡No mires abajo, Núria!','¡Qué alto!','¡Más rápido!']),1.2);t+=yield}
+  EV.onTap=null;evUI(false);const win=h>=H;
+  if(win){C.pose='stand';faceCam();mtG.userData.flag.visible=true;ach('climb');showBanner('🏔️ ¡CIMA!');SFX.yay();react('party',2.6);say('¡¡HE LLEGADO A LA CIMA!! ¡Soy una alpinista!',2.4);cine({zoom:.6,dur:2.4,orbit:1,lift:.3});yield* waitS(2.6)}
+  else{react('sad',2);say('¡No puedo más! ¡Me bajo!',1.8);SFX.lose();yield* waitS(1)}
+  C.pose='stand';yield* slideTo(cx+F[0]*3.1,cz+F[1]*3.1,0,1.1);faceCam();S.energy=clamp(S.energy-12,0,100);S.bored=clamp(S.bored-20,0,100);yield* waitS(.6);evCleanup();C.thought=null}
+// caza de fantasmas
+const GHS=[];
+function ghostTap(x,y){setRay(x,y);const ms=[];GHS.forEach(g=>{if(g.on)g.m.traverse(o=>{if(o.isMesh){o.userData.gh=g;ms.push(o)}})});const hs=ray.intersectObjects(ms,false);if(!hs.length)return;const g=hs[0].object.userData.gh;if(!g.on)return;
+  g.on=false;g.m.visible=false;EV.caught++;SFX.sparkle();SFX.poof();spray(g.m.position.clone().add(new THREE.Vector3(0,1,0)),14,1.4,1.4,sparkMat);const p=toScreen(g.m.position.clone().add(new THREE.Vector3(0,1.1,0)));pw(p.x,p.y,'¡ATRAPADO!',18);vibrate(15)}
+function* evGhosts(){C.status='¡Caza de fantasmas!';C.thought=['👻','¡Que vienen!'];yield* leaveSpot();faceCam();
+  if(!GHS.length)for(let i=0;i<4;i++){const m=spook.clone(true);m.visible=false;world.add(m);GHS.push({m,on:false,t:0})}
+  say('¿Fantasmas? ¡¡Qué miedo!! Tócalos tú, que yo no me atrevo',2.2);react('surprised',1.6);EV.caught=0;const goal=8,D=20;
+  evUI(true,{title:'👻 ¡Toca los fantasmas!',bars:true,one:true,me:'Cazados'});yield* countdown();
+  let t=0,next=0,esc=0;const cy=Math.atan2(camera.position.x-C.pos.x,camera.position.z-C.pos.y);
+  while(t<D&&EV.caught<goal){if((next-=dt_)<=0){next=rand(.7,1.3);const g=GHS.find(q=>!q.on);if(g){const a=cy+rand(-1.1,1.1),r=rand(1.3,3);g.x=C.pos.x+Math.sin(a)*r;g.z=C.pos.y+Math.cos(a)*r;g.on=true;g.t=0;g.life=rand(2,2.8);g.m.visible=true;SFX.ghost()}}
+    GHS.forEach(g=>{if(!g.on)return;g.t+=dt_;const k=Math.min(1,g.t/.3);let y=lerp(-1.6,.1,1-Math.pow(1-k,3))+Math.sin(g.t*5)*.08;if(g.t>g.life){y-= (g.t-g.life)*5;if(g.t>g.life+.35){g.on=false;g.m.visible=false;esc++;if(!sayOn)say(pick(['¡Se escapa!','¡Ese se ha ido!','¡Rápido, rápido!']),1)}}
+      g.m.position.set(g.x,y,g.z);g.m.rotation.y=Math.atan2(camera.position.x-g.x,camera.position.z-g.z)+Math.sin(g.t*3)*.2});
+    if(!GH.on){spookMat.opacity=.88;spookMat.emissiveIntensity=isNight()?.9:.15}C.pose=GHS.some(g=>g.on&&Math.hypot(g.x-C.pos.x,g.z-C.pos.y)<1.8)?'scared':'stand';
+    evBars(EV.caught,0,goal,EV.caught+'/'+goal,'');evTime(D-t);t+=yield}
+  GHS.forEach(g=>{g.on=false;g.m.visible=false});C.pose='stand';evUI(false);faceCam();
+  if(EV.caught>=goal){ach('ghosts');showBanner('👻 ¡LIMPIO DE FANTASMAS!');SFX.yay();react('party',2.4);say('¡Los has cazado todos! ¡Eres mi heroína!',2.4);cine({zoom:.6,dur:2,orbit:.8,lift:.35})}
+  else{react('surprised',2);SFX.lose();say('¡Se han escapado! ¡Esta noche no duermo!',2.2);S.stress=clamp(S.stress+10,0,100)}
+  yield* waitS(2.4);evCleanup();C.thought=null}
+// pintar un cuadro
+const easelG=new THREE.Group();easelG.visible=false;world.add(easelG);
+{const wd=std({color:'#a8743f',roughness:.8});[[-.32,.12],[.32,.12],[0,-.32]].forEach(([x,z])=>{const l=add(easelG,new THREE.CylinderGeometry(.025,.03,1.7,6),wd,x*.8,.82,z);l.rotation.x=z<0?-.25:.12;l.rotation.z=-x*.25});
+ add(easelG,RB(.95,.05,.08,.02),wd,0,.72,.14);const pt=document.getElementById('paintC');const tx=new THREE.CanvasTexture(pt);tx.colorSpace=THREE.SRGBColorSpace;easelG.userData.tex=tx;
+ add(easelG,RB(.92,.68,.04,.01),std({color:'#ffffff'}),0,1.12,.16,{rx:-.12});easelG.userData.canvas=add(easelG,new THREE.PlaneGeometry(.86,.62),new THREE.MeshBasicMaterial({map:tx,toneMapped:false}),0,1.12,.185,{rx:-.12,cast:false})}
+const PNT={col:'#3d3a44',down:false,last:null,strokes:0};
+{const cv=document.getElementById('paintC'),g=cv.getContext('2d');const pos=e=>{const r=cv.getBoundingClientRect();return[(e.clientX-r.left)/r.width*cv.width,(e.clientY-r.top)/r.height*cv.height]};
+ cv.addEventListener('pointerdown',e=>{e.preventDefault();PNT.down=true;PNT.last=pos(e);try{cv.setPointerCapture(e.pointerId)}catch(_){}});
+ cv.addEventListener('pointermove',e=>{if(!PNT.down)return;const p=pos(e);g.strokeStyle=PNT.col;g.lineWidth=PNT.col==='#ffffff'?22:7;g.lineCap='round';g.lineJoin='round';g.beginPath();g.moveTo(...PNT.last);g.lineTo(...p);g.stroke();PNT.last=p;PNT.strokes++;if(PNT.strokes%12===0)SFX.brush()});
+ const up=()=>{PNT.down=false};cv.addEventListener('pointerup',up);cv.addEventListener('pointercancel',up);
+ document.querySelectorAll('#paint .pal button').forEach(b=>b.onclick=()=>{SFX.click();PNT.col=b.dataset.col;document.querySelectorAll('#paint .pal button').forEach(x=>x.classList.toggle('on',x===b))})}
+function* evPaint(){C.status='Pintando un cuadro';C.thought=['🎨','A ver qué sale…'];yield* leaveSpot();faceCam();const R=RIGHT();
+  easelG.position.set(C.pos.x+R[0]*1.05,0,C.pos.y+R[1]*1.05);easelG.rotation.y=Math.atan2(camera.position.x-easelG.position.x,camera.position.z-easelG.position.z);easelG.visible=true;SFX.poof();
+  const cv=$('#paintC'),g=cv.getContext('2d');g.fillStyle='#fff';g.fillRect(0,0,cv.width,cv.height);PNT.strokes=0;easelG.userData.tex.needsUpdate=true;
+  say('¡Vamos a pintar! Dibuja tú y yo te digo qué tal',2);$('#paint').classList.add('on');evUI(true,{title:'🎨 Pinta con el dedo',btn:'✅ ¡Terminado!'});
+  let done=false,t=0;const D=40;EV.onTap=()=>{done=true};
+  while(!done&&t<D){evTime(D-t);if(Math.random()<dt_*.12&&!sayOn)say(pick(['Uy, qué colores…','¿Eso qué es?','¡Me gusta!','Picasso estaría orgulloso…','Más color, ¡más!']),1.4);if(Math.random()<dt_*4)easelG.userData.tex.needsUpdate=true;t+=yield}
+  EV.onTap=null;$('#paint').classList.remove('on');evUI(false);easelG.userData.tex.needsUpdate=true;ach('paint');SFX.sparkle();
+  const empty=PNT.strokes<10;C.rotGoal=easelG.rotation.y+Math.PI;yield* waitS(1);react(empty?'sus':pick(['party','happy','sus','laugh']),2.4);
+  say(empty?'¿Un lienzo en blanco? Muy… conceptual':pick(['¡Es una obra de arte! Lo cuelgo en el salón','¿Eso es un caballo? …digo, ¡precioso!','Esto vale millones. Bueno, cientos. Bueno, nada, pero me encanta','¡Me has pintado guapísima!','Hmm… lo pondremos en la nevera']),2.6);voice(1.1,1);
+  yield* waitS(3.5);faceCam();yield* waitS(.5);evCleanup();C.thought=null}
+// piedra, papel o tijera
+$('#evtChoices').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;initAudio();SFX.click();EV.choice=+b.dataset.c});
+function* evRPS(){C.status='Piedra, papel o tijera';C.thought=['✊','Al mejor de tres'];yield* leaveSpot();faceCam();say('¿Piedra, papel o tijera? ¡Al mejor de tres!',2);
+  const E=['✊','✋','✌️'],N=['piedra','papel','tijera'];let you=0,her=0,round=0;evUI(true,{title:'✊✋✌️ Al mejor de 3',bars:true,choices:true,me:'Tú',rival:'Núria'});evBars(0,0,2,0,0);
+  while(you<2&&her<2&&round<9){EV.choice=null;$('#evtTime').textContent='Ronda '+(round+1);let w=0;while(EV.choice===null&&w<30)w+=yield;if(EV.choice===null)break;
+    const y=EV.choice,h=Math.floor(Math.random()*3);C.pose='reach';SFX.pop();const hp=headPx(),sr=stage.getBoundingClientRect();pw(hp.x,hp.y-hp.r*1.9,E[h],44);pw(sr.left+sr.width/2,sr.bottom-60,E[y],40);
+    const r=(y-h+3)%3;yield* waitS(.4);
+    if(r===0){react('sus',1.5);say('¡Empate! Otra',1.2)}else if(r===1){you++;react('angry',1.6);say(pick(['¡Nooo! ','¡Grrr! '])+N[y]+' gana a '+N[h],1.6);SFX.lose()}else{her++;react('party',1.6);say(pick(['¡Toma! ','¡Jaja! '])+N[h]+' gana a '+N[y],1.6);SFX.yay()}
+    evBars(you,her,2,you,her);yield* waitS(1.5);C.pose='stand';round++}
+  evUI(false);faceCam();
+  if(you>her){ach('rps');showBanner('🏆 ¡HAS GANADO!');react('rage',2.2);say(pick(['¡Has hecho trampa! ¡Seguro!','Vale, vale… la próxima te gano']),2.2);annoy(5)}
+  else if(her>you){showBanner('😎 ¡GANA NÚRIA!');react('party',2.4);SFX.yay();say(pick(['¡Soy la reina del piedra, papel o tijera!','¡Ja! ¡Te he leído la mente!']),2.2);C.happyUntil=clockS+8;cine({zoom:.6,dur:1.8,lift:.35})}
+  yield* waitS(2.2);evCleanup();C.thought=null}
 // cuando una acción no puede hacerse, avisar en vez de no hacer nada
 function cantReach(){if(PH.mode){toast('¡Espera a que aterrice!');return true}if(C.actName==='hospital'){toast('🚑 Está en el hospital…');return true}if(C.inBath||C.hidden){say(pick(['¡Estoy en el váter!','¡Ocupado!','¡Un momento, que estoy en el baño!']),1.4);return true}return false}
 function nowNo(){say(pick(['¡Ahora no!','¡Espera, que estoy liada!','¡Un momento!','¡Luego, luego!']),1.2)}
@@ -1877,7 +1953,8 @@ function setRay(x,y){const r=canvas.getBoundingClientRect();ndc.set((x-r.left)/r
 function hit(x,y){setRay(x,y);const h=ray.intersectObjects(pickables,false);if(!h.length)return null;const o=h[0].object;if(o.userData.puke){lastPuke=o.userData.puke;return'puke'}
   if(nuriParts.includes(o))return'nuri';if([doorPanel,knob,latch,wcSign].includes(o)||wcBoard.children.includes(o))return'door';if(o===tvBody||o===tvScreen)return'tv';if(o===postBtn||o===postHead)return'light';if(o===clockBody)return'alarm';if(o===phoneBody)return'phone';return null}
 let down=null;const lastPtr={x:0,y:0};const touches=new Map();let pinch=null,zoomK=1,zoomGoal=1;
-canvas.addEventListener('pointerdown',e=>{initAudio();if(PANELS().some(p=>!p.hidden)){closePanels();return}
+canvas.addEventListener('pointerdown',e=>{if(EV.cur==='ghosts'){ghostTap(e.clientX,e.clientY);e.stopImmediatePropagation()}},true);
+canvas.addEventListener('pointerdown',e=>{initAudio();if(EV.cur==='ghosts')return;if(PANELS().some(p=>!p.hidden)){closePanels();return}
   touches.set(e.pointerId,{x:e.clientX,y:e.clientY});try{canvas.setPointerCapture(e.pointerId)}catch(_){}
   if(touches.size>=2){const[a,b]=[...touches.values()];pinch={d:Math.hypot(a.x-b.x,a.y-b.y)||1,k:zoomGoal};if(down){clearTimeout(down.timer);if(down.grab&&PH.mode==='held')release();down=null}return}
   const h=hit(e.clientX,e.clientY);down={x:e.clientX,y:e.clientY,h,id:e.pointerId,grab:false};lastPtr.x=e.clientX;lastPtr.y=e.clientY;
