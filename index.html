@@ -501,6 +501,14 @@ const knob=add(doorPivot,new THREE.SphereGeometry(.035,10,8),std({color:'#dfe3ea
 const latchMat=std({color:'#9aa3ad',metalness:.6,roughness:.3,emissive:'#ff3b55',emissiveIntensity:0});
 const latch=add(doorPivot,RB(.14,.06,.04,.01),latchMat,.62,1.22,.05);
 const wcSign=add(doorPivot,new THREE.PlaneGeometry(.26,.26),new THREE.MeshBasicMaterial({map:ctex(128,128,g=>{g.fillStyle='#fff';g.beginPath();g.arc(64,64,62,0,7);g.fill();g.fillStyle='#3d3a44';g.font='900 50px sans-serif';g.textAlign='center';g.textBaseline='middle';g.fillText('WC',64,68)})}),.4,1.55,.03,{cast:false});
+// cartel grande "WC" encima del váter
+const wcBoard=new THREE.Group();wcBoard.position.set(0,2.62,0);cab.add(wcBoard);
+{const tx=ctex(256,128,g=>{g.fillStyle='#2f6fd6';g.beginPath();g.roundRect(4,4,248,120,24);g.fill();g.strokeStyle='#ffffff';g.lineWidth=7;g.beginPath();g.roundRect(14,14,228,100,16);g.stroke();
+   g.fillStyle='#fff';g.font='900 74px sans-serif';g.textAlign='center';g.textBaseline='middle';g.fillText('WC',150,68);
+   g.beginPath();g.arc(56,44,10,0,7);g.fill();g.fillRect(46,58,20,34);g.beginPath();g.moveTo(40,92);g.lineTo(72,92);g.lineTo(64,62);g.lineTo(48,62);g.fill()});
+ const fm=new THREE.MeshBasicMaterial({map:tx,toneMapped:false});
+ add(wcBoard,RB(.78,.4,.05,.02),std({color:'#2f6fd6'}),0,0,0);add(wcBoard,new THREE.PlaneGeometry(.74,.37),fm,0,0,.027,{cast:false});add(wcBoard,new THREE.PlaneGeometry(.74,.37),fm,0,0,-.027,{cast:false,ry:Math.PI});
+ [-.25,.25].forEach(x=>add(wcBoard,new THREE.CylinderGeometry(.018,.018,.32,8),std({color:'#9aa0aa',metalness:.5}),x,-.33,0))}
 let doorAngle=0;
 const CAB_IN=new THREE.Vector2(-3.2,-2.65),DOOR_WORLD=new THREE.Vector3(-3.2,2.3,-2.06);
 
@@ -719,7 +727,7 @@ const nearPos=self=>{const clampR=([x,z])=>{const l=Math.hypot(x,z);return l>6.5
   let best=clampR([C.pos.x,C.pos.y]);if(!free(best)){let found=null;for(const r of[1.5,2.5,3.5,4.5,6,8])for(let i=0;i<16&&!found;i++){const a=i*Math.PI/8+Math.PI/2;const c=clampR([C.pos.x+Math.cos(a)*r,C.pos.y+Math.sin(a)*r]);if(free(c))found=c}if(found)best=found}
   if(self)self.userData.foot=fp(best);return best};
 function setGZ(n,x0,x1,z0,z1,ex){const g=GZ.find(q=>q.n===n);if(g){g.x0=x0;g.x1=x1;g.z0=z0;g.z1=z1;g.ex=ex}}
-function placeCab(){if(shown(cab))return;const A=nearPos(cab),b=CAB_B;const c=rv(A,0,-1.15,b);cab.position.set(c[0],0,c[1]);cab.rotation.y=b;CAB_IN.set(...rv(A,0,-1.2,b));const d=rv(A,0,-.61,b);DOOR_WORLD.set(d[0],2.3,d[1]);
+function placeCab(){if(shown(cab))return;const A=nearPos(cab),b=CAB_B;wcBoard.rotation.y=CAMYAW-b;const c=rv(A,0,-1.15,b);cab.position.set(c[0],0,c[1]);cab.rotation.y=b;CAB_IN.set(...rv(A,0,-1.2,b));const d=rv(A,0,-.61,b);DOOR_WORLD.set(d[0],2.3,d[1]);
   SP.door.ap=A;SP.door.rot=b+Math.PI;setGZ('roof',c[0]-.6,c[0]+.6,c[1]-.6,c[1]+.6,A)}
 function placeTV(){if(shown(sofa))return;const A=nearPos(sofa),b=SOFA_B;const so=rv(A,0,-.75,b),tv=rv(A,0,-2.85,b);
   sofa.position.set(so[0],0,so[1]);sofa.rotation.y=Math.PI+b;tvG.position.set(tv[0],0,tv[1]);tvG.rotation.y=b;
@@ -1012,7 +1020,7 @@ function* aBath(){
   C.status='Corre al váter';C.thought=['🚽','¡Me hago pis!'];yield* goTo('door');let t=0,next=0;
   while(!doorOpen){if(!S.locked){setDoor(true);break}
     C.status='¡Pestillo! No puede entrar';C.pose=S.bladder>88?'peedance':'stand';C.thought=['🔒','¡¿Quién ha echado el pestillo?!'];
-    if(C.urgent&&t>14&&!C.pukedLock){C.pukedLock=true;vomit()}if(S.bladder>=99.5&&t>10){peeAccident();yield* waitS(3);C.thought=null;return}if(t>=next){next=t+rand(3.5,5);SFX.rattle();react(S.bladder>90?'rage':'angry',2);say(C.urgent?pick(['¡¡QUE ES UNA EMERGENCIA!!','¡¡LA COMIDA ESTABA MALA!! ¡¡ABRE!!','¡¡NO LLEGO!!']):pick(T.lockedOut),2.2);voice(1.15,1);annoy(6);C.pose='reach';if(Math.random()<.5)crowdReact('look',C.pos,4)}t+=yield}
+    S.bladder=clamp(S.bladder+dt_*1.8,0,100);if(C.urgent&&t>14&&!C.pukedLock){C.pukedLock=true;vomit()}if(S.bladder>=99.5&&t>8){peeAccident();yield* waitS(3);C.thought=null;return}if(t>=next){next=t+rand(3.5,5);SFX.rattle();react(S.bladder>90?'rage':'angry',2);say(C.urgent?pick(['¡¡QUE ES UNA EMERGENCIA!!','¡¡LA COMIDA ESTABA MALA!! ¡¡ABRE!!','¡¡NO LLEGO!!']):pick(T.lockedOut),2.2);voice(1.15,1);annoy(6);C.pose='reach';if(Math.random()<.5)crowdReact('look',C.pos,4)}t+=yield}
   if(t>2){react('surprised',1);say(pick(T.bathFinally),1.4)}C.urgent=false;
   C.thought=null;C.pose='stand';C.status='En el váter';C.at=null;C.path=[CAB_IN.clone()];yield* until(()=>!C.path.length);C.inBath=true;C.hidden=true;setDoor(false);
   yield* waitS(3.5);SFX.flush();S.bladder=0;yield* waitS(1.8);let k=0,tt=0;
@@ -1196,10 +1204,10 @@ function refreshDock(){dockBtns.lock.classList.toggle('on',S.locked);dockBtns.lo
 
 /* =================== tocar la escena y coger a Núria =================== */
 const ray=new THREE.Raycaster(),ndc=new THREE.Vector2();
-const pickables=[...nuriParts,doorPanel,knob,latch,wcSign,tvBody,tvScreen,postBtn,postHead,clockBody,phoneBody];
+const pickables=[...nuriParts,doorPanel,knob,latch,wcSign,...wcBoard.children,tvBody,tvScreen,postBtn,postHead,clockBody,phoneBody];
 function setRay(x,y){const r=canvas.getBoundingClientRect();ndc.set((x-r.left)/r.width*2-1,-(y-r.top)/r.height*2+1);ray.setFromCamera(ndc,camera)}
 function hit(x,y){setRay(x,y);const h=ray.intersectObjects(pickables,false);if(!h.length)return null;const o=h[0].object;if(o.userData.puke){lastPuke=o.userData.puke;return'puke'}
-  if(nuriParts.includes(o))return'nuri';if([doorPanel,knob,latch,wcSign].includes(o))return'door';if(o===tvBody||o===tvScreen)return'tv';if(o===postBtn||o===postHead)return'light';if(o===clockBody)return'alarm';if(o===phoneBody)return'phone';return null}
+  if(nuriParts.includes(o))return'nuri';if([doorPanel,knob,latch,wcSign].includes(o)||wcBoard.children.includes(o))return'door';if(o===tvBody||o===tvScreen)return'tv';if(o===postBtn||o===postHead)return'light';if(o===clockBody)return'alarm';if(o===phoneBody)return'phone';return null}
 let down=null;const lastPtr={x:0,y:0};const touches=new Map();let pinch=null,zoomK=1,zoomGoal=1;
 canvas.addEventListener('pointerdown',e=>{initAudio();if(PANELS().some(p=>!p.hidden)){closePanels();return}
   touches.set(e.pointerId,{x:e.clientX,y:e.clientY});try{canvas.setPointerCapture(e.pointerId)}catch(_){}
@@ -1363,6 +1371,7 @@ function step(dt){
   dt_=dt;clockS+=dt;const now=clockS;zoomK=damp(zoomK,zoomGoal,7,dt);
   S.gameMin=(S.gameMin+dt*(C.sleeping&&isNight()?7:2))%1440;
   S.hunger=clamp(S.hunger+dt*(C.sleeping?.08:.22),0,100);S.bladder=clamp(S.bladder+dt*(C.sleeping?.05:.12),0,100);
+  if(S.bladder>=99.5&&!C.sleeping&&!C.hidden&&!C.inBath&&!PH.mode&&C.actName!=='bath'){C.fullT=(C.fullT||0)+dt;if(C.fullT>6){C.fullT=0;peeAccident();if(busy()){C.act=null;C.actName=''}}}else C.fullT=0;
   S.energy=clamp(S.energy+dt*(C.sleeping?.55:clockS<C.caffeineUntil?.02:-.08),0,100);S.anger=clamp(S.anger-dt*.6,0,100);
   {let r=-.3;if(S.hunger>80)r+=.25;if(S.bladder>85)r+=.35;if(S.energy<20)r+=.25;if(S.dirt>60)r+=.15;if(CAT.mode==='follow')r+=.9;if(RO.mode)r+=1.1;if(clockS<C.caffeineUntil)r+=.15;
    if((C.actName==='tv'&&S.tv)||C.holdPhone||C.sleeping||C.actName==='bathe')r-=.6;S.stress=clamp(S.stress+dt*r,0,100);
